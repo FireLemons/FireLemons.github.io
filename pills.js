@@ -22,6 +22,8 @@ $(function(){
 	
 	$("#pillInfo tbody tr td").append("<p class='noSelect'>" + pillEffects[1] + "</p>");
 	$("#pillInfo tbody tr td").click(changeEffect);
+	$('#pillInfo tbody tr td').on('scroll touchmove mousewheel', stopScrolling);
+
 	
 	$("#version_header").click(function(){
 		
@@ -47,10 +49,11 @@ function switchVersion(version){
 					$("#pillInfo tbody").append("<tr class = 'afterBirth'></tr>");
 				}
 				
-				$($("#pillInfo tbody").children(".afterBirth").get(Math.floor(index / 3))).append("<td><img alt=" + element.alt + " class='noSelect' src=" + element.url + "><p class='noSelect'>" + pillEffects[1] + "</p></td>");
+				$($("#pillInfo tbody").children(".afterBirth").get(Math.floor(index / 3))).append("<td><img alt='" + element.alt + "' class='noSelect' src=" + element.url + "><p class='noSelect'>" + pillEffects[1] + "</p></td>");
 			});
 			
 			$("#pillInfo tbody tr.afterBirth").children("td").click(changeEffect);
+			$("#pillInfo tbody tr.afterBirth").children("td").on('scroll touchmove mousewheel', stopScrolling);
 		return;
 		
 		case 1:
@@ -102,6 +105,11 @@ function changeEffect(e){
 	}
 	
 	pills[index] %= pillEffects.length;
-	console.log(pills[index]);
 	$(this).children("p").text(pillEffects[pills[index]]);
+}
+
+function stopScrolling(e){
+  e.preventDefault();
+  e.stopPropagation();
+  return false;
 }
