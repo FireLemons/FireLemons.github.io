@@ -24,7 +24,7 @@ $(function(){
 	$("#pillInfo tbody tr td").click(changeEffect);
 	
 	$("#version_header").click(function(){
-	
+		
 		switchVersion(versionIndex);
 		versionIndex++;
 		versionIndex %= versions.length;
@@ -48,8 +48,9 @@ function switchVersion(version){
 				}
 				
 				$($("#pillInfo tbody").children(".afterBirth").get(Math.floor(index / 3))).append("<td><img alt=" + element.alt + " class='noSelect' src=" + element.url + "><p class='noSelect'>" + pillEffects[1] + "</p></td>");
-				$("#pillInfo tbody tr.afterBirth").children().click(changeEffect);
 			});
+			
+			$("#pillInfo tbody tr.afterBirth").children("td").click(changeEffect);
 		return;
 		
 		case 1:
