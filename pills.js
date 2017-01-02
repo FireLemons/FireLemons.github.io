@@ -13,17 +13,14 @@ var afterPillsUI = [
 	{url:"Images/Pills/AfterBirth/White_Cyan.png", alt:"White Top with Cyan Bottom"},
 	{url:"Images/Pills/AfterBirth/White_Yellow.png", alt:"White Top with Yellow Bottom"}];
 var pills = new Array(13).fill(1);
+var cycleLock = {timeoutLock:null, intervalLock:null};
 	
 $(function(){
 
 	var versionIndex = 0;
 	
 	switchVersion(2);
-	
-	$("#pillInfo tbody tr td").append("<p class='noSelect'>" + pillEffects[1] + "</p>");
-	$("#pillInfo tbody tr td").click(changeEffectClick);
-	$('#pillInfo tbody tr td').on('scroll touchmove mousewheel', stopScrolling);
-	$("#pillInfo tbody tr td").mousewheel(changeEffectScroll);
+	applyListeners($("#pillInfo tbody tr td"));
 	
 	$("#version_header").click(function(){
 		
@@ -49,12 +46,10 @@ function switchVersion(version){
 					$("#pillInfo tbody").append("<tr class = 'afterBirth'></tr>");
 				}
 				
-				$($("#pillInfo tbody").children(".afterBirth").get(Math.floor(index / 3))).append("<td><img alt='" + element.alt + "' class='noSelect' src=" + element.url + "><p class='noSelect'>" + pillEffects[1] + "</p></td>");
+				$($("#pillInfo tbody").children(".afterBirth").get(Math.floor(index / 3))).append("<td title='Try scrolling or holding down the button.'><img alt='" + element.alt + "' class='noSelect' src=" + element.url + "></td>");
 			});
 			
-			$("#pillInfo tbody tr.afterBirth").children("td").click(changeEffectClick);
-			$("#pillInfo tbody tr.afterBirth").children("td").on('scroll touchmove mousewheel', stopScrolling);
-			$("#pillInfo tbody tr.afterBirth").children("td").mousewheel(changeEffectScroll);
+			applyListeners($("#pillInfo tbody tr.afterBirth").children("td"));
 		return;
 		
 		case 1:
@@ -110,11 +105,6 @@ function changeEffect(tableCell, direction){
 	tableCell.children("p").text(pillEffects[pills[index]]);
 }
 
-function changeEffectClick(e){
-				
-	changeEffect($(this), $(this).width() / 2 < (e.pageX - $(this).offset().left));
-}
-
 function changeEffectScroll(e){
 	
 	changeEffect($(this), e.deltaY < 0);
@@ -125,4 +115,27 @@ function stopScrolling(e){
 	e.preventDefault();
 	e.stopPropagation();
 	return false;
+}
+
+function applyListeners(element){
+	
+	element.append("<p class='noSelect'>" + pillEffects[1] + "</p>");
+	element.on('scroll touchmove mousewheel', stopScrolling);
+	element.mousewheel(changeEffectScroll);
+	element.on("mouseleave mouseup", function(){
+		
+		clearInterval(cycleLock.intervalLock);
+		clearTimeout(cycleLock.timeoutLock);
+	});
+	element.mousedown(function(e){
+		
+		var direction = $(this).width() / 2 < (e.pageX - $(this).offset().left);
+		var instance = $(this);
+		changeEffect(instance, direction);
+		
+		cycleLock.timeoutLock = setTimeout(function(){
+			
+			cycleLock.intervalLock = setInterval(function(){changeEffect(instance, direction);}, 200);
+		}, 300);
+	});
 }
