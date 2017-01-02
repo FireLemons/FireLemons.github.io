@@ -21,9 +21,9 @@ $(function(){
 	switchVersion(2);
 	
 	$("#pillInfo tbody tr td").append("<p class='noSelect'>" + pillEffects[1] + "</p>");
-	$("#pillInfo tbody tr td").click(changeEffect);
+	$("#pillInfo tbody tr td").click(changeEffectClick);
 	$('#pillInfo tbody tr td').on('scroll touchmove mousewheel', stopScrolling);
-
+	$("#pillInfo tbody tr td").mousewheel(changeEffectScroll);
 	
 	$("#version_header").click(function(){
 		
@@ -52,8 +52,9 @@ function switchVersion(version){
 				$($("#pillInfo tbody").children(".afterBirth").get(Math.floor(index / 3))).append("<td><img alt='" + element.alt + "' class='noSelect' src=" + element.url + "><p class='noSelect'>" + pillEffects[1] + "</p></td>");
 			});
 			
-			$("#pillInfo tbody tr.afterBirth").children("td").click(changeEffect);
+			$("#pillInfo tbody tr.afterBirth").children("td").click(changeEffectClick);
 			$("#pillInfo tbody tr.afterBirth").children("td").on('scroll touchmove mousewheel', stopScrolling);
+			$("#pillInfo tbody tr.afterBirth").children("td").mousewheel(changeEffectScroll);
 		return;
 		
 		case 1:
@@ -69,6 +70,16 @@ function switchVersion(version){
 	}
 }
 
+function addElements(addArr, containerArr){
+	
+	addArr.forEach(function(element){
+		
+		containerArr.push(element);
+	});
+			
+	containerArr.sort();
+}
+
 function removeElements(removeArr, containerArr){
 	
 	removeArr.forEach(function(element){
@@ -82,22 +93,12 @@ function removeElements(removeArr, containerArr){
 	});
 }
 
-function addElements(addArr, containerArr){
+function changeEffect(tableCell, direction){
 	
-	addArr.forEach(function(element){
-		
-		containerArr.push(element);
-	});
+	var index = tableCell.index() + tableCell.parent().index() * 3;
+	
+	if(direction){
 			
-	containerArr.sort();
-}
-
-function changeEffect(e){
-				
-	var index = $(this).index() + $(this).parent().index() * 3;
-
-	if($(this).width() / 2 < (e.pageX - $(this).offset().left)){
-		
 		pills[index]++;
 	}else{
 		
@@ -105,11 +106,23 @@ function changeEffect(e){
 	}
 	
 	pills[index] %= pillEffects.length;
-	$(this).children("p").text(pillEffects[pills[index]]);
+	
+	tableCell.children("p").text(pillEffects[pills[index]]);
+}
+
+function changeEffectClick(e){
+				
+	changeEffect($(this), $(this).width() / 2 < (e.pageX - $(this).offset().left));
+}
+
+function changeEffectScroll(e){
+	
+	changeEffect($(this), e.deltaY < 0);
 }
 
 function stopScrolling(e){
-  e.preventDefault();
-  e.stopPropagation();
-  return false;
+	
+	e.preventDefault();
+	e.stopPropagation();
+	return false;
 }
