@@ -7,7 +7,7 @@ var pillEffects = ["???", "48 Hour Energy", "Amnesia", "Bad Gas", "Bad Trip", "B
 var antiPills = ["Experimental Pill", "Shot Speed Down", "Shot Speed Up"];
 var afterPills = ["???(Curse of the Maze)", "Addicted", "Friends Till The End!", "Infested!",
 	"Infested?", "One Makes You Small", "One Makes You Larger", "Percs", "Power Pill", "Re-Lax", "Retro Vision"];
-var afterPlusPills = ["I'm Drowsy...", ""];
+var afterPlusPills = ["I'm Drowsy...", "Gulp!"];
 var afterPillsUI = [
 	{url:"Images/Pills/AfterBirth/Black_White.png", alt:"White Top with Black Bottom"},
 	{url:"Images/Pills/AfterBirth/Black_Yellow.png", alt:"Black Top with Yellow Bottom"}, 
