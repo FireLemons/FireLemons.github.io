@@ -1,12 +1,13 @@
-var versions = ["Antibirth", "AfterBirth", "Rebirth"];
+var versions = ["Antibirth", "AfterBirth", "Rebirth"];//, "AfterBirth+"];
 var pillEffects = ["???", "48 Hour Energy", "Amnesia", "Bad Gas", "Bad Trip", "Balls of Steel", 
 	"Bombs Are Key", "Explosive Diarrhea", "Full Health", "Health Down", "Health Up",
 	"Hematemesis", "I Can See Forever", "I Found Pills", "Lemon Party", "Luck Down",
 	"Luck Up", "Paralysis", "Pheromones", "Puberty", "Pretty Fly", "Range Down", "Range Up",
 	"R U a Wizard?", "Speed Down", "Speed Up", "Tears Down", "Tears Up", "Telepills"];
 var antiPills = ["Experimental Pill", "Shot Speed Down", "Shot Speed Up"];
-var afterPills = ["???(Curse of the Maze)", "Addicted", "Friends Till The End!", "Infested!", "Infested?", "One Makes You Small",
-	"One Makes You Larger", "Percs", "Power Pill", "Re-Lax", "Retro Vision"];
+var afterPills = ["???(Curse of the Maze)", "Addicted", "Friends Till The End!", "Infested!",
+	"Infested?", "One Makes You Small", "One Makes You Larger", "Percs", "Power Pill", "Re-Lax", "Retro Vision"];
+var afterPlusPills = ["I'm Drowsy...", ""];
 var afterPillsUI = [
 	{url:"Images/Pills/AfterBirth/Black_White.png", alt:"White Top with Black Bottom"},
 	{url:"Images/Pills/AfterBirth/Black_Yellow.png", alt:"Black Top with Yellow Bottom"}, 
@@ -19,8 +20,25 @@ $(function(){
 
 	var versionIndex = 0;
 	
+	$("div#topControls img").height($("div#topControls").height());
+	
 	switchVersion(2);
-	applyListeners($("#pillInfo tbody tr td"));
+	applyListeners($("#pillInfo td"));
+	
+	$("img#reset").click(function(){
+		
+		for(i = 0; i < pills.length; i++){
+			
+			pills[i] = 1;
+		}
+		
+		$("#pillInfo p").text("???");
+	});
+	
+	$("img#phd").click(function(){
+		
+		
+	});
 	
 	$("#version_header").click(function(){
 		
@@ -46,10 +64,10 @@ function switchVersion(version){
 					$("#pillInfo tbody").append("<tr class = 'afterBirth'></tr>");
 				}
 				
-				$($("#pillInfo tbody").children(".afterBirth").get(Math.floor(index / 3))).append("<td title='Try scrolling or holding down the button.'><img alt='" + element.alt + "' class='noSelect' src=" + element.url + "></td>");
+				$($("#pillInfo tbody tr.afterBirth").get(Math.floor(index / 3))).append("<td title='Try scrolling or holding down the button.'><img alt='" + element.alt + "' class='noSelect' src=" + element.url + "></td>");
 			});
 			
-			applyListeners($("#pillInfo tbody tr.afterBirth").children("td"));
+			applyListeners($("#pillInfo tr.afterBirth td"));
 		return;
 		
 		case 1:

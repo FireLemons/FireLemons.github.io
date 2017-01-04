@@ -49,20 +49,44 @@ div#main{
 	width: 100%;
 }
 
-p#version_header{
+div#topControls{
 	
 	background: url(Images/Message.png) no-repeat center center border-box;
-	background-size: contain;
-	color: white;
+	display: flex;
+}
+
+p#version_header{
+	
+	display:inline-block;
 	font-size: 30pt;
 	padding: .4em;
 }
 
-p#version_header:hover{
+div#topControls *:hover{
 	
 	background-color: rgba(255, 255, 255, 0.1);
 	cursor: hand;
 	cursor: pointer;
+}
+
+img#phd, img#reset{
+	
+	image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
+    image-rendering: pixelated;
+	padding: 0 3em;
+}
+
+p#version_header{
+	
+	background-size: contain;
+	color: white;
+	font-size: 30pt;
+	flex-grow:1;
 }
 
 table#pillInfo{
