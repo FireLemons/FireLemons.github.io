@@ -37,7 +37,46 @@ $(function(){
 	
 	$("img#phd").click(function(){
 		
-		
+		$("#pillInfo p").each(function(){
+			
+			switch($(this).text()){
+				
+				case "Amnesia":
+					
+					setEffect($(this), "I Can See Forever");
+				return;
+				
+				case "Bad Trip":
+				
+					setEffect($(this), "Balls of Steel");
+				return;
+				
+				case "Health Down":
+					
+					setEffect($(this), "Health Up");
+				return;
+				
+				case "Luck Down":
+					
+					setEffect($(this), "Luck Up");
+				return;
+				
+				case "Range Down":
+				
+					setEffect($(this), "Range Up");
+				return;
+				
+				case "Speed Down":
+				
+					setEffect($(this), "Speed Up");
+				return;
+				
+				case "Tears Down":
+				
+					setEffect($(this), "Tears Up");
+				return;
+			}
+		});
 	});
 	
 	$("#version_header").click(function(){
@@ -106,9 +145,20 @@ function removeElements(removeArr, containerArr){
 	});
 }
 
+function getPillIndex(tableCell){
+	
+	return tableCell.index() + tableCell.parent().index() * 3;
+}
+
+function setEffect(tableCellText, value){
+	
+	tableCellText.text(value);
+	pills[getPillIndex(tableCellText.parent())] = pillEffects.indexOf(value);
+}
+
 function changeEffect(tableCell, direction){
 	
-	var index = tableCell.index() + tableCell.parent().index() * 3;
+	var index = getPillIndex(tableCell);
 	
 	if(direction){
 			
