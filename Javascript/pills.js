@@ -1,4 +1,4 @@
-var versions = ["Antibirth", "AfterBirth", "Rebirth"];//, "AfterBirth+"];
+var versions = ["Antibirth", "AfterBirth", "AfterBirth+", "Rebirth"];
 var pillEffects = ["???", "48 Hour Energy", "Amnesia", "Bad Gas", "Bad Trip", "Balls of Steel", 
 	"Bombs Are Key", "Explosive Diarrhea", "Full Health", "Health Down", "Health Up",
 	"Hematemesis", "I Can See Forever", "I Found Pills", "Lemon Party", "Luck Down",
@@ -7,7 +7,7 @@ var pillEffects = ["???", "48 Hour Energy", "Amnesia", "Bad Gas", "Bad Trip", "B
 var antiPills = ["Experimental Pill", "Shot Speed Down", "Shot Speed Up"];
 var afterPills = ["???(Curse of the Maze)", "Addicted", "Friends Till The End!", "Infested!",
 	"Infested?", "One Makes You Small", "One Makes You Larger", "Percs", "Power Pill", "Re-Lax", "Retro Vision"];
-var afterPlusPills = ["I'm Drowsy...", "Gulp!"];
+var afterPlusPills = ["Feels like I'm walking on sunshine!", "Gulp!", "Horf!", "I'm Drowsy...", "I'm Excited!!!", "Something's wrong...", "Vurp!", "X-Lax"];
 var afterPillsUI = [
 	{url:"Images/Pills/AfterBirth/Black_White.png", alt:"White Top with Black Bottom"},
 	{url:"Images/Pills/AfterBirth/Black_Yellow.png", alt:"Black Top with Yellow Bottom"}, 
@@ -22,7 +22,7 @@ $(function(){
 	
 	$("div#topControls img").height($("div#topControls").height());
 	
-	switchVersion(2);
+	switchVersion(3);
 	applyListeners($("#pillInfo td"));
 	
 	$("img#reset").click(function(){
@@ -111,12 +111,18 @@ function switchVersion(version){
 		
 		case 1:
 			
-			removeElements(afterPills, pillEffects);
-			$(".afterBirth").remove();
+			addElements(afterPlusPills, pillEffects);
 		return;
 		
 		case 2:
 		
+			removeElements(afterPlusPills, pillEffects);
+			removeElements(afterPills, pillEffects);
+			$(".afterBirth").remove();
+		return;	
+			
+		case 3:
+			
 			addElements(antiPills, pillEffects);
 		return;
 	}
