@@ -66,6 +66,11 @@ $(function(){
 					setEffect($(this), "Range Up");
 				return;
 				
+				case "Shot Speed Down":
+				
+					setEffect($(this), "Shot Speed Up")
+				return;
+				
 				case "Speed Down":
 				
 					setEffect($(this), "Speed Up");
