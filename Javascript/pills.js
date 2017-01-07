@@ -1,4 +1,4 @@
-var versions = ["Antibirth", "AfterBirth", "AfterBirth+", "Rebirth"];
+var versions = ["Antibirth", "AfterBirth+", "AfterBirth", "Rebirth"];
 var pillEffects = ["???", "48 Hour Energy", "Amnesia", "Bad Gas", "Bad Trip", "Balls of Steel", 
 	"Bombs Are Key", "Explosive Diarrhea", "Full Health", "Health Down", "Health Up",
 	"Hematemesis", "I Can See Forever", "I Found Pills", "Lemon Party", "Luck Down",
@@ -101,6 +101,7 @@ function switchVersion(version){
 		
 			removeElements(antiPills, pillEffects);
 			addElements(afterPills, pillEffects);
+			addElements(afterPlusPills, pillEffects);
 			afterPillsUI.forEach(function(element, index){
 				
 				if(index % 3 == 0){
@@ -116,12 +117,11 @@ function switchVersion(version){
 		
 		case 1:
 			
-			addElements(afterPlusPills, pillEffects);
+			removeElements(afterPlusPills, pillEffects);
 		return;
 		
 		case 2:
 		
-			removeElements(afterPlusPills, pillEffects);
 			removeElements(afterPills, pillEffects);
 			$(".afterBirth").remove();
 		return;	
