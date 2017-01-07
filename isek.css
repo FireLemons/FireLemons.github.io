@@ -11,14 +11,9 @@
 	margin: 0;
 }
 
-body{
+body, html{
 	
 	height:100%;
-}
-
-html{
-
-	height: 100%;
 }
 
 .noSelect{
@@ -44,7 +39,7 @@ div#main{
 		url(Images/Textures/Content_bottom.png) repeat-x scroll left bottom border-box,
 		url(Images/Textures/Bg.png) left top repeat padding-box;
 	box-sizing: border-box;
-	height: 100%;
+	height:100%;
 	padding: 3em;
 	width: 100%;
 }

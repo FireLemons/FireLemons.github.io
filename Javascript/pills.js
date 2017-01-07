@@ -24,6 +24,7 @@ $(function(){
 	
 	switchVersion(3);
 	applyListeners($("#pillInfo td"));
+	fixHeight();
 	
 	$("img#reset").click(function(){
 		
@@ -90,8 +91,22 @@ $(function(){
 		versionIndex++;
 		versionIndex %= versions.length;
 		$("#version_header").text(versions[versionIndex]);
+		fixHeight();
 	});
 });
+
+function fixHeight(){
+	
+	if($("#pillInfo").position().top + $("#pillInfo").height() > $("body").height()){
+		
+		$("body").height("initial");
+	}
+	
+	if($(document).height() > $("body").height()){
+		
+		$("body").height("100%");
+	}
+}
 
 function switchVersion(version){
 	
