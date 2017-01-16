@@ -1,5 +1,5 @@
 # Pill Tracker
-**Supports Antibirth Afterbirth and Rebirth**  
+**Supports Antibirth, Afterbirth, Afterbirth+ and Rebirth**  
 + To change version click the title at the top of the page (default "Antibirth").  
 + To reset click the Forget Me Now
 + When picking up PHD or Virgo click PHD
@@ -8,4 +8,4 @@
 + To change the effect click the right side of the button to go forward and left ot go back  
 + Pill effects are in alphanumeric order  
 
-Send bugs reports to [my reddit account.](https://www.reddit.com/user/firelemons)
+Send bug reports to [my reddit account.](https://www.reddit.com/user/firelemons)
