@@ -8,6 +8,7 @@
 	
 	font-family: Upheaval;
 	text-align: center;
+	text-align: -webkit-center;
 	margin: 0;
 }
 
@@ -87,9 +88,10 @@ p#version_header{
 table#pillInfo{
 	
 	width: 100%;
+	border-collapse: collapse;
 }
 
-table#pillInfo tr td{
+table#pillInfo tbody tr td{
 	
 	width: 33%;
 }
@@ -103,7 +105,7 @@ table#pillInfo tr td:hover{
 	cursor: pointer;
 }
 
-table#pillInfo tr td img{
+table#pillInfo>tbody>tr>td>img{
 	
 	/*Thanks again to the binding of isaac wiki for the sharper images code*/
 	image-rendering: optimizeSpeed;
@@ -116,7 +118,7 @@ table#pillInfo tr td img{
 	height: 3em;
 }
 
-table#pillInfo tr td p{
+table#pillInfo>tbody>tr>td>p{
 	
 	font-size: 20pt;
 }
