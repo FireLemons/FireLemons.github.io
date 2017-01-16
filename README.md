@@ -1,11 +1,8 @@
-# Pill Tracker
-**Supports Antibirth, Afterbirth, Afterbirth+ and Rebirth**  
-+ To change version click the title at the top of the page (default "Antibirth").  
-+ To reset click the Forget Me Now
-+ When picking up PHD or Virgo click PHD
-  
-**Pill effects are under each pill picture**
-+ To change the effect click the right side of the button to go forward and left ot go back  
-+ Pill effects are in alphanumeric order  
+## Pill Tracker
+Keeps track of pill effects during a run of The Binding of Isaac.  
+Supports Antibirth, Afterbirth+, Afterbirth and Rebirth.  
+Tested for Google Chrome on Windows 10.  
 
-Send bug reports to [my reddit account.](https://www.reddit.com/user/firelemons)
+## Contributors
+Currenly working on it alone.  
+Contact me via [my reddit account.](https://www.reddit.com/user/firelemons)
