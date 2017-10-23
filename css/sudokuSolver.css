@@ -1,0 +1,40 @@
+body{ 
+	padding: .5em 2.5em; 
+}
+
+body>*{
+	margin-bottom: .5em;
+}
+
+.centeredFlex{
+	justify-content: center;
+}
+
+.flex{
+	display: flex;
+}
+
+.spacedFlex{
+	justify-content: space-between;
+}
+
+.wide{
+	width: 100%;
+}
+
+#board{
+	width: 32em;
+	height: 32em;
+}
+
+#board table{
+	height: 100%;
+}
+
+#board, #board>tbody>tr, #board>tbody>tr>td{
+	border: 5px solid black;
+}
+
+#board table, #board table tr, #board table td{
+	border: 1px solid black;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="SudokuSolver">
+	<head>
+		<title>Sudoku Solver</title>
+
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link href="css/sudokuSolver.css" rel="stylesheet">
+
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script src="scripts/sudokuSolver.js"></script>
+	</head>
+	<body ng-controller="sudokuPuzzle">
+		<noscript>
+			<h1>Turn on your dang javascript >:(</h1>
+		</noscript>
+		<h1 id="title">Sudoku Solver
+			<small> Made by Shen Yang(syg84)</small>
+		</h1>
+		<div class="dropdown">
+			<button class="btn btn-lg btn-default dropdown-toggle wide" type="button" data-toggle="dropdown">
+				<div class="flex spacedFlex">
+					<span><span class="glyphicon glyphicon-th"></span> Select Puzzle Instance</span> 
+					<span class="glyphicon glyphicon-chevron-down"></span>
+				</div>
+			</button>
+			<ul class="dropdown-menu col-md-12 col-lg-12">
+				<li><a href="javascript:;">Puzzle A</a></li>
+				<li><a href="javascript:;">Puzzle B</a></li>
+				<li><a href="javascript:;">Puzzle C</a></li>
+			</ul>
+		</div>
+		<div class="flex centeredFlex">
+			<table id="board">
+				<tr>
+					<td>
+						<table class="col-md-12 col-lg-12">
+							<tr><td></td><td></td><td></td></tr>
+							<tr><td></td><td></td><td></td></tr>
+							<tr><td></td><td></td><td></td></tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>
