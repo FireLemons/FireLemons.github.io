@@ -38,9 +38,11 @@
 				<tr ng-repeat="i in [0, 1, 2]">
 					<td ng-repeat="j in [0, 1, 2]">
 						<table class="col-md-12 col-lg-12">
-							<tr><td></td><td></td><td></td></tr>
-							<tr><td></td><td></td><td></td></tr>
-							<tr><td></td><td></td><td></td></tr>
+							<tr ng-repeat="k in [0, 1, 2]">
+								<td ng-repeat="l in [0, 1, 2]">
+									<h1 class='{{sudoku.getBoardValue(i, j, k, l).length > 1 ? "invisible" : ""}}'>{{sudoku.getBoardValue(i, j, k, l)}}</h1>
+								</td>
+							</tr>
 						</table>
 					</td>
 				</tr>
