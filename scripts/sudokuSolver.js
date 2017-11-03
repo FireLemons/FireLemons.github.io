@@ -77,114 +77,6 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
 	}
 });
 
-//return the coordinates to the next variable to be set 
-//by first applying MRV heuristic
-//and in the event of a tie, Degree heuristic
-function getNext(puzzle, heuristicMatrix){
-	var next = [];
-	var min = 16;
-
-	for(var i = 0; i < puzzle.length; i++){
-		for(var j = 0; j < puzzle.length; j++){
-			if(!Number.isInteger(puzzle[i][j]) && puzzle[i][j].length < min){//variable with fewer remaining values was found
-				min = puzzle[i][j].length;
-				next = [i, j];
-			} else if(puzzle[i][j].length > 1 && puzzle[i][j].length == min){//variable with equal remaining values was found
-				next = (heuristicMatrix[i][j] > heuristicMatrix[next[0]][next[1]]) ? [i, j] : next;//tie break using degree heuristic
-			}
-		}
-	}
-
-	return next;
-}
-
-//set a variable
-function set(i, j, puzzle, heuristicMatrix, undoStack){
-	
-	var domain = puzzle[i][j];
-
-	//error check
-	if(Number.isInteger(domain)){//already set
-		console.log("Number already set.");
-		return;
-	} else if(domain.length == 0){//no domain
-		console.log("Empty domain cannot be set.");
-		return;
-	}
-
-	//update degree heuristic
-	getConstrained(i, j).forEach(function(elem){
-		heuristicMatrix[elem[0]][elem[1]]--;
-	});
-
-	//forward check and store results
-	var diff = forwardCheck(i, j, domain[0], puzzle);
-
-	undoStack.push({
-		isLast: domain.length == 1 || domain[0] > domain[1],//whether the variable set just exhausted its domain by completing a circular shit right cycle
-		//the coordinates of the variable set
-		i: i,
-		j: j,
-		domain: domain,//the domain of the variable before it is set
-		constrained: diff
-	});
-
-	puzzle[i][j] = domain[0];
-}
-
-//undo setting a variable
-function undo(puzzle, undoStack, heuristicMatrix){
-	var action = undoStack.pop();
-
-	while(action){
-		//circular shift right the domain of variable that was set
-		puzzle[action.i][action.j] = action.domain.slice(1);
-		puzzle[action.i][action.j].push(action.domain[0]);
-
-		//restore the pruned domains of the vairables related to variable that was set
-		action.constrained.forEach(function(elem){
-			puzzle[elem.loc[0]][elem.loc[1]].splice(elem.pos, 0, action.domain[0]);
-		});
-
-		//restore huerisitc data structure
-		getConstrained(action.i, action.j).forEach(function(elem){
-			heuristicMatrix[elem[0]][elem[1]]++;
-		});
-
-		if(action.isLast){//if domain is exhausted
-			action = undoStack.pop();//undo again
-		}else{
-			action = undefined;//stop undo operations
-		}
-	}
-}
-
-//prunes the domains of a variable
-//returns a array describing the result of the pruning
-function forwardCheck(i, j, value, puzzle){
-	var diff = [];
-
-	getConstrained(i, j).forEach(function(elem){
-		var variable = puzzle[elem[0]][elem[1]];
-
-		if(Number.isInteger(variable)){//if the variable is set already
-			return;//continue out of forEach
-		}
-
-		var index = variable.indexOf(value);//index of value in domain
-
-		if(index >= 0){//if domain was pruned
-			variable.splice(index, 1);
-			diff.push({//store the position of the variable and where in the array the domain was pruned
-				loc: [elem[0], elem[1]],
-				pos: index
-			});
-		}
-	});
-
-	return diff;
-}
-
 //returns a matrix of the value of the heuristic for each unset variable 
 function getDegreeHeuristics(puzzle){
 	//Make 2D array of 0s.
@@ -233,8 +125,116 @@ function getDegreeHeuristics(puzzle){
 	return result;
 }
 
-//get a list of coordinates of variables related to the variable at puzzle[i][j] by constraints
-function getConstrained(i, j){
+//return the coordinates to the next variable to be set 
+//by first applying MRV heuristic
+//and in the event of a tie, Degree heuristic
+function getNext(puzzle, heuristicMatrix){
+	var next = [];
+	var min = 16;
+
+	for(var i = 0; i < puzzle.length; i++){
+		for(var j = 0; j < puzzle.length; j++){
+			if(!Number.isInteger(puzzle[i][j]) && puzzle[i][j].length < min){//variable with fewer remaining values was found
+				min = puzzle[i][j].length;
+				next = [i, j];
+			} else if(puzzle[i][j].length > 1 && puzzle[i][j].length == min){//variable with equal remaining values was found
+				next = (heuristicMatrix[i][j] > heuristicMatrix[next[0]][next[1]]) ? [i, j] : next;//tie break using degree heuristic
+			}
+		}
+	}
+
+	return next;
+}
+
+//set a variable
+function set(i, j, puzzle, heuristicMatrix, undoStack){
+	
+	var domain = puzzle[i][j];
+
+	//error check
+	if(Number.isInteger(domain)){//already set
+		console.log("Number already set.");
+		return;
+	} else if(domain.length == 0){//no domain
+		console.log("Empty domain cannot be set.");
+		return;
+	}
+
+	//update degree heuristic
+	getConstrained(i, j, function(elem){
+		heuristicMatrix[elem[0]][elem[1]]--;
+	});
+
+	//forward check and store results
+	var diff = forwardCheck(i, j, domain[0], puzzle);
+
+	undoStack.push({
+		isLast: domain.length == 1 || domain[0] > domain[1],//whether the variable set just exhausted its domain by completing a circular shit right cycle
+		//the coordinates of the variable set
+		i: i,
+		j: j,
+		domain: domain,//the domain of the variable before it is set
+		constrained: diff
+	});
+
+	puzzle[i][j] = domain[0];
+}
+
+//undo setting a variable
+function undo(puzzle, undoStack, heuristicMatrix){
+	var action = undoStack.pop();
+
+	while(action){
+		//circular shift right the domain of variable that was set
+		puzzle[action.i][action.j] = action.domain.slice(1);
+		puzzle[action.i][action.j].push(action.domain[0]);
+
+		//restore the pruned domains of the vairables related to variable that was set
+		action.constrained.forEach(function(elem){
+			puzzle[elem.loc[0]][elem.loc[1]].splice(elem.pos, 0, action.domain[0]);
+		});
+
+		//restore huerisitc data structure
+		getConstrained(action.i, action.j, function(elem){
+			heuristicMatrix[elem[0]][elem[1]]++;
+		});
+
+		if(action.isLast){//if domain is exhausted
+			action = undoStack.pop();//undo again
+		}else{
+			action = undefined;//stop undo operations
+		}
+	}
+}
+
+//prunes the domains of a variable
+//returns a array describing the result of the pruning
+function forwardCheck(i, j, value, puzzle){
+	var diff = [];
+
+	getConstrained(i, j, function(elem){
+		var variable = puzzle[elem[0]][elem[1]];
+
+		if(Number.isInteger(variable)){//if the variable is set already
+			return;//continue out of forEach
+		}
+
+		var index = variable.indexOf(value);//index of value in domain
+
+		if(index >= 0){//if domain was pruned
+			variable.splice(index, 1);
+			diff.push({//store the position of the variable and where in the array the domain was pruned
+				loc: [elem[0], elem[1]],
+				pos: index
+			});
+		}
+	});
+
+	return diff;
+}
+
+//get a list of coordinates of variables related to the variable at puzzle[i][j] by constraints and perform actions for each element
+function getConstrained(i, j, forEach){
 	var coordinates = [];
 
 	//vertically related variables
@@ -268,5 +268,5 @@ function getConstrained(i, j){
 	coordinates.push([iSubCoord[0], jSubCoord[1]]);
 	coordinates.push([iSubCoord[1], jSubCoord[1]]);
 
-	return coordinates;
+	coordinates.forEach(forEach);
 }
