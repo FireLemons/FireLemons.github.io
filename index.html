@@ -9,6 +9,7 @@
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
 		<script src="scripts/puzzles.js"></script>
 		<script src="scripts/sudokuSolver.js"></script>
 	</head>
@@ -16,6 +17,10 @@
 		<noscript>
 			<h1>Turn on your dang javascript >:(</h1>
 		</noscript>
+		<div id="failure" class="alert alert-danger" ng-show="sudoku.failure">
+			<strong>Failure</strong> The puzzle could not be solved.
+			<a class="close" ng-click="sudoku.hideError()">&times;</a>
+		</div>
 		<h1 id="title">Sudoku Solver
 			<small> Made by Shen Yang(syg84)</small>
 		</h1>

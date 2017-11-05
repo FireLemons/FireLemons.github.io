@@ -1,3 +1,11 @@
+@keyframes showError {
+	from {
+		opacity: 0;
+	} to {
+		opacity: 1;
+	}
+}
+
 body{ 
 	padding: .5em 2.5em; 
 }
@@ -31,6 +39,16 @@ body>*{
 	height: 48em;
 }
 
+#failure{
+	animation: .5s showError;
+	animation-timing-function: ease;
+	-webkit-animation-timing-function: ease;
+	display: inherit;
+	position: fixed;
+	width: 96%;
+	z-index: 1;
+}
+
 #board table{
 	height: 100%;
 }
@@ -45,4 +63,9 @@ body>*{
 
 #board table td{
 	text-align: center;
+}
+
+#failure.ng-hide {
+	display: none;
+	opacity: 0;
 }

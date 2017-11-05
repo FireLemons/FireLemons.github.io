@@ -2,6 +2,7 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
 
 	this.instances = ['A', 'B', 'C'];
 	this.puzzleInstance = 'A';//which preloaded puzzle instance to use
+	this.failure = false;
 	this.puzzle = puzzles[0].slice(0);//the data structure holding the puzzle information
 	this.time = 0;//value of timer of execution of program in ms
 	//promises used mostly to run the function while updating the timer
@@ -30,6 +31,10 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
 	//hides domain values from showing up on the board
 	this.getBoardVisibility = function(i, j, k, l){
 		return (this.getBoardValue(i, j, k, l) === '0') ? 'invisible' : '';
+	}
+
+	this.hideError = function(){
+		this.failure = false;
 	}
 
 	//handles "Solve" button press
@@ -61,7 +66,13 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
 					return;
 				}else if(!outer.puzzle[next[0]][next[1]].length){//if an empty domain is found
 					//backtrack
-					undo(outer.puzzle, undoStack, degreeHeuristics);
+					if(!undo(outer.puzzle, undoStack, degreeHeuristics)){//if puzzle is unsolvable
+						//stop
+						outer.failure = true;
+						$interval.cancel(outer.interval);
+						$timeout.cancel(outer.timeout);
+						return;
+					}
 				}
 				
 				set(next[0], next[1], outer.puzzle, degreeHeuristics, undoStack);//set the next variable
@@ -201,10 +212,14 @@ function undo(puzzle, undoStack, heuristicMatrix){
 
 		if(action.isLast){//if domain is exhausted
 			action = undoStack.pop();//undo again
+			if(!action){//a variable could ne be set
+				return false;
+			}
 		}else{
 			action = undefined;//stop undo operations
 		}
 	}
+	return true;
 }
 
 //prunes the domains of a variable
