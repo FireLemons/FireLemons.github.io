@@ -36,7 +36,7 @@
 				<div class="flex w-100">
 					<input type="number" class="lightGray" v-model="given" disabled>
 					<span>cm</span>
-					<input type="number" class="lightGray" min="0" v-model="answer" @keyup.enter="checkAnswer">
+					<input type="number" v-bind:class="answerClass" min="0" v-model="answer" @keyup.enter="checkAnswer">
 					<span>inches</span>
 				</div>
 			</div>
