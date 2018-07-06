@@ -5,6 +5,7 @@
 		<link rel="stylesheet" href="css/theme.css">
 		<link rel="stylesheet" href="css/materialize.min.css">
 		<link rel="stylesheet" href="css/conversion.css">
+		<script src="js/lodash.min.js"></script>
 		<script src="js/materialize.min.js"></script>
 		<script src="js/vue.js"></script>
 		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML' async></script>
@@ -40,6 +41,9 @@
 					<input type="text" value="cm" disabled>
 					<input type="number" v-bind:class="answerClass" min="0" v-model="answer" @keyup.enter="checkAnswer">
 					<input type="text" value="inches" disabled>
+				</div>
+				<div>
+				  <span>Score: {{ score }}</span>
 				</div>
 			</div>
 		</div>
