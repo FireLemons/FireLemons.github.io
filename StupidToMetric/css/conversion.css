@@ -29,10 +29,6 @@ input[type=number]::-webkit-outer-spin-button {
 	color: white;
 }
 
-#accordion{
-	margin-bottom: 1em;
-}
-
 #container{
 	color:white;
 	height: calc(100% - 13.5rem);
@@ -44,14 +40,17 @@ input[type=number]::-webkit-outer-spin-button {
 	border: 2px solid white;
 	border-right: 0;
 	color: white;
-	flex-grow: 1;
 	font-size: 18pt;
 	padding: 0 .25em;
 	text-align: right;
 }
 
-#conversionInput input:nth-child(3){
-	border-left: 0;
+#conversionInput input:last-child{
+	border-right: 2px solid white;
+}
+
+#conversionInput input:nth-child(2n){
+	flex-grow: 1;
 }
 
 #conversionInput input.correct{
@@ -62,8 +61,14 @@ input[type=number]::-webkit-outer-spin-button {
 	color: red;
 }
 
-#conversionInput span{
-	background-color:var(--grayLight);
-	border: 2px solid white;
-	padding: .375rem .75rem;
+#formula{
+	height: 8em;
+}
+
+#nav .brand-logo{
+	margin-left: .5em;
+}
+
+#formula .card-reveal{
+	background-color: var(--grayLight);
 }
