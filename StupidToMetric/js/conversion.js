@@ -7,6 +7,14 @@ var convertToMetric = new Vue({
 	answer: "",
 	answerClass: "lightGray"
     },
+    watch: {
+	answer: function(newAnswer, oldAnswer) {
+	    this.AnswerChanged();
+	}
+    },
+    created: function() {
+	this.AnswerChanged = _.debounce(this._AnswerChanged, 500);
+    },
     methods: {
 	checkAnswer: function(){
 	    var correct = this.given/2.54;
@@ -20,6 +28,9 @@ var convertToMetric = new Vue({
 	    else {
 		this.answerClass = "lightGray wrong";
 	    }
+	},
+	_AnswerChanged: function() {
+	    M.toast({html: "You changed your answer"});
 	}
     }
 });
