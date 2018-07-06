@@ -11,9 +11,11 @@ var convertToMetric = new Vue({
 	checkAnswer: function(){
 	    var correct = this.given/2.54;
 	    if(Math.abs(correct - this.answer)/correct <= this.tolerance) {
-		this.answerClass = "lightGray correct";
 		this.given = Math.ceil(Math.random() * 50);
-		score += 1;
+		this.score += 1;
+		M.toast({html: "What a great job you did!!!"});
+		this.answerClass = "lightGray";
+
 	    }
 	    else {
 		this.answerClass = "lightGray wrong";

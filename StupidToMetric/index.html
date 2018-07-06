@@ -39,6 +39,9 @@
 					<input type="number" v-bind:class="answerClass" min="0" v-model="answer" @keyup.enter="checkAnswer">
 					<span>inches</span>
 				</div>
+				<div>
+				  <span>Score: {{ score }}</span>
+				</div>
 			</div>
 		</div>
 		<script src="js/conversion.js"></script>
