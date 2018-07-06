@@ -2,8 +2,45 @@
 <html>
 	<head>
 		<title>Metric Convert</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/conversion.css">
+		<script src="js/conversion.js"></script>
+		<script src="js/vue.js"></script>
 	</head>
 	<body>
-		
+		<header>
+			<nav class="navbar navbar-expand flex-column flex-md-row bd-navbar lightGray">
+				<a class="navbar-brand text-white mr-auto" href="./">Conversion</a>
+				<a class="navbar-brand text-white" href="options.html">Options</a>
+			</nav>
+		</header>
+		<div id="container" class="container">
+			<div class="row">
+				<div id="accordion" class="w-100">
+					<div class="card lightGray">
+						<div class="card-header" id="headingOne">
+							<h5 class="mb-0">
+								<button class="btn whiteText lightGray w-100" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+									Formula
+								</button>
+							</h5>
+						</div>
+						<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+							<div class="card-body">
+								Equation
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="conversionInput" class="row">				
+				<div class="flex w-100">
+					<input type="text" class="lightGray">
+					<span>cm</span>
+					<input type="text" class="lightGray">
+					<span>cm</span>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>

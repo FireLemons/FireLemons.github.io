@@ -1,0 +1,52 @@
+:root{
+	--grayMain: #1d1d1d;
+	--grayLight: #404040;
+}
+
+html, body{
+	height: 100%;
+}
+
+body{
+	background-color:var(--grayMain);
+}
+
+.flex{
+	display: flex;
+}
+
+.lightGray{
+	background-color:var(--grayLight);
+}
+
+.whiteText{
+	color: white;
+}
+
+#accordion{
+	margin-bottom: 1em;
+}
+
+#container{
+	color:white;
+	height: calc(100% - 13.5rem);
+	margin-top: 10em;
+}
+
+#conversionInput input{
+	background-color:var(--grayLight);
+	border: 2px solid white;
+	border-right: 0;
+	flex-grow: 1;
+	font-size: 18pt;
+}
+
+#conversionInput input:nth-child(3){
+	border-left: 0;
+}
+
+#conversionInput span{
+	background-color:var(--grayLight);
+	border: 2px solid white;
+	padding: .375rem .75rem;
+}
