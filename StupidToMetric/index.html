@@ -2,7 +2,6 @@
 <html>
 	<head>
 		<title>Metric Convert</title>
-		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/conversion.css">
 		<script src="js/vue.js"></script>
 		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML' async></script>
@@ -35,10 +34,10 @@
 			</div>
 			<div id="conversionInput" class="row">				
 				<div class="flex w-100">
-					<input type="text" class="lightGray" v-model="seen">
+					<input type="number" class="lightGray" v-model="given" disabled>
 					<span>cm</span>
-					<input type="text" class="lightGray">
-					<span>cm</span>
+					<input type="number" class="lightGray" min="0" v-model="answer" @keyup.enter="checkAnswer">
+					<span>inches</span>
 				</div>
 			</div>
 		</div>

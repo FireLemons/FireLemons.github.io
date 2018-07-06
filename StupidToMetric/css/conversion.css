@@ -11,6 +11,12 @@ body{
 	background-color:var(--grayMain);
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
 .flex{
 	display: flex;
 }
@@ -40,10 +46,20 @@ body{
 	color: white;
 	flex-grow: 1;
 	font-size: 18pt;
+	padding: 0 .25em;
+	text-align: right;
 }
 
 #conversionInput input:nth-child(3){
 	border-left: 0;
+}
+
+#conversionInput input.correct{
+	color: green;
+}
+
+#conversionInput input.wrong{
+	color: red;
 }
 
 #conversionInput span{
