@@ -15,7 +15,7 @@ var convertToMetric = new Vue({
 		this.score += 1;
 		M.toast({html: "What a great job you did!!!"});
 		this.answerClass = "lightGray";
-
+		this.answer = "";
 	    }
 	    else {
 		this.answerClass = "lightGray wrong";
