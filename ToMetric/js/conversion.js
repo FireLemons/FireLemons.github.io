@@ -5,7 +5,7 @@ var convertToMetric = new Vue({
 	score: 0,
 	given: Math.ceil(Math.random() * 50),
 	answer: "",
-	answerClass: "lightGray"
+	answerClass: "grey darken-3"
     },
     methods: {
 	checkAnswer: function(){
@@ -14,11 +14,11 @@ var convertToMetric = new Vue({
 		this.given = Math.ceil(Math.random() * 50);
 		this.score += 1;
 		M.toast({html: "What a great job you did!!!"});
-		this.answerClass = "lightGray";
+		this.answerClass = "grey darken-3";
 
 	    }
 	    else {
-		this.answerClass = "lightGray wrong";
+		this.answerClass = "grey darken-3 wrong";
 	    }
 	}
     }

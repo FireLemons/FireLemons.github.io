@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Metric Convert</title>
+		<title>To Metric</title>
 		<link rel="stylesheet" href="css/theme.css">
 		<link rel="stylesheet" href="css/materialize.min.css">
 		<link rel="stylesheet" href="css/conversion.css">
@@ -12,23 +12,23 @@
 	</head>
 	<body>
 		<header>
-			<nav id="nav" class="lightGray">
+			<nav id="nav" class="grey darken-3">
 				<div class="nav-wrapper">
-					<a href="#" class="brand-logo">ToMetric</a>
+					<a href="./" class="brand-logo">ToMetric</a>
 					<ul class="right">
-						<li><a class="" href="options.html">Options</a></li>
+						<li><a class="" href="options.html"><i class="material-icons left">settings</i>Options</a></li>
 					</ul>
 				</div>
 			</nav>
 		</header>
 		<div id="container" class="container">
-			<div id="formula" class="card lightGray">
+			<div id="formula" class="card grey darken-3">
 				<div class="card-content">
 					<span class="card-title activator">Show Formula<i class="material-icons right">keyboard_arrow_down</i></span>
 				</div>
 				<!--<div class="card-action">
 				</div>-->
-				<div class="card-reveal lightGray">
+				<div class="card-reveal grey darken-3">
 					<span class="card-title">Back to stats<i class="material-icons right">keyboard_arrow_up</i></span>
 					<div>
 						\[ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \]
@@ -37,13 +37,13 @@
 			</div>
 			<div id="conversionInput">
 				<div class="flex">
-					<input type="number" class="lightGray" v-model="given" disabled>
+					<input type="number" class="grey darken-3" v-model="given" disabled>
 					<input type="text" value="cm" disabled>
 					<input type="number" v-bind:class="answerClass" min="0" v-model="answer" @keyup.enter="checkAnswer">
 					<input type="text" value="inches" disabled>
 				</div>
 				<div>
-				  <span>Score: {{ score }}</span>
+					<span>Score: {{ score }}</span>
 				</div>
 			</div>
 		</div>

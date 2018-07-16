@@ -1,6 +1,5 @@
 :root{
 	--grayMain: #1d1d1d;
-	--grayLight: #404040;
 }
 
 html, body{
@@ -21,16 +20,8 @@ input[type=number]::-webkit-outer-spin-button {
 	display: flex;
 }
 
-.lightGray{
-	background-color:var(--grayLight);
-}
-
-.whiteText{
-	color: white;
-}
-
 #container{
-	color:white;
+	color: white;
 	height: calc(100% - 13.5rem);
 	margin-top: 10em;
 }
