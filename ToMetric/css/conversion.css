@@ -1,13 +1,5 @@
-:root{
-	--grayMain: #1d1d1d;
-}
-
 html, body{
 	height: 100%;
-}
-
-body{
-	background-color:var(--grayMain);
 }
 
 input[type=number]::-webkit-inner-spin-button, 
@@ -56,10 +48,6 @@ input[type=number]::-webkit-outer-spin-button {
 
 #formula{
 	height: 11em;
-}
-
-#nav .brand-logo{
-	margin-left: .5em;
 }
 
 #formula .card-reveal{

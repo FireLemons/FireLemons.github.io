@@ -7,20 +7,13 @@
 		<link rel="stylesheet" href="css/conversion.css">
 		<script src="js/lodash.min.js"></script>
 		<script src="js/materialize.min.js"></script>
-		<script src="js/vue.js"></script>
+		<script src="js/vue.min.js"></script>
 		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML' async></script>
 	</head>
-	<body>
-		<header>
-			<nav id="nav" class="grey darken-3">
-				<div class="nav-wrapper">
-					<a href="./" class="brand-logo">ToMetric</a>
-					<ul class="right">
-						<li><a class="" href="options.html"><i class="material-icons left">settings</i>Options</a></li>
-					</ul>
-				</div>
-			</nav>
-		</header>
+	<body class="grey darken-4">
+		<div id="navBar">
+			<site-nav></site-nav>
+		</div>
 		<div id="container" class="container">
 			<div id="formula" class="card grey darken-3">
 				<div class="card-content">
@@ -47,6 +40,7 @@
 				</div>
 			</div>
 		</div>
+		<script src="js/nav.js"></script>
 		<script src="js/conversion.js"></script>
 	</body>
 </html>

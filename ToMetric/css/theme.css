@@ -1,3 +1,7 @@
+:root{
+	--grayMain: #1d1d1d;
+}
+
 @font-face {
 	font-family: 'Material Icons';
 	font-style: normal;
@@ -7,6 +11,10 @@
 		 url(iconfont/MaterialIcons-Regular.woff2) format('woff2'),
 		 url(iconfont/MaterialIcons-Regular.woff) format('woff'),
 		 url(iconfont/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+body{
+	background-color:var(--grayMain);
 }
 
 .material-icons {
@@ -23,10 +31,15 @@
 	direction: ltr;
 
 	/* Support for all WebKit browsers. */
+	
 	-webkit-font-smoothing: antialiased;
 	/* Support for Safari and Chrome. */
 	text-rendering: optimizeLegibility;
 
 	/* Support for Firefox. */
 	-moz-osx-font-smoothing: grayscale;
+}
+
+#nav .brand-logo{
+	margin-left: .5em;
 }
