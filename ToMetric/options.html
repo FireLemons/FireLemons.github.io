@@ -1,15 +1,432 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Options</title>
-		<link rel="stylesheet" href="css/theme.css">
-		<link rel="stylesheet" href="css/materialize.min.css">
-		<script src="js/vue.min.js"></script>
-	</head>
-	<body>
-		<div id="navBar">
-			<site-nav></site-nav>
-		</div>
-		<script src="js/nav.js"></script>
-	</body>
+    <head>
+        <title>Options</title>
+        <link rel="stylesheet" href="css/materialize.min.css">
+        <link rel="stylesheet" href="css/theme.css">
+        <link rel="stylesheet" href="css/options.css">
+        <script src="js/vue.min.js"></script>
+    </head>
+    <body>
+        <div id="navBar">
+            <site-nav></site-nav>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <div id="distance-options" class="card grey darken-3">
+                        <div class="card-image">
+                            <img src="img/distance.jpg">
+                            <span class="card-title">Distance</span>
+                            <div class="switch">
+                                <label class="white-text">
+                                    Off
+                                    <input type="checkbox" checked>
+                                    <span class="lever"></span>
+                                    On
+                                </label>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col s6">
+                                        <p class="title white-text">Customary/Imperial</p>
+                                        <div class="flex">
+                                            <p class="white-text">Inches</p>
+                                            <div class="switch">
+                                                <label class="white-text">
+                                                    Off
+                                                    <input type="checkbox" checked>
+                                                    <span class="lever"></span>
+                                                    On
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="flex">
+                                            <p class="white-text">Feet</p>
+                                            <div class="switch">
+                                                <label class="white-text">
+                                                    Off
+                                                    <input type="checkbox" checked>
+                                                    <span class="lever"></span>
+                                                    On
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="flex">
+                                            <p class="white-text">Yards</p>
+                                            <div class="switch">
+                                                <label class="white-text">
+                                                    Off
+                                                    <input type="checkbox" checked>
+                                                    <span class="lever"></span>
+                                                    On
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="flex">
+                                            <p class="white-text">Miles</p>
+                                            <div class="switch">
+                                                <label class="white-text">
+                                                    Off
+                                                    <input type="checkbox" checked>
+                                                    <span class="lever"></span>
+                                                    On
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col s6 right-align">
+                                        <p class="title white-text">Metric</p>
+                                        <div class="flex">
+                                            <p class="white-text">Millimeters</p>
+                                            <div class="switch">
+                                                <label class="white-text">
+                                                    Off
+                                                    <input type="checkbox" checked>
+                                                    <span class="lever"></span>
+                                                    On
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="flex">
+                                            <p class="white-text">Centimeters</p>
+                                            <div class="switch">
+                                                <label class="white-text">
+                                                    Off
+                                                    <input type="checkbox" checked>
+                                                    <span class="lever"></span>
+                                                    On
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="flex">
+                                            <p class="white-text">Meters</p>
+                                            <div class="switch">
+                                                <label class="white-text">
+                                                    Off
+                                                    <input type="checkbox" checked>
+                                                    <span class="lever"></span>
+                                                    On
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="flex">
+                                            <p class="white-text">Kilometers</p>
+                                            <div class="switch">
+                                                <label class="white-text">
+                                                    Off
+                                                    <input type="checkbox" checked>
+                                                    <span class="lever"></span>
+                                                    On
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <div id="temperature-options" class="card grey darken-3">
+                        <div class="card-image">
+                            <img src="img/temperature.jpg">
+                            <span class="card-title">Temperature</span>
+                            <div class="switch">
+                                <label class="white-text">
+                                    Off
+                                    <input type="checkbox" checked>
+                                    <span class="lever"></span>
+                                    On
+                                </label>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col s6">
+                                        <p class="title white-text">Customary/Imperial</p>
+                                        <div class="flex">
+                                            <p class="white-text">Fahrenheit</p>
+                                            <div class="switch">
+                                                <label class="white-text">
+                                                    Off
+                                                    <input type="checkbox" checked>
+                                                    <span class="lever"></span>
+                                                    On
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col s6 right-align">
+                                        <p class="title white-text">Metric</p>
+                                        <div class="flex">
+                                            <p class="white-text">Celsius</p>
+                                            <div class="switch">
+                                                <label class="white-text">
+                                                    Off
+                                                    <input type="checkbox" checked>
+                                                    <span class="lever"></span>
+                                                    On
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <div id="mass-options" class="card grey darken-3">
+                        <div class="card-image">
+                            <img src="img/mass.jpg">
+                            <span class="card-title">Mass</span>
+                            <div class="switch">
+                                <label class="white-text">
+                                    Off
+                                    <input type="checkbox" checked>
+                                    <span class="lever"></span>
+                                    On
+                                </label>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col s6">
+                                        <p class="title white-text">Customary/Imperial</p>
+                                        <div class="flex">
+                                            <p class="white-text">Ounces</p>
+                                            <div class="switch">
+                                                <label class="white-text">
+                                                    Off
+                                                    <input type="checkbox" checked>
+                                                    <span class="lever"></span>
+                                                    On
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="flex">
+                                            <p class="white-text">Pound</p>
+                                            <div class="switch">
+                                                <label class="white-text">
+                                                    Off
+                                                    <input type="checkbox" checked>
+                                                    <span class="lever"></span>
+                                                    On
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="flex">
+                                            <p class="white-text">Ton(Imperial)</p>
+                                            <div class="switch">
+                                                <label class="white-text">
+                                                    Off
+                                                    <input type="checkbox" checked>
+                                                    <span class="lever"></span>
+                                                    On
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col s6 right-align">
+                                        <p class="title white-text">Metric</p>
+                                        <div class="flex">
+                                            <p class="white-text">Grams</p>
+                                            <div class="switch">
+                                                <label class="white-text">
+                                                    Off
+                                                    <input type="checkbox" checked>
+                                                    <span class="lever"></span>
+                                                    On
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="flex">
+                                            <p class="white-text">Kilograms</p>
+                                            <div class="switch">
+                                                <label class="white-text">
+                                                    Off
+                                                    <input type="checkbox" checked>
+                                                    <span class="lever"></span>
+                                                    On
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="flex">
+                                            <p class="white-text">Ton(Metric)</p>
+                                            <div class="switch">
+                                                <label class="white-text">
+                                                    Off
+                                                    <input type="checkbox" checked>
+                                                    <span class="lever"></span>
+                                                    On
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <div id="liquid-volume-options" class="card grey darken-3">
+                        <div class="card-image">
+                            <img src="img/liquid-volume.png">
+                            <span class="card-title">Liquid Volume</span>
+                            <div class="switch">
+                                <label class="white-text">
+                                    Off
+                                    <input type="checkbox" checked>
+                                    <span class="lever"></span>
+                                    On
+                                </label>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col s6">
+                                        <p class="title white-text">Customary/Imperial</p>
+                                        <div class="flex">
+                                            <p class="white-text">Gallons</p>
+                                            <div class="switch">
+                                                <label class="white-text">
+                                                    Off
+                                                    <input type="checkbox" checked>
+                                                    <span class="lever"></span>
+                                                    On
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="flex">
+                                            <p class="white-text">Quarts</p>
+                                            <div class="switch">
+                                                <label class="white-text">
+                                                    Off
+                                                    <input type="checkbox" checked>
+                                                    <span class="lever"></span>
+                                                    On
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="flex">
+                                            <p class="white-text">Pints</p>
+                                            <div class="switch">
+                                                <label class="white-text">
+                                                    Off
+                                                    <input type="checkbox" checked>
+                                                    <span class="lever"></span>
+                                                    On
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="flex">
+                                            <p class="white-text">Fluid Ounces</p>
+                                            <div class="switch">
+                                                <label class="white-text">
+                                                    Off
+                                                    <input type="checkbox" checked>
+                                                    <span class="lever"></span>
+                                                    On
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col s6 right-align">
+                                        <p class="title white-text">Metric</p>
+                                        <div class="flex">
+                                            <p class="white-text">Liters</p>
+                                            <div class="switch">
+                                                <label class="white-text">
+                                                    Off
+                                                    <input type="checkbox" checked>
+                                                    <span class="lever"></span>
+                                                    On
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="flex">
+                                            <p class="white-text">Milliliters</p>
+                                            <div class="switch">
+                                                <label class="white-text">
+                                                    Off
+                                                    <input type="checkbox" checked>
+                                                    <span class="lever"></span>
+                                                    On
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <div id="speed-options" class="card grey darken-3">
+                        <div class="card-image">
+                            <img src="img/speed.jpeg">
+                            <span class="card-title">Speed</span>
+                            <div class="switch">
+                                <label class="white-text">
+                                    Off
+                                    <input type="checkbox" checked>
+                                    <span class="lever"></span>
+                                    On
+                                </label>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col s6">
+                                        <p class="title white-text">Customary/Imperial</p>
+                                        <div class="flex">
+                                            <p class="white-text">Miles/Hour</p>
+                                            <div class="switch">
+                                                <label class="white-text">
+                                                    Off
+                                                    <input type="checkbox" checked>
+                                                    <span class="lever"></span>
+                                                    On
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col s6 right-align">
+                                        <p class="title white-text">Metric</p>
+                                        <div class="flex">
+                                            <p class="white-text">Kilometers/Hour</p>
+                                            <div class="switch">
+                                                <label class="white-text">
+                                                    Off
+                                                    <input type="checkbox" checked>
+                                                    <span class="lever"></span>
+                                                    On
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/nav.js"></script>
+    </body>
 </html>

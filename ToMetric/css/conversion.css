@@ -1,55 +1,50 @@
 html, body{
-	height: 100%;
+    height: 100%;
 }
 
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none; 
-  margin: 0; 
+    -webkit-appearance: none; 
+    margin: 0; 
 }
 
 .flex{
-	display: flex;
+    display: flex;
 }
 
 #container{
-	color: white;
-	height: calc(100% - 13.5rem);
-	margin-top: 10em;
+    color: white;
+    height: calc(100% - 13.5rem);
+    margin-top: 10em;
 }
 
 #conversionInput input{
-	background-color:var(--grayLight);
-	border: 2px solid white;
-	border-right: 0;
-	color: white;
-	flex: 6 0 0;
-	font-size: 18pt;
-	padding: 0 .25em;
-	text-align: right;
+    border: 2px solid white;
+    border-right: 0;
+    color: white;
+    flex: 6 0 0;
+    font-size: 18pt;
+    padding: 0 .25em;
+    text-align: right;
 }
 
 #conversionInput input:last-child{
-	border-right: 2px solid white;
+    border-right: 2px solid white;
 }
 
 #conversionInput input:nth-child(even){
-	flex-grow: 1;
-	text-align: left;
+    flex-grow: 1;
+    text-align: left;
 }
 
 #conversionInput input.correct{
-	color: green;
+    color: green;
 }
 
 #conversionInput input.wrong{
-	color: red;
+    color: red;
 }
 
 #formula{
-	height: 11em;
-}
-
-#formula .card-reveal{
-	background-color: var(--grayLight);
+    height: 11em;
 }
