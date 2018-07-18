@@ -40,7 +40,7 @@ var options = new Vue({
                 metric: {
                     grams: true,
                     kilograms: true,
-                    ton_imperial: true
+                    ton_metric: true
                 }
             },
             speed: {
@@ -76,3 +76,14 @@ var options = new Vue({
         this.loadOptions();
     }
 });
+
+function setBools(ob, state) {
+    for(var prop in ob) {
+	if(typeof ob[prop] === "boolean") {
+	    ob[prop] = state;
+	}
+	else if(typeof ob[prop] === "object") {
+	    setBools(ob[prop], state);
+	}
+    }
+}
