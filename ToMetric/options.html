@@ -22,7 +22,7 @@
                             <div class="switch">
                                 <label class="white-text">
                                     Off
-                                    <input type="checkbox" checked>
+                                    <input type="checkbox" :checked="conversions.distance.enabled">
                                     <span class="lever"></span>
                                     On
                                 </label>
@@ -38,7 +38,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" :checked="conversions.distance.customary.inches">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -49,7 +49,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" :checked="conversions.distance.customary.feet">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -60,7 +60,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" :checked="conversions.distance.customary.yards">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -71,7 +71,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" :checked="conversions.distance.customary.miles">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -85,7 +85,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" :checked="conversions.distance.metric.millimeters">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -96,7 +96,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" :checked="conversions.distance.metric.centimeters">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -107,7 +107,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" :checked="conversions.distance.metric.meters">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -118,7 +118,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" :checked="conversions.distance.metric.kilometers">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -140,7 +140,7 @@
                             <div class="switch">
                                 <label class="white-text">
                                     Off
-                                    <input type="checkbox" checked>
+                                    <input type="checkbox" :checked="conversions.temperature.enabled">
                                     <span class="lever"></span>
                                     On
                                 </label>
@@ -156,7 +156,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" :checked="conversions.temperature.customary.fahrenheit">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -170,7 +170,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" :checked="conversions.temperature.metric.celsius">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -192,7 +192,7 @@
                             <div class="switch">
                                 <label class="white-text">
                                     Off
-                                    <input type="checkbox" checked>
+                                    <input type="checkbox" :checked="conversions.mass.enabled">
                                     <span class="lever"></span>
                                     On
                                 </label>
@@ -208,7 +208,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" :checked="conversions.mass.customary.ounces">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -219,7 +219,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" :checked="conversions.mass.customary.pound">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -230,7 +230,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" :checked="conversions.mass.customary.ton_imperial">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -244,7 +244,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" :checked="conversions.mass.metric.grams">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -255,7 +255,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" :checked="conversions.mass.metric.kilograms">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -266,7 +266,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" :checked="conversions.mass.metric.ton_metric">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -288,7 +288,7 @@
                             <div class="switch">
                                 <label class="white-text">
                                     Off
-                                    <input type="checkbox" checked>
+                                    <input type="checkbox" :checked="conversions.liquid_volume.enabled">
                                     <span class="lever"></span>
                                     On
                                 </label>
@@ -304,7 +304,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" :checked="conversions.liquid_volume.customary.fluid_ounces">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -315,7 +315,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" :checked="conversions.liquid_volume.customary.pints">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -326,7 +326,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" :checked="conversions.liquid_volume.customary.quarts">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -337,7 +337,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" :checked="conversions.liquid_volume.customary.gallons">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -351,7 +351,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" :checked="conversions.liquid_volume.metric.milliliters">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -362,7 +362,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" :checked="conversions.liquid_volume.metric.liters">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -384,7 +384,7 @@
                             <div class="switch">
                                 <label class="white-text">
                                     Off
-                                    <input type="checkbox" checked>
+                                    <input type="checkbox" :checked="conversions.speed.enabled">
                                     <span class="lever"></span>
                                     On
                                 </label>
@@ -400,7 +400,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" :checked="conversions.speed.customary.miles_per_hour">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -414,7 +414,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" checked>
+                                                    <input type="checkbox" :checked="conversions.speed.metric.kilometers_per_hour">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
