@@ -1,64 +1,66 @@
 var options = new Vue({
     el: "#options",
     data: {
-        conversions: {
-            distance: {
-                enabled: true,
-                customary: {
-                    inches: true,
-                    feet: true,
-                    yards: true,
-                    miles: true
+        options:{
+            conversions: {
+                distance: {
+                    enabled: true,
+                    customary: {
+                        inches: true,
+                        feet: true,
+                        yards: true,
+                        miles: true
+                    },
+                    metric: {
+                        millimeters: true,
+                        centimeters: true,
+                        meters: true,
+                        kilometers: true
+                    }
                 },
-                metric: {
-                    millimeters: true,
-                    centimeters: true,
-                    meters: true,
-                    kilometers: true
-                }
-            },
-            liquid_volume: {
-                enabled: true,
-                customary: {
-                    gallons: true,
-                    quarts: true,
-                    pints: true,
-                    fluid_ounces: true
+                liquid_volume: {
+                    enabled: true,
+                    customary: {
+                        gallons: true,
+                        quarts: true,
+                        pints: true,
+                        fluid_ounces: true
+                    },
+                    metric: {
+                        milliliters: true,
+                        liters: true
+                    }
                 },
-                metric: {
-                    milliliters: true,
-                    liters: true
-                }
-            },
-            mass: {
-                enabled: true,
-                customary: {
-                    ounces: true,
-                    pound: true,
-                    ton_imperial: true
+                mass: {
+                    enabled: true,
+                    customary: {
+                        ounces: true,
+                        pound: true,
+                        ton_imperial: true
+                    },
+                    metric: {
+                        grams: true,
+                        kilograms: true,
+                        ton_metric: true
+                    }
                 },
-                metric: {
-                    grams: true,
-                    kilograms: true,
-                    ton_metric: true
-                }
-            },
-            speed: {
-                enabled: true,
-                customary: {
-                    miles_per_hour: true
+                speed: {
+                    enabled: true,
+                    customary: {
+                        miles_per_hour: true
+                    },
+                    metric: {
+                        kilometers_per_hour: true
+                    }
                 },
-                metric: {
-                    kilometers_per_hour: true
-                }
-            },
-            temperature: {
-                enabled: true,
-                customary: {
-                    fahrenheit: true
-                },
-                metric: {
-                    celsius: true
+                temperature: {
+                    enabled: true,
+                    customary: {
+                        fahrenheit: true
+                    },
+                    metric: {
+                        celsius: true
+                    }
                 }
             }
         }
@@ -68,7 +70,8 @@ var options = new Vue({
     },
     methods: {
         _SaveOptions: function(){
-            localStorage.setItem("ToMetric.Options", JSON.stringify(this.data));
+            localStorage.setItem("ToMetric.Options", JSON.stringify(this.options));
+            M.toast({html: "Options Saved"});
         },
         
         loadOptions: function(){
