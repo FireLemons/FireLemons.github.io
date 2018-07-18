@@ -17,8 +17,20 @@ body{
     background-color:var(--grayMain);
 }
 
+input[type=number]:not(.browser-default){
+    border-bottom: 1px solid var(--grayMain);
+}
+
+input[type=number]:not(.browser-default):focus:not([readonly]){
+    border-bottom: 1px solid white;
+}
+
 .flex{
     display: flex;
+}
+
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #000;
 }
 
 .material-icons {

@@ -30,10 +30,15 @@
 			</div>
 			<div id="conversionInput">
 				<div class="flex">
-					<input type="number" class="grey darken-3" v-model="given" disabled>
-					<input type="text" value="cm" disabled>
-					<input type="number" v-bind:class="answerClass" min="0" v-model="answer" @keyup.enter="checkAnswer">
-					<input type="text" value="inches" disabled>
+                    <div class="flex">
+                        <input type="number" class="grey darken-3" v-model="given" readonly>
+                        <input type="text" value="cm" disabled>
+                    </div>
+                    <label> = </label>
+                    <div class="flex">
+                        <input class="input-field" type="number" v-bind:class="answerClass" min="0" v-model="answer" @keyup.enter="checkAnswer">
+                        <input type="text" value="in" disabled>
+                    </div>
 				</div>
 				<div>
 					<span>Score: {{ score }}</span>
