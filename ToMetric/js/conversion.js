@@ -1,5 +1,5 @@
 var convertToMetric = new Vue({
-    el: '#app',
+    el: "#app",
     data: {
         tolerance: 0.1,
         score: 0,
