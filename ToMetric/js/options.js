@@ -3,6 +3,7 @@ var options = new Vue({
     data: {
         conversions: {
             distance: {
+                enabled: true,
                 customary: {
                     inches: true,
                     feet: true,
@@ -17,6 +18,7 @@ var options = new Vue({
                 }
             },
             liquid_volume: {
+                enabled: true,
                 customary: {
                     gallons: true,
                     quarts: true,
@@ -29,6 +31,7 @@ var options = new Vue({
                 }
             },
             mass: {
+                enabled: true,
                 customary: {
                     ounces: true,
                     pound: true,
@@ -41,6 +44,7 @@ var options = new Vue({
                 }
             },
             speed: {
+                enabled: true,
                 customary: {
                     miles_per_hour: true
                 },
@@ -49,6 +53,7 @@ var options = new Vue({
                 }
             },
             temperature: {
+                enabled: true,
                 customary: {
                     fahrenheit: true
                 },
