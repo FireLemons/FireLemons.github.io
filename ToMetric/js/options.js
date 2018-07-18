@@ -78,7 +78,7 @@ var options = new Vue({
             var options = localStorage.getItem("ToMetric.Options");
             
             if(options){
-                var optionData = JSON.parse(options);
+                this.options = JSON.parse(options);
             }
         }
     },
@@ -86,7 +86,7 @@ var options = new Vue({
         this.loadOptions();
     },
     updated: function(){
-        SaveOptions();
+        this.SaveOptions();
     }
 });
 
