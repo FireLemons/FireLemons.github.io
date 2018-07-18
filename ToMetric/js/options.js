@@ -65,10 +65,10 @@ var options = new Vue({
             }
         }
     },
-    created: function() {
-        this.SaveOptions = _.debounce(this._SaveOptions, 500);
-    },
     methods: {
+	SaveOptions: function(){
+
+	},
         _SaveOptions: function(){
             localStorage.setItem("ToMetric.Options", JSON.stringify(this.options));
             M.toast({html: "Options Saved"});
@@ -84,6 +84,9 @@ var options = new Vue({
     },
     mounted: function(){
         this.loadOptions();
+	this.$nextTick(function(){
+	    this.SaveOptions = _.debounce(this._SaveOptions, 500);
+	});
     },
     updated: function(){
         this.SaveOptions();
