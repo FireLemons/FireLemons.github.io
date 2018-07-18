@@ -37,7 +37,7 @@
                     </div>
                     <label> = </label>
                     <div class="flex">
-                        <input class="input-field" type="number" v-bind:class="answerClass" min="0" v-model="answer" @keyup.enter="checkAnswer">
+                        <input class="input-field" type="number" v-bind:class="answerClass" v-model="answer" @keyup.enter="checkAnswer">
                         <input type="text" value="in" disabled>
                     </div>
 				</div>

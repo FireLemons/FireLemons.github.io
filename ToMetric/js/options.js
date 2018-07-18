@@ -63,7 +63,14 @@ var options = new Vue({
             }
         }
     },
+    created: function() {
+        this.SaveOptions = _.debounce(this._SaveOptions, 500);
+    },
     methods: {
+        _SaveOptions: function(){
+            localStorage.setItem("ToMetric.Options", JSON.stringify(this.data));
+        },
+        
         loadOptions: function(){
             var options = localStorage.getItem("ToMetric.Options");
             
@@ -74,5 +81,8 @@ var options = new Vue({
     },
     mounted: function(){
         this.loadOptions();
+    },
+    updated: function(){
+        SaveOptions();
     }
 });
