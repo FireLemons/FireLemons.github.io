@@ -89,11 +89,10 @@ var options = new Vue({
 
 function setBools(ob, state) {
     for(var prop in ob) {
-	if(typeof ob[prop] === "boolean") {
-	    ob[prop] = state;
-	}
-	else if(typeof ob[prop] === "object") {
-	    setBools(ob[prop], state);
-	}
+        if(typeof ob[prop] === "boolean") {
+            ob[prop] = state;
+        } else if(typeof ob[prop] === "object") {
+            setBools(ob[prop], state);
+        }
     }
 }
