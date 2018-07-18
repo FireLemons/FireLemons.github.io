@@ -14,13 +14,14 @@
 		<div id="navBar">
 			<site-nav></site-nav>
 		</div>
-		<div id="container" class="container">
-			<div id="formula" class="card grey darken-3">
+		<div id="app" class="container">
+			<div id="display" class="card grey darken-3">
 				<div class="card-content">
 					<span class="card-title activator">Show Formula<i class="material-icons right">keyboard_arrow_down</i></span>
+                    <div>
+                        <span>Score: {{ score }}</span>
+                    </div>
 				</div>
-				<!--<div class="card-action">
-				</div>-->
 				<div class="card-reveal grey darken-3">
 					<span class="card-title">Back to stats<i class="material-icons right">keyboard_arrow_up</i></span>
 					<div>
@@ -39,9 +40,6 @@
                         <input class="input-field" type="number" v-bind:class="answerClass" min="0" v-model="answer" @keyup.enter="checkAnswer">
                         <input type="text" value="in" disabled>
                     </div>
-				</div>
-				<div>
-					<span>Score: {{ score }}</span>
 				</div>
 			</div>
 		</div>
