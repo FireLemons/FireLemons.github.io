@@ -23,7 +23,7 @@
                             <div class="switch">
                                 <label class="white-text">
                                     Off
-                                    <input type="checkbox" v-model="options.conversions.distance.enabled">
+                                    <input type="checkbox" v-model="distanceOn" :disabled="distanceDisabled">
                                     <span class="lever"></span>
                                     On
                                 </label>
@@ -141,7 +141,7 @@
                             <div class="switch">
                                 <label class="white-text">
                                     Off
-                                    <input type="checkbox" v-model="options.conversions.temperature.enabled">
+                                    <input type="checkbox" v-model="temperatureOn" :disabled="temperatureDisabled">
                                     <span class="lever"></span>
                                     On
                                 </label>
@@ -193,7 +193,7 @@
                             <div class="switch">
                                 <label class="white-text">
                                     Off
-                                    <input type="checkbox" v-model="options.conversions.mass.enabled">
+                                    <input type="checkbox" v-model="massOn" :disabled="massDisabled">
                                     <span class="lever"></span>
                                     On
                                 </label>
@@ -289,7 +289,7 @@
                             <div class="switch">
                                 <label class="white-text">
                                     Off
-                                    <input type="checkbox" v-model="options.conversions.liquid_volume.enabled">
+                                    <input type="checkbox" v-model="liquidVolumeOn" :disabled="liquidVolumeDisabled">
                                     <span class="lever"></span>
                                     On
                                 </label>
@@ -305,7 +305,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" v-model="options.conversions.liquid_volume.customary.fluid_ounces">
+                                                    <input type="checkbox" v-model="options.conversions.liquidVolume.customary.fluidOunces">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -316,7 +316,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" v-model="options.conversions.liquid_volume.customary.pints">
+                                                    <input type="checkbox" v-model="options.conversions.liquidVolume.customary.pints">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -327,7 +327,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" v-model="options.conversions.liquid_volume.customary.quarts">
+                                                    <input type="checkbox" v-model="options.conversions.liquidVolume.customary.quarts">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -338,7 +338,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" v-model="options.conversions.liquid_volume.customary.gallons">
+                                                    <input type="checkbox" v-model="options.conversions.liquidVolume.customary.gallons">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -352,7 +352,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" v-model="options.conversions.liquid_volume.metric.milliliters">
+                                                    <input type="checkbox" v-model="options.conversions.liquidVolume.metric.milliliters">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -363,7 +363,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" v-model="options.conversions.liquid_volume.metric.liters">
+                                                    <input type="checkbox" v-model="options.conversions.liquidVolume.metric.liters">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -385,7 +385,7 @@
                             <div class="switch">
                                 <label class="white-text">
                                     Off
-                                    <input type="checkbox" v-model="options.conversions.speed.enabled">
+                                    <input type="checkbox" v-model="speedOn" :disabled="speedDisabled">
                                     <span class="lever"></span>
                                     On
                                 </label>
@@ -401,7 +401,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" v-model="options.conversions.speed.customary.miles_per_hour">
+                                                    <input type="checkbox" v-model="options.conversions.speed.customary.milesPerHour">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -415,7 +415,7 @@
                                             <div class="switch">
                                                 <label class="white-text">
                                                     Off
-                                                    <input type="checkbox" v-model="options.conversions.speed.metric.kilometers_per_hour">
+                                                    <input type="checkbox" v-model="options.conversions.speed.metric.kilometersPerHour">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
