@@ -1,3 +1,56 @@
+@font-face {
+    font-family: Upheaval;
+    src: url(../IsaacPills/Fonts/upheavtt.ttf)
+}
+
+img{
+    height: 5em;
+}
+
 .flex{
 	display: flex;
+}
+
+#app{
+    height: 100vh !important;
+}
+
+#IsaacMaps{
+    background: url(../IsaacPills/Images/Textures/Content_corner_top_left.png) left top no-repeat border-box,
+                url(../IsaacPills/Images/Textures/Content_corner_top_right.png) right top no-repeat border-box,
+                url(../IsaacPills/Images/Textures/Content_corner_bottom_left.png) left bottom no-repeat border-box,
+                url(../IsaacPills/Images/Textures/Content_corner_bottom_right.png) right bottom no-repeat border-box,
+                url(../IsaacPills/Images/Textures/Content_top.png) right top repeat-x border-box,
+                url(../IsaacPills/Images/Textures/Content_left.png) left top repeat-y border-box,
+                url(../IsaacPills/Images/Textures/Content_right.png) right top repeat-y border-box,
+                url(../IsaacPills/Images/Textures/Content_bottom.png) left bottom repeat-x border-box,
+                url(../IsaacPills/Images/Textures/Bg.png) left top padding-box;
+    box-sizing: border-box;
+    font-family: Upheaval;
+    padding: 3em;
+    width: 100%;
+}
+
+#IsaacMaps a:hover{
+    text-decoration: underline;
+}
+
+#IsaacMaps h3{
+    margin: 0;
+    padding-bottom: .25em;
+}
+
+#IsaacMaps p{
+    font-size: 18pt;
+}
+
+#IsaacMaps .flex{
+    background: url(../IsaacPills/Images/Message.png) center center no-repeat border-box;
+    flex-direction: column;
+    height: 5em;
+    justify-content: center;
+}
+
+#IsaacMaps .flex a:hover{
+    text-decoration-color: white;
 }

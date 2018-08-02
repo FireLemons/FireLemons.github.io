@@ -1,13 +1,43 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Web Mini Projects</title>
+        <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32"/>
+        <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16"/>
+        <link rel="stylesheet" href="ToMetric/css/materialize.min.css">
+        <link rel="stylesheet" href="css/home.css">
+		<title>Web Projects</title>
+		<script src="ToMetric/js/materialize.min.js"></script>
 	</head>
 
 	<body>
-		<div class="flex">
-			<a href="IsaacPills/">Isaac Pills</a>
-			<a href="ToMetric/">To Metric</a>
-		</div>
+		<div id="app" class="carousel carousel-slider center">
+            <div class="carousel-item amber white-text" href="#two!">
+                <h2>Second Panel</h2>
+                <p class="white-text">This is your second panel</p>
+            </div>
+            <div class="carousel-item green white-text" href="#three!">
+                <h2>Third Panel</h2>
+                <p class="white-text">This is your third panel</p>
+            </div>
+            <div class="carousel-item blue white-text" href="#four!">
+                <h2>Fourth Panel</h2>
+                <p class="white-text">This is your fourth panel</p>
+            </div>
+            <div id="IsaacMaps" class="carousel-item" href="#IsaacPills">
+                <div class="flex">
+                    <a href="IsaacPills">
+                        <h3 class="white-text">Isaac Pills</h2>
+                    </a>
+                </div>
+                <p class="black-text">
+                    A tool to keep track of pill effects in various expansions of Edmund McMillen's
+                    <a href="https://store.steampowered.com/app/250900/The_Binding_of_Isaac_Rebirth/">Binding of Isaac: Rebirth</a>
+                </p>
+                <div>
+                    <img src="img/jQuery.png">
+                </div>
+            </div>
+        </div>
+		<script src="js/home.js"></script>
 	</body>
 </html>
