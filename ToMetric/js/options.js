@@ -108,12 +108,10 @@ var options = new Vue({
                     customary: {
                         ounces: true,
                         pound: true,
-                        ton_imperial: true
                     },
                     metric: {
                         grams: true,
                         kilograms: true,
-                        ton_metric: true
                     }
                 },
                 speed: {

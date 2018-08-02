@@ -5,8 +5,8 @@
         <link rel="stylesheet" href="css/materialize.min.css">
         <link rel="stylesheet" href="css/theme.css">
         <link rel="stylesheet" href="css/options.css">
-        <script src="js/lodash.min.js"></script>
 		<script src="js/materialize.min.js"></script>
+        <script src="js/lodash.min.js"></script>
         <script src="js/vue.min.js"></script>
     </head>
     <body>
@@ -14,6 +14,24 @@
             <site-nav></site-nav>
         </div>
         <div id="options" class="container">
+            <div class="row">
+                <div class="col s12">
+                    <div id="general-options" class="card grey darken-3">
+                        <div class="card-image">
+                            <img src="img/general.jpeg">
+                            <span class="card-title">General</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="flex">
+                                <p class="white-text">Precision</p>
+                                <p class="range-field">
+                                    <input type="range" min="0" max="100" value="0"/>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col s12">
                     <div id="distance-options" class="card grey darken-3">
@@ -226,17 +244,6 @@
                                                 </label>
                                             </div>
                                         </div>
-                                        <div class="flex">
-                                            <p class="white-text">Ton(Imperial)</p>
-                                            <div class="switch">
-                                                <label class="white-text">
-                                                    Off
-                                                    <input type="checkbox" v-model="options.conversions.mass.customary.ton_imperial">
-                                                    <span class="lever"></span>
-                                                    On
-                                                </label>
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="col s6 right-align">
                                         <p class="title white-text">Metric</p>
@@ -257,17 +264,6 @@
                                                 <label class="white-text">
                                                     Off
                                                     <input type="checkbox" v-model="options.conversions.mass.metric.kilograms">
-                                                    <span class="lever"></span>
-                                                    On
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="flex">
-                                            <p class="white-text">Ton(Metric)</p>
-                                            <div class="switch">
-                                                <label class="white-text">
-                                                    Off
-                                                    <input type="checkbox" v-model="options.conversions.mass.metric.ton_metric">
                                                     <span class="lever"></span>
                                                     On
                                                 </label>
@@ -431,5 +427,8 @@
         </div>
         <script src="js/nav.js"></script>
         <script src="js/options.js"></script>
+		<script>
+            M.Range.init(document.querySelectorAll("input[type=range]"));
+        </script>
     </body>
 </html>
