@@ -1,21 +1,108 @@
 @font-face {
-    font-family: Upheaval;
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Material Icons'),
+         local('MaterialIcons-Regular'),
+         url(../ToMetric/css/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
+         url(../ToMetric/css/iconfont/MaterialIcons-Regular.woff) format('woff'),
+         url(../ToMetric/css/iconfont/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Upheaval';
     src: url(../IsaacPills/Fonts/upheavtt.ttf)
+}
+
+button:focus{
 }
 
 img{
     height: 5em;
 }
 
+.carousel-item{
+    cursor: pointer;
+}
+
 .flex{
 	display: flex;
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.page-buttons{
+    display: inline-block;
+    height: fit-content; width: fit-content;
+    margin: 0  2em;
+    top: calc(50vh - 2em - 1px);
+}
+
+.page-buttons button{
+    background-color: black;
+    border-radius: .5em;
+    cursor: pointer;
+    height: 4em; width: 4em;
+    opacity: .5;
+}
+
+.page-buttons button:focus{
+    background-color: black;
+}
+
+.page-buttons button:hover{
+    opacity: 1;
+}
+
+.page-buttons button i{
+    font-size: 24pt;
+    margin: 0;
+    color: white;
+}
+
+.page-buttons .flex{
+    justify-content: space-between;
+}
+
+.stack-credit{
+    margin-top: 3em;
+}
+
+.unselectable{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 #app{
     height: 100vh !important;
 }
 
-#IsaacMaps{
+#isaac-pills{
     background: url(../IsaacPills/Images/Textures/Content_corner_top_left.png) left top no-repeat border-box,
                 url(../IsaacPills/Images/Textures/Content_corner_top_right.png) right top no-repeat border-box,
                 url(../IsaacPills/Images/Textures/Content_corner_bottom_left.png) left bottom no-repeat border-box,
@@ -31,26 +118,30 @@ img{
     width: 100%;
 }
 
-#IsaacMaps a:hover{
+#isaac-pills a:hover{
     text-decoration: underline;
 }
 
-#IsaacMaps h3{
+#isaac-pills h3{
     margin: 0;
     padding-bottom: .25em;
 }
 
-#IsaacMaps p{
+#isaac-pills p{
     font-size: 18pt;
 }
 
-#IsaacMaps .flex{
+#isaac-pills .flex{
     background: url(../IsaacPills/Images/Message.png) center center no-repeat border-box;
     flex-direction: column;
     height: 5em;
     justify-content: center;
 }
 
-#IsaacMaps .flex a:hover{
+#isaac-pills .flex a:hover{
     text-decoration-color: white;
+}
+
+#page-buttons-right{
+    margin-left: auto;
 }
