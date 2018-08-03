@@ -1,11 +1,14 @@
-controlHint = M.toast({html: '<span>The arrow keys and swiping can be used to flip through projects</span><button class="btn-flat toast-action" onclick="controlHint.dismiss()">Got it!</button>', displayLength: Infinity});
-
 var app = new Vue({
     el:'#app',
     data:{
-        carousel: null
+        carousel: null,
+        controlsHint: null
     },
     methods:{
+        dismissHint: function(){
+            localStorage.setItem('readContols', true);
+            controlHint.dismiss();
+        },
         left: function(){
             this.carousel.prev();
         },
@@ -33,5 +36,13 @@ var app = new Vue({
                     break;
             }
         });
+        
+        if(!localStorage.getItem('readContols')){
+            controlHint = M.toast({
+                html: `<span>The arrow keys and swiping can be used to flip through projects</span>
+                       <button class="btn-flat toast-action" onclick="app.dismissHint()">Got it!</button>`,
+                displayLength: Infinity});
+            dismissHint = true;
+        }
     }
 });
