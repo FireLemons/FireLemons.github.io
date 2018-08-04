@@ -14,7 +14,12 @@
     src: url(../IsaacPills/Fonts/upheavtt.ttf)
 }
 
-button:focus{
+a:hover{
+    text-decoration: underline;
+}
+
+a.white-text:hover{
+    text-decoration-color: white;
 }
 
 img{
@@ -118,10 +123,6 @@ img{
     width: 100%;
 }
 
-#isaac-pills a:hover{
-    text-decoration: underline;
-}
-
 #isaac-pills h3{
     margin: 0;
     padding-bottom: .25em;
@@ -138,10 +139,67 @@ img{
     justify-content: center;
 }
 
-#isaac-pills .flex a:hover{
-    text-decoration-color: white;
-}
-
 #page-buttons-right{
     margin-left: auto;
+}
+
+#sudoku-solver:before{
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: -1;
+
+    display: block;
+    background-image: url(../img/sudoku.png);
+    width: 100%;
+    height: 100%;
+
+    -webkit-filter: blur(4px) brightness(.5);
+    -moz-filter: blur(4px) brightness(.5);
+    -o-filter: blur(4px) brightness(.5);
+    -ms-filter: blur(4px) brightness(.5);
+    filter: blur(4px) brightness(.5);
+}
+
+#sudoku-solver{
+    overflow: auto;
+}
+
+#sudoku-solver img{
+    height: 8em;
+}
+
+#sudoku-solver h4{
+    margin-top: 1.5em;
+}
+
+#sudoku-solver p{
+    font-size: 18pt;
+}
+
+#sudoku-title{
+    font-size: 32pt;
+}
+
+#sudoku-title a>.flex{
+    flex-direction: column;
+    margin-top: 1em;
+}
+
+#sudoku-title div .flex{
+    justify-content: center;
+}
+
+#sudoku-title div .flex:last-child div{
+    border-top: 0;
+}
+
+#sudoku-title div div div{
+    border: 2px solid;
+    height: 1.5em; width: 1.5em; 
+}
+
+#sudoku-title div div div:not(:first-child){
+    border-left: 0;
 }

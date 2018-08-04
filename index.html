@@ -16,9 +16,44 @@
             <div id="page-buttons-right" class="carousel-fixed-item page-buttons">
                 <button @click="right"><i class="material-icons right unselectable">keyboard_arrow_right</i></button>
             </div>
-            <div class="carousel-item amber white-text" href="#two!">
-                <h2>Second Panel</h2>
-                <p class="white-text">This is your second panel</p>
+            <div id="sudoku-solver" class="carousel-item" href="#SudokuSolver" title="To SudokuSolver" @click="navigate('SudokuSolver')">
+                <div id="sudoku-title">
+                    <a class="white-text" href="SudokuSolver">
+                        <div class="flex">
+                            <div class="flex">
+                                <div>S</div>
+                                <div>U</div>
+                                <div>D</div>
+                                <div>O</div>
+                                <div>K</div>
+                                <div>U</div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div class="flex">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div>S</div>
+                                <div>O</div>
+                                <div>L</div>
+                                <div>V</div>
+                                <div>E</div>
+                                <div>R</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <p class="white-text">
+                    Sudoku puzzle solver using artificial intelligence methods of solving constraint satisfaction problems
+                </p>
+                <h4 class="white-text">Built With</h4>
+                <div>
+                    <a href="https://angularjs.org/" title="AngularJS">
+                        <img src="img/angular.svg">
+                    </a>
+                </div>
             </div>
             <div class="carousel-item green white-text" href="#three!">
                 <h2>Third Panel</h2>
@@ -30,8 +65,8 @@
             </div>
             <div id="isaac-pills" class="carousel-item" href="#IsaacPills" title="To IsaacPills" @click="navigate('IsaacPills')">
                 <div class="flex">
-                    <a href="IsaacPills">
-                        <h3 class="white-text unselectable">Isaac Pills</h2>
+                    <a class="white-text" href="IsaacPills">
+                        <h3 class="unselectable">Isaac Pills</h2>
                     </a>
                 </div>
                 <p class="black-text unselectable">
@@ -39,7 +74,7 @@
                     <a href="https://store.steampowered.com/app/250900/The_Binding_of_Isaac_Rebirth/" title="Game Store Page">Binding of Isaac: Rebirth</a>
                 </p>
                 <div class="stack-credit">
-                    <h3 class="unselectable">Built Using</h3>
+                    <h3 class="unselectable">Built With</h3>
                     <img src="img/jQuery.png">
                 </div>
             </div>
