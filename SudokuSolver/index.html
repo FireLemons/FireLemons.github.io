@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app="SudokuSolver">
+	<head>
+		<title>Sudoku Solver</title>
+
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link href="css/sudokuSolver.css" rel="stylesheet">
+
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
+		<script src="scripts/puzzles.js"></script>
+		<script src="scripts/sudokuSolver.js"></script>
+	</head>
+	<body ng-controller="SudokuPuzzleController as sudoku">
+		<noscript>
+			<h1>Turn on your dang javascript >:(</h1>
+		</noscript>
+		<div id="failure" class="alert alert-danger" ng-show="sudoku.failure">
+			<strong>Failure</strong> The puzzle could not be solved.
+			<a class="close" ng-click="sudoku.hideError()">&times;</a>
+		</div>
+		<h1 id="title">Sudoku Solver
+			<small> Made by Shen Yang(syg84)</small>
+		</h1>
+		<div class="dropdown">
+			<button class="btn btn-lg btn-default dropdown-toggle wide" type="button" data-toggle="dropdown">
+				<div class="flex spacedFlex">
+					<span><span class="glyphicon glyphicon-th"></span> Select Puzzle Instance</span> 
+					<span class="glyphicon glyphicon-chevron-down"></span>
+				</div>
+			</button>
+			<ul class="dropdown-menu col-md-12 col-lg-12">
+				<li ng-repeat="instance in [0, 1, 2]">
+					<a href="javascript:;" ng-click="sudoku.loadPuzzle(instance)">Puzzle {{sudoku.instances[instance]}}</a>
+				</li>
+			</ul>
+		</div>
+		<h3 class="text-center">Puzzle {{sudoku.puzzleInstance}}</h3>
+		<div class="flex centeredFlex">
+			<table id="board">
+				<tr ng-repeat="i in [0, 1, 2]">
+					<td ng-repeat="j in [0, 1, 2]">
+						<table class="col-md-12 col-lg-12">
+							<tr ng-repeat="k in [0, 1, 2]">
+								<td ng-repeat="l in [0, 1, 2]">
+									<h1 class='{{sudoku.getBoardVisibility(i, j, k, l)}}'>{{sudoku.getBoardValue(i, j, k, l)}}</h1>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="jumbotron">
+			<div class="container">
+				<h1>Milliseconds Elapsed: {{sudoku.time}}</h1>
+			</div>
+		</div>
+		<button class="btn btn-lg col-md-12 col-lg-12" ng-click="sudoku.solvePuzzle()">Solve</button>
+	</body>
+</html>
