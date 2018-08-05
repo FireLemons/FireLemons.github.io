@@ -1,19 +1,26 @@
+function Box(value){
+    this.color = 'black';
+    this.domain = Number.isInteger(value) ? [value] : [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    this.value = value;
+}
+
 angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function($interval, $timeout) {
 
+    this.isSolving = false;
 	this.failure = false;
-	this.puzzle = puzzles[0].slice(0);//the data structure holding the puzzle information
+	this.puzzle = [[new Box(),  new Box(),  new Box(5),  new Box(),  new Box(1), new Box(),  new Box(),  new Box(),  new Box() ],
+	               [new Box(),  new Box(),  new Box(2),  new Box(),  new Box(),  new Box(4), new Box(),  new Box(3), new Box() ],
+	               [new Box(1), new Box(),  new Box(9),  new Box(),  new Box(),  new Box(),  new Box(2), new Box(),  new Box(6)],
+	               [new Box(2), new Box(),  new Box(),   new Box(),  new Box(3), new Box(),  new Box(),  new Box(),  new Box() ],
+	               [new Box(),  new Box(4), new Box(),   new Box(),  new Box(),  new Box(),  new Box(7), new Box(),  new Box() ],
+	               [new Box(5), new Box(),  new Box(),   new Box(),  new Box(),  new Box(7), new Box(),  new Box(),  new Box(1)],
+	               [new Box(),  new Box(6), new Box(),   new Box(1), new Box(),  new Box(),  new Box(),  new Box(),  new Box() ],
+	               [new Box(),  new Box(),  new Box(),   new Box(6), new Box(),  new Box(3), new Box(),  new Box(),  new Box() ],
+	               [new Box(),  new Box(),  new Box(),   new Box(),  new Box(7), new Box(),  new Box(),  new Box(5), new Box() ]];
 	this.time = 0;//value of timer of execution of program in ms
-	//promises used mostly to run the function while updating the timer
-	this.interval = undefined;
-	this.timeout = undefined;
-
-
-	//gets info to display values of board
-	this.getBoardValue = function(i, j, k, l){
-		var value = this.puzzle[i * 3 + k][j * 3 + l];
-
-		return (Number.isInteger(value)) ? value : '0';
-	}
+    
+	this.interval = undefined;//performs steps to solve the puzzle and updates the timer
+	this.timeout = undefined;//cancels solving if it takes too long
 
 	//hides domain values from showing up on the board
 	this.getBoardVisibility = function(i, j, k, l){
@@ -29,14 +36,15 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
 		if(this.interval === undefined){
 			var outer = this;
 			var startTime = new Date();
-
+            
 			var undoStack = [];
 			var degreeHeuristics = getDegreeHeuristics(this.puzzle);
-
+            
+            //initial pass to prune domains using set boxes
 			this.puzzle.forEach(function(elem, i){
-				elem.forEach(function(elemInner, j){
-					if(Number.isInteger(elemInner)){
-						forwardCheck(i, j, elemInner, outer.puzzle);
+				elem.forEach(function(box, j){
+					if(box.value){//if the box has been set
+						forwardCheck(i, j, box.value, outer.puzzle);
 					}
 				});
 			});
@@ -74,8 +82,7 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
 		}
 	}
 });
-
-//returns a matrix of the value of the heuristic for each unset variable 
+//returns a matrix of the value of the degree heuristic for each unset variable
 function getDegreeHeuristics(puzzle){
 	//Make 2D array of 0s.
 	var result = Array.apply(null, Array(puzzle.length)).map(function(){
@@ -88,8 +95,8 @@ function getDegreeHeuristics(puzzle){
 
 	//find count of unset variables for each row and column
 	puzzle.forEach(function(elem, i){
-		elem.forEach(function(innerElem, j){
-			if(puzzle[i][j].length > 1){
+		elem.forEach(function(box, j){
+			if(box.domain.length > 1){
 				rows[i]++;
 				columns[j]++;
 			}
@@ -98,9 +105,9 @@ function getDegreeHeuristics(puzzle){
 
 	//calcluate heuristic + 1 for each unset variable
 	puzzle.forEach(function(elem, i){
-		elem.forEach(function(innerElem, j){
+		elem.forEach(function(box, j){
 			//if variable is unset calculate the heuristic
-			if(!Number.isInteger(innerElem) && innerElem.length > 1){
+			if(!box.value && box.domain.length > 1){
 				//add count of constraining variables in rows and columns
 				result[i][j] = rows[i] + columns[j];
 
@@ -209,24 +216,24 @@ function undo(puzzle, undoStack, heuristicMatrix){
 	return true;
 }
 
-//prunes the domains of a variable
-//returns a array describing the result of the pruning
-function forwardCheck(i, j, value, puzzle){
+//prunes the domains of all boxes contrained by box puzzle[i][j]
+//returns a array describing the result of the pruning duing forward checking
+function forwardCheck(i, j, boxValue, puzzle){
 	var diff = [];
 
-	getConstrained(i, j, function(elem){
-		var variable = puzzle[elem[0]][elem[1]];
+	getConstrained(i, j, function(coordinates){
+		var box = puzzle[coordinates[0]][coordinates[1]];
 
-		if(Number.isInteger(variable)){//if the variable is set already
+		if(box.value){//if the box is set already
 			return;//continue out of forEach
 		}
 
-		var index = variable.indexOf(value);//index of value in domain
+		var index = box.domain.indexOf(boxValue);//index of box in domain
 
 		if(index >= 0){//if domain was pruned
-			variable.splice(index, 1);
+			box.domain.splice(index, 1);
 			diff.push({//store the position of the variable and where in the array the domain was pruned
-				loc: [elem[0], elem[1]],
+				loc: [coordinates[0], coordinates[1]],
 				pos: index
 			});
 		}

@@ -10,7 +10,6 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
-		<script src="scripts/puzzles.js"></script>
 		<script src="scripts/sudokuSolver.js"></script>
 	</head>
 	<body ng-controller="SudokuPuzzleController as sudoku">
@@ -24,26 +23,18 @@
 		<h1 id="title">Sudoku Solver
 			<small> Made by Shen Yang(syg84)</small>
 		</h1>
-		<div class="flex centeredFlex">
-			<table id="board">
-				<tr ng-repeat="i in [0, 1, 2]">
-					<td ng-repeat="j in [0, 1, 2]">
-						<table class="col-md-12 col-lg-12">
-							<tr ng-repeat="k in [0, 1, 2]">
-								<td ng-repeat="l in [0, 1, 2]">
-									<h1 class='{{sudoku.getBoardVisibility(i, j, k, l)}}'>{{sudoku.getBoardValue(i, j, k, l)}}</h1>
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-			</table>
+		<div class="flex">
+            <div id="board">
+                <div class="flex" ng-repeat="i in [0, 1, 2, 3, 4, 5, 6, 7, 8]">
+                    <input ng-repeat="j in [0, 1, 2, 3, 4, 5, 6, 7, 8]" type="number" min="1" max="9" step="1" value="{{sudoku.puzzle[i][j].value}}" ng-disabled="{{sudoku.isSolving}}">
+                </div>
+            </div>
+            <div id="controls">
+                <div class="jumbotron">
+                    <h1>Milliseconds Elapsed: {{sudoku.time}}</h1>
+                </div>
+                <button class="btn btn-lg col-md-12 col-lg-12" ng-click="sudoku.solvePuzzle()">Solve</button>
+            </div>
 		</div>
-		<div class="jumbotron">
-			<div class="container">
-				<h1>Milliseconds Elapsed: {{sudoku.time}}</h1>
-			</div>
-		</div>
-		<button class="btn btn-lg col-md-12 col-lg-12" ng-click="sudoku.solvePuzzle()">Solve</button>
 	</body>
 </html>

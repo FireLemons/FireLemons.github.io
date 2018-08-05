@@ -1,3 +1,7 @@
+:root{
+    --thick-border: 5px solid black;
+}
+
 @keyframes showError {
 	from {
 		opacity: 0;
@@ -14,8 +18,14 @@ body>*{
 	margin-bottom: .5em;
 }
 
-.centeredFlex{
-	justify-content: center;
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input:focus {
+    outline: none;
 }
 
 .flex{
@@ -26,13 +36,49 @@ body>*{
 	visibility: hidden;
 }
 
-.wide{
-	width: 100%;
+#board{
+    width: fit-content;
 }
 
-#board{
-	width: 48em;
-	height: 48em;
+#board div:last-child{
+    border-bottom: var(--thick-border);
+}
+
+#board div:nth-child(3n-2){
+    border-top: 5px solid black;
+}
+
+#board div:nth-child(3n) input{
+    margin-bottom: -1px;
+}
+
+#board div:nth-child(3n-2) input{
+    margin-top: -1px;
+}
+
+#board input{
+    border: 1px solid black;
+    font-size: 24pt;
+    height: 2.25em; width: 2.25em;
+    margin: 0;
+    text-align: center;
+}
+
+#board input:last-child{
+    border-right: var(--thick-border);
+}
+
+#board input:nth-child(3n-2){
+    border-left: var(--thick-border);
+}
+
+#controls{
+    margin-left: 1em;
+    width: 100%;
+}
+
+#controls h1{
+    margin: 0 1em;
 }
 
 #failure{
@@ -43,22 +89,6 @@ body>*{
 	position: fixed;
 	width: 96%;
 	z-index: 1;
-}
-
-#board table{
-	height: 100%;
-}
-
-#board, #board>tbody>tr, #board>tbody>tr>td{
-	border: 5px solid black;
-}
-
-#board table, #board table tr, #board table td{
-	border: 1px solid black;
-}
-
-#board table td{
-	text-align: center;
 }
 
 #failure.ng-hide {
