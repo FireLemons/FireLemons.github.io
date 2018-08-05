@@ -14,9 +14,6 @@ var app = new Vue({
         },
         right: function(){
             this.carousel.next();
-        },
-        navigate: function(projectDir){
-            window.location.href = './' + projectDir;
         }
     },
     mounted: function(){

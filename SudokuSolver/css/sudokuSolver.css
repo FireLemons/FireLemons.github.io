@@ -26,10 +26,6 @@ body>*{
 	visibility: hidden;
 }
 
-.spacedFlex{
-	justify-content: space-between;
-}
-
 .wide{
 	width: 100%;
 }

@@ -1,25 +1,12 @@
 angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function($interval, $timeout) {
 
-	this.instances = ['A', 'B', 'C'];
-	this.puzzleInstance = 'A';//which preloaded puzzle instance to use
 	this.failure = false;
 	this.puzzle = puzzles[0].slice(0);//the data structure holding the puzzle information
 	this.time = 0;//value of timer of execution of program in ms
 	//promises used mostly to run the function while updating the timer
-	//mimics multithreading in single thread javascript
 	this.interval = undefined;
 	this.timeout = undefined;
 
-	//event listener to load a new puzzle when one is selected from the dropdown
-	this.loadPuzzle = function(instance){
-		this.puzzle = puzzles[instance].slice(0);
-		this.puzzleInstance = this.instances[instance];
-
-		$interval.cancel(this.interval);
-		$timeout.cancel(this.timeout);
-		this.interval = undefined;
-		this.timeout = undefined;
-	}
 
 	//gets info to display values of board
 	this.getBoardValue = function(i, j, k, l){

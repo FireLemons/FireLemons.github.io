@@ -16,9 +16,9 @@
             <div id="page-buttons-right" class="carousel-fixed-item page-buttons">
                 <button @click="right"><i class="material-icons right unselectable">keyboard_arrow_right</i></button>
             </div>
-            <div id="sudoku-solver" class="carousel-item" href="#SudokuSolver" title="To SudokuSolver" @click="navigate('SudokuSolver')">
+            <div id="sudoku-solver" class="carousel-item" href="#SudokuSolver">
                 <div id="sudoku-title">
-                    <a class="white-text" href="SudokuSolver">
+                    <a class="white-text" href="SudokuSolver" title="To Sudoku Solver">
                         <div class="flex">
                             <div class="flex">
                                 <div>S</div>
@@ -45,13 +45,16 @@
                         </div>
                     </a>
                 </div>
-                <p class="white-text">
+                <p class="white-text unselectable">
                     Sudoku puzzle solver using artificial intelligence methods of solving constraint satisfaction problems
                 </p>
-                <h4 class="white-text">Built With</h4>
+                <h4 class="white-text unselectable">Built With</h4>
                 <div>
                     <a href="https://angularjs.org/" title="AngularJS">
                         <img src="img/angular.svg">
+                    </a>
+                    <a href="https://getbootstrap.com/" title="Bootstrap">
+                        <img class="bootstrap" src="img/bootstrap.svg">
                     </a>
                 </div>
             </div>
@@ -63,9 +66,9 @@
                 <h2>Fourth Panel</h2>
                 <p class="white-text">This is your fourth panel</p>
             </div>
-            <div id="isaac-pills" class="carousel-item" href="#IsaacPills" title="To IsaacPills" @click="navigate('IsaacPills')">
+            <div id="isaac-pills" class="carousel-item" href="#IsaacPills">
                 <div class="flex">
-                    <a class="white-text" href="IsaacPills">
+                    <a class="white-text" href="IsaacPills" title="To IsaacPills">
                         <h3 class="unselectable">Isaac Pills</h2>
                     </a>
                 </div>
@@ -75,7 +78,9 @@
                 </p>
                 <div class="stack-credit">
                     <h3 class="unselectable">Built With</h3>
-                    <img src="img/jQuery.png">
+                    <a href="http://jquery.com/" title="JQuery">
+                        <img src="img/jQuery.png">
+                    </a>
                 </div>
             </div>
         </div>

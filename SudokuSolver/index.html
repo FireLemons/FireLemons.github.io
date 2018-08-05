@@ -24,20 +24,6 @@
 		<h1 id="title">Sudoku Solver
 			<small> Made by Shen Yang(syg84)</small>
 		</h1>
-		<div class="dropdown">
-			<button class="btn btn-lg btn-default dropdown-toggle wide" type="button" data-toggle="dropdown">
-				<div class="flex spacedFlex">
-					<span><span class="glyphicon glyphicon-th"></span> Select Puzzle Instance</span> 
-					<span class="glyphicon glyphicon-chevron-down"></span>
-				</div>
-			</button>
-			<ul class="dropdown-menu col-md-12 col-lg-12">
-				<li ng-repeat="instance in [0, 1, 2]">
-					<a href="javascript:;" ng-click="sudoku.loadPuzzle(instance)">Puzzle {{sudoku.instances[instance]}}</a>
-				</li>
-			</ul>
-		</div>
-		<h3 class="text-center">Puzzle {{sudoku.puzzleInstance}}</h3>
 		<div class="flex centeredFlex">
 			<table id="board">
 				<tr ng-repeat="i in [0, 1, 2]">

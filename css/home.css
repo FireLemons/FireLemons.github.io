@@ -14,20 +14,14 @@
     src: url(../IsaacPills/Fonts/upheavtt.ttf)
 }
 
-a:hover{
-    text-decoration: underline;
-}
-
-a.white-text:hover{
-    text-decoration-color: white;
-}
-
-img{
-    height: 5em;
-}
-
-.carousel-item{
-    cursor: pointer;
+@keyframes expand-title{
+    from{
+        font-size: 32pt;
+    }
+    to{
+        font-size: 36pt;
+    }
+    
 }
 
 .flex{
@@ -123,9 +117,24 @@ img{
     width: 100%;
 }
 
+#isaac-pills a:hover{
+    text-decoration: underline;
+    text-decoration-color: white;
+}
+
 #isaac-pills h3{
     margin: 0;
     padding-bottom: .25em;
+}
+
+#isaac-pills img{
+    height: 8em;
+    margin-top: 1em;
+    transition: height 1s;
+}
+
+#isaac-pills img:hover{
+    height: 9em;
 }
 
 #isaac-pills p{
@@ -166,8 +175,21 @@ img{
     overflow: auto;
 }
 
+#sudoku-title:hover{
+    font-size: 34pt;
+}
+
 #sudoku-solver img{
-    height: 8em;
+    height: 12em;
+    transition: height 1s;
+}
+
+#sudoku-solver img:hover{
+    height: 13em;
+}
+
+#sudoku-solver img.bootstrap{
+    padding: 1em;
 }
 
 #sudoku-solver h4{
@@ -180,6 +202,7 @@ img{
 
 #sudoku-title{
     font-size: 32pt;
+    transition: font-size 1s;
 }
 
 #sudoku-title a>.flex{
