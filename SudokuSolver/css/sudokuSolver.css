@@ -81,6 +81,10 @@ input:focus {
     margin: 0 1em;
 }
 
+#controls button{
+    margin-bottom: .5em;
+}
+
 #failure{
 	animation: .5s showError;
 	animation-timing-function: ease;

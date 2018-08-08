@@ -26,13 +26,16 @@
 		<div class="flex">
             <div id="board">
                 <div class="flex" ng-repeat="i in [0, 1, 2, 3, 4, 5, 6, 7, 8]">
-                    <input ng-repeat="j in [0, 1, 2, 3, 4, 5, 6, 7, 8]" type="number" min="1" max="9" step="1" value="{{sudoku.puzzle[i][j].value}}" ng-disabled="{{sudoku.isSolving}}">
+                    <input min="1" max="9" type="number" step="1"
+                           ng-repeat="j in [0, 1, 2, 3, 4, 5, 6, 7, 8]" ng-disabled="sudoku.isSolving" 
+                           ng-model="sudoku.puzzle[i][j].value" style="color:{{sudoku.puzzle[i][j].color}}">
                 </div>
             </div>
             <div id="controls">
                 <div class="jumbotron">
                     <h1>Milliseconds Elapsed: {{sudoku.time}}</h1>
                 </div>
+                <button class="btn btn-lg col-md-12 col-lg-12" ng-click="sudoku.resetPuzzle(sudoku)">Reset</button>
                 <button class="btn btn-lg col-md-12 col-lg-12" ng-click="sudoku.solvePuzzle()">Solve</button>
             </div>
 		</div>

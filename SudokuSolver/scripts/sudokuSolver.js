@@ -14,18 +14,31 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
 	               [new Box(2), new Box(),  new Box(),   new Box(),  new Box(3), new Box(),  new Box(),  new Box(),  new Box() ],
 	               [new Box(),  new Box(4), new Box(),   new Box(),  new Box(),  new Box(),  new Box(7), new Box(),  new Box() ],
 	               [new Box(5), new Box(),  new Box(),   new Box(),  new Box(),  new Box(7), new Box(),  new Box(),  new Box(1)],
-	               [new Box(),  new Box(6), new Box(),   new Box(1), new Box(),  new Box(),  new Box(),  new Box(),  new Box() ],
-	               [new Box(),  new Box(),  new Box(),   new Box(6), new Box(),  new Box(3), new Box(),  new Box(),  new Box() ],
+	               [new Box(),  new Box(),  new Box(),   new Box(6), new Box(),  new Box(3),  new Box(),  new Box(),  new Box() ],
+	               [new Box(),  new Box(6), new Box(),   new Box(1), new Box(),  new Box(), new Box(),  new Box(),  new Box() ],
 	               [new Box(),  new Box(),  new Box(),   new Box(),  new Box(7), new Box(),  new Box(),  new Box(5), new Box() ]];
 	this.time = 0;//value of timer of execution of program in ms
     
 	this.interval = undefined;//performs steps to solve the puzzle and updates the timer
 	this.timeout = undefined;//cancels solving if it takes too long
-
-	//hides domain values from showing up on the board
-	this.getBoardVisibility = function(i, j, k, l){
-		return (this.getBoardValue(i, j, k, l) === '0') ? 'invisible' : '';
-	}
+    
+    this.resetPuzzle = function(scope){
+        scope.puzzle = this.puzzle.map(function(row){
+            return row.map(function(box){
+                return new Box(); 
+            });
+        });
+        
+        scope.isSolving = false;
+        scope.failure = false;
+        scope.time = 0;
+        
+        $interval.cancel(scope.interval);
+        $timeout.cancel(scope.timeout);
+        
+        scope.interval = undefined;
+        scope.timeout = undefined;
+    }
 
 	this.hideError = function(){
 		this.failure = false;
@@ -35,6 +48,8 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
 	this.solvePuzzle = function(){
 		if(this.interval === undefined){
 			var outer = this;
+            outer.isSolving = true;
+            
 			var startTime = new Date();
             
 			var undoStack = [];
@@ -48,18 +63,18 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
 					}
 				});
 			});
-
-			this.interval = $interval(function(){
+            
+            this.interval = $interval(function(){
 				outer.time = new Date() - startTime;//update the timer
 
 				var next = getNext(outer.puzzle, degreeHeuristics);
-
-				if(!next.length){//if a variable to set could not be found
+                
+				if(!next){//if a box to be set could not be found
 					//stop
 					$interval.cancel(outer.interval);
 					$timeout.cancel(outer.timeout);
 					return;
-				}else if(!outer.puzzle[next[0]][next[1]].length){//if an empty domain is found
+				}else if(!outer.puzzle[next[0]][next[1]].domain.length){//if an empty domain is found
 					//backtrack
 					if(!undo(outer.puzzle, undoStack, degreeHeuristics)){//if puzzle is unsolvable
 						//stop
@@ -75,52 +90,46 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
 
 			//stop after 5 min
 			this.timeout = $timeout(function(){
-				outer.time = new Date() - startTime;//update the timer
-				$interval.cancel(outer.promise);
-				outer.interval = undefined;
-			}, 3000000);
+                $interval.cancel(outer.interval);
+                //outer.resetPuzzle(outer);
+            }, 120000);
 		}
 	}
 });
+
 //returns a matrix of the value of the degree heuristic for each unset variable
 function getDegreeHeuristics(puzzle){
 	//Make 2D array of 0s.
-	var result = Array.apply(null, Array(puzzle.length)).map(function(){
-		return Array.apply(null, Array(puzzle[0].length));
+	var result = Array.apply(null, Array(9)).map(function(){
+		return Array.apply(null, Array(9));
 	});
 
 	//make arrays to keep track of count of unset variables in rows and columns
-	var rows = Array.apply(null, Array(puzzle.length)).map(Number.prototype.valueOf, 0);
-	var columns = Array.apply(null, Array(puzzle[0].length)).map(Number.prototype.valueOf, 0);
+	var rows = Array.apply(null, Array(9)).map(Number.prototype.valueOf, 0);
+	var columns = Array.apply(null, Array(9)).map(Number.prototype.valueOf, 0);
 
 	//find count of unset variables for each row and column
 	puzzle.forEach(function(elem, i){
 		elem.forEach(function(box, j){
-			if(box.domain.length > 1){
+			if(box.value == undefined){
 				rows[i]++;
 				columns[j]++;
 			}
 		});
 	});
 
-	//calcluate heuristic + 1 for each unset variable
-	puzzle.forEach(function(elem, i){
-		elem.forEach(function(box, j){
+	//calcluate degree heuristic + 1 for each unset variable
+	puzzle.forEach(function(row, i){
+		row.forEach(function(box, j){
 			//if variable is unset calculate the heuristic
-			if(!box.value && box.domain.length > 1){
+			if(!box.value){
 				//add count of constraining variables in rows and columns
 				result[i][j] = rows[i] + columns[j];
 
-				//check for constraining variables in 3x3 subgrid
-				var ix = 5 - (i % 3);
-				var jx = 5 - (j % 3);
-				var iSuper = Math.floor(i / 3) * 3;
-				var jSuper = Math.floor(j / 3) * 3;
-
-				result[i][j] += Array.isArray(puzzle[iSuper + ix - Math.floor(ix / 2) - 2][jSuper + jx - Math.floor(jx / 2) - 2]);
-				result[i][j] +=	Array.isArray(puzzle[iSuper + Math.floor(ix / 2)][jSuper + Math.floor(jx / 2)]);
-				result[i][j] +=	Array.isArray(puzzle[iSuper + ix - Math.floor(ix / 2) - 2][jSuper + Math.floor(jx / 2)]);
-				result[i][j] +=	Array.isArray(puzzle[iSuper + Math.floor(ix / 2)][jSuper + jx - Math.floor(jx / 2) - 2]);
+				//check if remaining constrained boxes have been set
+				getSubGridConstrainedCoordinates(i, j).forEach(function(coordinates){
+                    result[i][j] += puzzle[coordinates[0]][coordinates[1]].value == undefined;
+                });
 			}else{
 				result[i][j] = NaN;
 			}
@@ -131,20 +140,26 @@ function getDegreeHeuristics(puzzle){
 }
 
 //return the coordinates to the next variable to be set 
-//by first applying MRV heuristic
+//by first applying Minimum Remaining Values heuristic
 //and in the event of a tie, Degree heuristic
 function getNext(puzzle, heuristicMatrix){
-	var next = [];
+	var next;
 	var min = 16;
-
+    
 	for(var i = 0; i < puzzle.length; i++){
 		for(var j = 0; j < puzzle.length; j++){
-			if(!Number.isInteger(puzzle[i][j]) && puzzle[i][j].length < min){//variable with fewer remaining values was found
-				min = puzzle[i][j].length;
-				next = [i, j];
-			} else if(puzzle[i][j].length > 1 && puzzle[i][j].length == min){//variable with equal remaining values was found
-				next = (heuristicMatrix[i][j] > heuristicMatrix[next[0]][next[1]]) ? [i, j] : next;//tie break using degree heuristic
-			}
+            
+            var box = puzzle[i][j];
+            var remainingValueCount = box.domain.length;
+            
+            if(!box.value){
+                if(remainingValueCount < min){//variable with fewer remaining values was found
+                    min = remainingValueCount;
+                    next = [i, j];
+                } else if(remainingValueCount > 1 && remainingValueCount == min){//variable with equal remaining values was found
+                    next = (heuristicMatrix[i][j] > heuristicMatrix[next[0]][next[1]]) ? [i, j] : next;//tie break using degree heuristic
+                }
+            }
 		}
 	}
 
@@ -154,59 +169,63 @@ function getNext(puzzle, heuristicMatrix){
 //set a variable
 function set(i, j, puzzle, heuristicMatrix, undoStack){
 	
-	var domain = puzzle[i][j];
-
+	var box = puzzle[i][j];
+    
 	//error check
-	if(Number.isInteger(domain)){//already set
-		console.log("Number already set.");
+	if(box.value){//already set
 		return;
-	} else if(domain.length == 0){//no domain
-		console.log("Empty domain cannot be set.");
+	} else if(box.domain.length == 0){//no domain
 		return;
 	}
 
 	//update degree heuristic
-	getConstrained(i, j, function(elem){
-		heuristicMatrix[elem[0]][elem[1]]--;
+	forEachConstrained(i, j, function(coordinates){
+		heuristicMatrix[coordinates[0]][coordinates[1]]--;
 	});
-
+    
 	//forward check and store results
-	var diff = forwardCheck(i, j, domain[0], puzzle);
-
+	var diff = forwardCheck(i, j, box.domain[0], puzzle);
+    
 	undoStack.push({
-		isLast: domain.length == 1 || domain[0] > domain[1],//whether the variable set just exhausted its domain by completing a circular shit right cycle
+		isLast: box.domain.length == 1 || box.domain[0] > box.domain[1],//whether the box set just exhausted its domain by completing a circular shift right
 		//the coordinates of the variable set
 		i: i,
 		j: j,
-		domain: domain,//the domain of the variable before it is set
+		domain: box.domain,//the domain of the variable before it is set
 		constrained: diff
 	});
-
-	puzzle[i][j] = domain[0];
+    
+    box.value = box.domain[0];
 }
 
-//undo setting a variable
+//undo setting a box
 function undo(puzzle, undoStack, heuristicMatrix){
 	var action = undoStack.pop();
 
 	while(action){
-		//circular shift right the domain of variable that was set
-		puzzle[action.i][action.j] = action.domain.slice(1);
-		puzzle[action.i][action.j].push(action.domain[0]);
+		//circular shift right the domain of box that was set
+        var centeralBox = puzzle[action.i][action.j];
+        
+		centeralBox.domain = action.domain.slice(1);
+		centeralBox.domain.push(action.domain[0]);
+        
+        centeralBox.value = undefined;
 
-		//restore the pruned domains of the vairables related to variable that was set
+		//restore the pruned domains of the boxes related to box that was set
 		action.constrained.forEach(function(elem){
-			puzzle[elem.loc[0]][elem.loc[1]].splice(elem.pos, 0, action.domain[0]);
+            var box = puzzle[elem.loc[0]][elem.loc[1]];
+            
+			box.domain.splice(elem.pos, 0, action.domain[0]);
 		});
 
-		//restore huerisitc data structure
-		getConstrained(action.i, action.j, function(elem){
+		//restore heuristic data structure
+		forEachConstrained(action.i, action.j, function(elem){
 			heuristicMatrix[elem[0]][elem[1]]++;
 		});
-
+        
 		if(action.isLast){//if domain is exhausted
 			action = undoStack.pop();//undo again
-			if(!action){//a variable could ne be set
+			if(!action){//a box could not be set
 				return false;
 			}
 		}else{
@@ -221,17 +240,19 @@ function undo(puzzle, undoStack, heuristicMatrix){
 function forwardCheck(i, j, boxValue, puzzle){
 	var diff = [];
 
-	getConstrained(i, j, function(coordinates){
+	forEachConstrained(i, j, function(coordinates){
+        
 		var box = puzzle[coordinates[0]][coordinates[1]];
 
 		if(box.value){//if the box is set already
 			return;//continue out of forEach
 		}
 
-		var index = box.domain.indexOf(boxValue);//index of box in domain
-
-		if(index >= 0){//if domain was pruned
+		var index = box.domain.indexOf(boxValue);//index of value to be pruned in domain
+        
+		if(index >= 0){//if value was found in the domain
 			box.domain.splice(index, 1);
+            
 			diff.push({//store the position of the variable and where in the array the domain was pruned
 				loc: [coordinates[0], coordinates[1]],
 				pos: index
@@ -242,8 +263,8 @@ function forwardCheck(i, j, boxValue, puzzle){
 	return diff;
 }
 
-//get a list of coordinates of variables related to the variable at puzzle[i][j] by constraints and perform actions for each element
-function getConstrained(i, j, forEach){
+//perform actions for each box constrained by box puzzle[i][j]
+function forEachConstrained(i, j, forEach){
 	var coordinates = [];
 
 	//vertically related variables
@@ -263,9 +284,19 @@ function getConstrained(i, j, forEach){
 	for(var l = j + 1; l < 9; l++){
 		coordinates.push([i, l]);
 	}
+    
+	coordinates.concat(getSubGridConstrainedCoordinates(i, j)).forEach(forEach);
+}
 
-	//the 3x3 subGrid
-	var ix = 5 - (i % 3);
+//Gets coordinates of all boxes constrained by the box at i, j in the 3x3 subgrid 
+//with the exception of coordinates of boxes sharing the same row or column 
+//param i the index of the row of the box to get coordinates for
+//param j the index of the column of the box to get coordinates for
+//returns 4 coordinates of boxes constrained by the box at i, j and not sharing rows or columns with it
+function getSubGridConstrainedCoordinates(i, j){
+    var coordinates = [];
+    
+    var ix = 5 - (i % 3);
 	var jx = 5 - (j % 3);
 	var iSuper = Math.floor(i / 3) * 3;
 	var jSuper = Math.floor(j / 3) * 3;
@@ -273,9 +304,9 @@ function getConstrained(i, j, forEach){
 	var jSubCoord = [jSuper + jx - Math.floor(jx / 2) - 2, jSuper + Math.floor(jx / 2)];
 	
 	coordinates.push([iSubCoord[0], jSubCoord[0]]);
-	coordinates.push([iSubCoord[1], jSubCoord[0]]);
 	coordinates.push([iSubCoord[0], jSubCoord[1]]);
+	coordinates.push([iSubCoord[1], jSubCoord[0]]);
 	coordinates.push([iSubCoord[1], jSubCoord[1]]);
-
-	coordinates.forEach(forEach);
+    
+    return coordinates;
 }
