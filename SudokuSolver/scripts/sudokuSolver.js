@@ -1,17 +1,17 @@
-function Box(value){
-    this.color = 'black';
+function Box(value, color = 'black'){
+    this.color = color;
     this.domain = Number.isInteger(value) ? [value] : [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    this.degreeHeuristic = undefined;
     this.value = value;
 }
 
 var counter = 1;
 
 function Puzzle(values){
-    
     this.board;
-    this.heuristicMatrix;
     this.undoStack = [];
     
+    //erases all values of boxes
     this.clear = function(){
         this.board = Array.apply(null, Array(9)).map(function(){
             return Array.apply(null, Array(9)).map(function(){
@@ -20,19 +20,102 @@ function Puzzle(values){
         });
     }
     
-    //return the coordinates to the next variable to be set 
+    //Gets coordinates of all boxes constrained by the box at i, j in the 3x3 subgrid 
+    //with the exception of coordinates of boxes sharing the same row or column 
+    //param i the index of the row of the box to get coordinates for
+    //param j the index of the column of the box to get coordinates for
+    //returns 4 coordinates of boxes constrained by the box at i, j and not sharing rows or columns with it
+    this.forEachSubGridConstrainedCoordinates = function(i, j, forEach){
+        var coordinates = [];
+        
+        var ix = 5 - (i % 3);
+        var jx = 5 - (j % 3);
+        var iSuper = Math.floor(i / 3) * 3;
+        var jSuper = Math.floor(j / 3) * 3;
+        var iSubCoord = [iSuper + ix - Math.floor(ix / 2) - 2, iSuper + Math.floor(ix / 2)];
+        var jSubCoord = [jSuper + jx - Math.floor(jx / 2) - 2, jSuper + Math.floor(jx / 2)];
+        
+        coordinates.push([iSubCoord[0], jSubCoord[0]]);
+        coordinates.push([iSubCoord[0], jSubCoord[1]]);
+        coordinates.push([iSubCoord[1], jSubCoord[0]]);
+        coordinates.push([iSubCoord[1], jSubCoord[1]]);
+        
+        coordinates.forEach(forEach);
+    }
+    
+    //perform actions for each box constrained by box puzzle[i][j]
+    this.forEachConstrained = function(i, j, forEach){
+        var coordinates = [];
+
+        //vertically related variables
+        for(var k = 0; k < i; k++){
+            coordinates.push([k, j]);
+        }
+
+        for(var k = i + 1; k < 9; k++){
+            coordinates.push([k, j]);
+        }
+
+        //horizontally related variables
+        for(var l = 0; l < j; l++){
+            coordinates.push([i, l]);
+        }
+
+        for(var l = j + 1; l < 9; l++){
+            coordinates.push([i, l]);
+        }
+        
+        coordinates.forEach(forEach);
+        this.forEachSubGridConstrainedCoordinates(i, j, forEach);
+    }
+    
+    //prunes the domains of all boxes contrained by box puzzle[i][j]
+    //
+    //param i the row index of the box to be forward checked
+    //param j the column index of the box to be forward
+    //param boxValue the value of the box to forward check
+    //returns a array describing the result of pruning box domains duing forward checking
+    this.forwardCheck = function(i, j, boxValue){
+        var diff = [];
+            board = this.board;
+
+        this.forEachConstrained(i, j, function(coordinates){
+            
+            var box = board[coordinates[0]][coordinates[1]];
+
+            if(box.value){//if the box is set already
+                return;//continue out of forEach
+            }
+
+            var index = box.domain.indexOf(boxValue);//index of value to be pruned in domain
+            
+            if(index >= 0){//if value was found in the domain
+                box.domain.splice(index, 1);
+                
+                diff.push({//store the position of the variable and where in the array the domain was pruned
+                    loc: [coordinates[0], coordinates[1]],
+                    pos: index
+                });
+            }
+        });
+
+        return diff;
+    }
+    
+    //Selects the coordinates of the next variable to be set 
     //by first applying Minimum Remaining Values heuristic
     //and in the event of a tie, Degree heuristic
+    //
+    //returns coordinates of the best box to be set accoring to some heuristics
     this.getNext = function(){
-        var heuristicMatrix = this.heuristicMatrix,
-            maxDegree = 0,
+        var maxDegree = 0,
             minRemainingValues = 16,
             next;
         
         this.board.forEach(function(row, i){
             row.forEach(function(box, j){
                 var remainingValueCount = box.domain.length;
-                var degree = heuristicMatrix[i][j];
+                var degree = box.degreeHeuristic;
                 
                 if(!box.value){
                     //variable with fewer remaining values was found
@@ -52,6 +135,85 @@ function Puzzle(values){
         return next;
     }
     
+    //set the value of a box
+    //
+    //param i the row index of the box to be set
+    //param j the column index of the box to be set
+    this.set = function(i, j){
+        
+        var board = this.board,
+            box = board[i][j];
+        
+        //error check
+        if(box.value){//already set
+            return;
+        } else if(box.domain.length == 0){//no domain
+            return;
+        }
+
+        //update degree heuristic
+        this.forEachConstrained(i, j, function(coordinates){
+            board[coordinates[0]][coordinates[1]].degreeHeuristic--;
+        });
+        
+        //forward check and store results
+        var diff = this.forwardCheck(i, j, box.domain[0]);
+        
+        this.undoStack.push({
+            isLast: box.domain.length == 1 || box.domain[0] > box.domain[1],//whether the box set just exhausted its domain by completing a circular shift right
+            //the coordinates of the box set
+            i: i,
+            j: j,
+            domain: box.domain,//the domain of the box before it is set
+            constrained: diff
+        });
+        
+        box.value = box.domain[0];
+    }
+
+    //undo setting a box
+    //
+    //returns
+    //   true if undo was successful
+    //   false if undo was unsuccessful which indicates all attempts to solve the puzzle have been exhausted
+    this.undo = function(){
+        var action = this.undoStack.pop();
+
+        while(action){
+            //circular shift right the domain of box that was set
+            var board = this.board,
+                centeralBox = board[action.i][action.j],
+                undoStack = this.undoStack;
+            
+            centeralBox.domain = action.domain.slice(1);
+            centeralBox.domain.push(action.domain[0]);
+            
+            centeralBox.value = undefined;
+
+            //restore the pruned domains of the boxes related to box that was set
+            action.constrained.forEach(function(elem){
+                var box = board[elem.loc[0]][elem.loc[1]];
+                
+                box.domain.splice(elem.pos, 0, action.domain[0]);
+            });
+
+            //restore heuristic data structure
+            this.forEachConstrained(action.i, action.j, function(coordinates){
+                board[coordinates[0]][coordinates[1]].degreeHeuristic++;
+            });
+            
+            if(action.isLast){//if domain is exhausted
+                action = undoStack.pop();//undo again
+                if(!action){//a box could not be set
+                    return false;
+                }
+            }else{
+                action = undefined;//stop undo operations
+            }
+        }
+        return true;
+    }
+    
     //like a constructor for Puzzle object
     this.init = function(){
         //init board
@@ -66,12 +228,6 @@ function Puzzle(values){
         }
         
         //init heuristic matrix
-        
-        //Make 2D array of 0s.
-        this.heuristicMatrix = Array.apply(null, Array(9)).map(function(){
-            return Array.apply(null, Array(9));
-        });
-
         //make arrays to keep track of count of unset variables in rows and columns
         var rows = Array.apply(null, Array(9)).map(Number.prototype.valueOf, 0),
             columns = Array.apply(null, Array(9)).map(Number.prototype.valueOf, 0);
@@ -87,7 +243,7 @@ function Puzzle(values){
         });
         
         var board = this.board,
-            heuristicMatrix = this.heuristicMatrix;
+            outer = this;
         
         //calcluate degree heuristic + 1 for each unset variable
         this.board.forEach(function(row, i){
@@ -95,14 +251,14 @@ function Puzzle(values){
                 //if variable is unset calculate the heuristic
                 if(!box.value){
                     //add count of constraining variables in rows and columns
-                    heuristicMatrix[i][j] = rows[i] + columns[j];
+                    board[i][j].degreeHeuristic = rows[i] + columns[j];
 
                     //check if remaining constrained boxes have been set
-                    forEachSubGridConstrainedCoordinates(i, j, function(coordinates){
-                        heuristicMatrix[i][j] += board[coordinates[0]][coordinates[1]].value == undefined;
+                    outer.forEachSubGridConstrainedCoordinates(i, j, function(coordinates){
+                        board[i][j].degreeHeuristic += board[coordinates[0]][coordinates[1]].value == undefined;
                     });
                 }else{
-                    heuristicMatrix[i][j] = NaN;
+                    board[i][j].degreeHeuristic = NaN;
                 }
             });
         });
@@ -155,14 +311,11 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
             
 			var startTime = new Date();
             
-			var undoStack = [];
-			var degreeHeuristics = this.puzzle.heuristicMatrix;
-            
             //initial pass to prune domains using set boxes
 			this.puzzle.board.forEach(function(elem, i){
 				elem.forEach(function(box, j){
 					if(box.value){//if the box has been set
-						forwardCheck(i, j, box.value, outer.puzzle.board);
+						outer.puzzle.forwardCheck(i, j, box.value);
 					}
 				});
 			});
@@ -180,7 +333,7 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
 					return;
 				}else if(!outer.puzzle.board[next[0]][next[1]].domain.length){//if an empty domain is found
 					//backtrack
-					if(!undo(outer.puzzle.board, undoStack, degreeHeuristics)){//if puzzle is unsolvable
+					if(!outer.puzzle.undo()){//if puzzle is unsolvable
 						//stop
 						outer.failure = true;
 						$interval.cancel(outer.interval);
@@ -189,7 +342,7 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
 					}
 				}
 				
-				set(next[0], next[1], outer.puzzle.board, degreeHeuristics, undoStack);//set the next variable
+				outer.puzzle.set(next[0], next[1]);//set the next variable
 			}, 1);
 
 			//stop after 5 min
@@ -199,149 +352,3 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
 		}
 	}
 });
-
-//set a variable
-function set(i, j, puzzle, heuristicMatrix, undoStack){
-	
-	var box = puzzle[i][j];
-    
-	//error check
-	if(box.value){//already set
-		return;
-	} else if(box.domain.length == 0){//no domain
-		return;
-	}
-
-	//update degree heuristic
-	forEachConstrained(i, j, function(coordinates){
-		heuristicMatrix[coordinates[0]][coordinates[1]]--;
-	});
-    
-	//forward check and store results
-	var diff = forwardCheck(i, j, box.domain[0], puzzle);
-    
-	undoStack.push({
-		isLast: box.domain.length == 1 || box.domain[0] > box.domain[1],//whether the box set just exhausted its domain by completing a circular shift right
-		//the coordinates of the variable set
-		i: i,
-		j: j,
-		domain: box.domain,//the domain of the variable before it is set
-		constrained: diff
-	});
-    
-    box.value = box.domain[0];
-}
-
-//undo setting a box
-function undo(puzzle, undoStack, heuristicMatrix){
-	var action = undoStack.pop();
-
-	while(action){
-		//circular shift right the domain of box that was set
-        var centeralBox = puzzle[action.i][action.j];
-        
-		centeralBox.domain = action.domain.slice(1);
-		centeralBox.domain.push(action.domain[0]);
-        
-        centeralBox.value = undefined;
-
-		//restore the pruned domains of the boxes related to box that was set
-		action.constrained.forEach(function(elem){
-            var box = puzzle[elem.loc[0]][elem.loc[1]];
-            
-			box.domain.splice(elem.pos, 0, action.domain[0]);
-		});
-
-		//restore heuristic data structure
-		forEachConstrained(action.i, action.j, function(elem){
-			heuristicMatrix[elem[0]][elem[1]]++;
-		});
-        
-		if(action.isLast){//if domain is exhausted
-			action = undoStack.pop();//undo again
-			if(!action){//a box could not be set
-				return false;
-			}
-		}else{
-			action = undefined;//stop undo operations
-		}
-	}
-	return true;
-}
-
-//prunes the domains of all boxes contrained by box puzzle[i][j]
-//returns a array describing the result of the pruning duing forward checking
-function forwardCheck(i, j, boxValue, puzzle){
-	var diff = [];
-
-	forEachConstrained(i, j, function(coordinates){
-        
-		var box = puzzle[coordinates[0]][coordinates[1]];
-
-		if(box.value){//if the box is set already
-			return;//continue out of forEach
-		}
-
-		var index = box.domain.indexOf(boxValue);//index of value to be pruned in domain
-        
-		if(index >= 0){//if value was found in the domain
-			box.domain.splice(index, 1);
-            
-			diff.push({//store the position of the variable and where in the array the domain was pruned
-				loc: [coordinates[0], coordinates[1]],
-				pos: index
-			});
-		}
-	});
-
-	return diff;
-}
-
-//perform actions for each box constrained by box puzzle[i][j]
-function forEachConstrained(i, j, forEach){
-	var coordinates = [];
-
-	//vertically related variables
-	for(var k = 0; k < i; k++){
-		coordinates.push([k, j]);
-	}
-
-	for(var k = i + 1; k < 9; k++){
-		coordinates.push([k, j]);
-	}
-
-	//horizontally related variables
-	for(var l = 0; l < j; l++){
-		coordinates.push([i, l]);
-	}
-
-	for(var l = j + 1; l < 9; l++){
-		coordinates.push([i, l]);
-	}
-    
-	coordinates.forEach(forEach);
-    forEachSubGridConstrainedCoordinates(i, j, forEach);
-}
-
-//Gets coordinates of all boxes constrained by the box at i, j in the 3x3 subgrid 
-//with the exception of coordinates of boxes sharing the same row or column 
-//param i the index of the row of the box to get coordinates for
-//param j the index of the column of the box to get coordinates for
-//returns 4 coordinates of boxes constrained by the box at i, j and not sharing rows or columns with it
-function forEachSubGridConstrainedCoordinates(i, j, forEach){
-    var coordinates = [];
-    
-    var ix = 5 - (i % 3);
-	var jx = 5 - (j % 3);
-	var iSuper = Math.floor(i / 3) * 3;
-	var jSuper = Math.floor(j / 3) * 3;
-	var iSubCoord = [iSuper + ix - Math.floor(ix / 2) - 2, iSuper + Math.floor(ix / 2)];
-	var jSubCoord = [jSuper + jx - Math.floor(jx / 2) - 2, jSuper + Math.floor(jx / 2)];
-	
-	coordinates.push([iSubCoord[0], jSubCoord[0]]);
-	coordinates.push([iSubCoord[0], jSubCoord[1]]);
-	coordinates.push([iSubCoord[1], jSubCoord[0]]);
-	coordinates.push([iSubCoord[1], jSubCoord[1]]);
-    
-    coordinates.forEach(forEach);
-}
