@@ -26,8 +26,8 @@
 		<div class="flex">
             <div id="board">
                 <div class="flex" ng-repeat="i in [0, 1, 2, 3, 4, 5, 6, 7, 8]">
-                    <input min="1" max="9" type="number" step="1"
-                           ng-repeat="j in [0, 1, 2, 3, 4, 5, 6, 7, 8]" ng-disabled="sudoku.isSolving"
+                    <input type="text"
+                           ng-repeat="j in [0, 1, 2, 3, 4, 5, 6, 7, 8]" ng-change="sudoku.checkBox(i, j)" ng-disabled="sudoku.isSolving"
                            ng-model="sudoku.puzzle.board[i][j].value" class="{{sudoku.puzzle.board[i][j].color}}">
                 </div>
             </div>

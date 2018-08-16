@@ -76,6 +76,11 @@ input:focus {
     color: #0d47a1;
 }
 
+#board .red{
+    background-color: #ffebee;
+    color: #d50000;
+}
+
 #controls{
     margin-left: 1em;
     width: 100%;
