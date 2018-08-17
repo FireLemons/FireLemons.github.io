@@ -1,4 +1,4 @@
-function Box(value, color = 'blue'){
+function Box(value, color = 'black'){
     this.color = color;
     this.conflicting = [];
     this.domain = Number.isInteger(value) ? [value] : [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -16,7 +16,7 @@ function Puzzle(){
     this.clear = function(){
         this.board.forEach(function(row){
             row.forEach(function(box){
-                box.color = 'blue';
+                box.color = 'black';
                 box.domain = [1, 2, 3, 4, 5, 6, 7, 8, 9];
                 box.value = undefined;
             });
@@ -83,27 +83,48 @@ function Puzzle(){
     this.checkBox = function(i, j){
         var board = this.board,
             box = board[i][j];
-        box.color = 'black';
         
-        if(box.value){
+        if(box.value && box.value % 10 != 0){
             box.value %= 10;
+        } else {
+            box.value = undefined;
         }
         
         this.getConstrained(i, j).forEach(function(coordinates){
-            var constrainedBox = board[coordinates[0]][coordinates[1]];
+            var constrainedBox = board[coordinates[0]][coordinates[1]],
+                conflictingIndexConstrainedBox = constrainedBox.conflicting.findIndex(function(boxCoords){
+                    return boxCoords[0] == i && boxCoords[1] == j;
+                }),
+                conflictingIndexBox = box.conflicting.findIndex(function(conflictingBoxCoords){
+                    return conflictingBoxCoords[0] == coordinates[0] && conflictingBoxCoords[1] == coordinates[1];
+                });
             
             if(constrainedBox.value && constrainedBox.value == box.value){
-                box.color = 'red';
-                constrainedBox.color = 'red';
-                box.conflicting.push([i, j]);
-                constrainedBox.conflicting.push([i, j]);
+                if(conflictingIndexBox == -1){
+                    box.color = 'red';
+                    box.conflicting.push(coordinates);
+                }
+                
+                if(conflictingIndexConstrainedBox == -1){
+                    constrainedBox.color = 'red';
+                    constrainedBox.conflicting.push([i, j]);
+                }
             } else if(constrainedBox.color == 'red'){
-                constrainedBox.conflicting.splice(constrainedBox.conflicting.indexOf([i, j]), 1);
+                if(conflictingIndexConstrainedBox != -1){
+                    constrainedBox.conflicting.splice(conflictingIndexConstrainedBox, 1);
+                }
+                
+                if(conflictingIndexBox != -1){
+                    box.conflicting.splice(conflictingIndexBox, 1);
+                }
                 
                 if(!constrainedBox.conflicting.length){
                     constrainedBox.color = 'black';
-                    box.color = 'black';
                 }
+            }
+            
+            if(!box.conflicting.length){
+                box.color = 'black';
             }
         });
     }
