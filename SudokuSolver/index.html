@@ -15,7 +15,7 @@
 		</noscript>
 		<div id="failure" class="alert alert-danger" ng-show="sudoku.failure">
 			<strong>Failure</strong> The puzzle could not be solved.
-			<a class="close" ng-click="sudoku.hideError()">&times;</a>
+			<a class="close" ng-click="sudoku.failure = false">&times;</a>
 		</div>
 		<h1 id="title">Sudoku Solver
 			<small> by <a href="https://github.com/FireLemons">Shen Yang</a></small>
