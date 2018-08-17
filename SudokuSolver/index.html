@@ -14,7 +14,7 @@
 	</head>
 	<body ng-controller="SudokuPuzzleController as sudoku">
 		<noscript>
-			<h1>Turn on your dang javascript >:(</h1>
+			<h1>Turn on your dang javascript >:C</h1>
 		</noscript>
 		<div id="failure" class="alert alert-danger" ng-show="sudoku.failure">
 			<strong>Failure</strong> The puzzle could not be solved.
@@ -24,11 +24,11 @@
 			<small> by <a href="https://github.com/FireLemons">Shen Yang</a></small>
 		</h1>
 		<div class="flex">
-            <div id="board">
+            <div id="board" key-navigable="sudoku.focused">
                 <div class="flex" ng-repeat="i in [0, 1, 2, 3, 4, 5, 6, 7, 8]">
                     <input type="text"
-                           ng-repeat="j in [0, 1, 2, 3, 4, 5, 6, 7, 8]" ng-change="sudoku.checkBox(i, j)" ng-disabled="sudoku.isSolving"
-                           ng-model="sudoku.puzzle.board[i][j].value" class="{{sudoku.puzzle.board[i][j].color}}">
+                           ng-repeat="j in [0, 1, 2, 3, 4, 5, 6, 7, 8]" ng-change="sudoku.checkBox(i, j)" ng-disabled="sudoku.isSolving" ng-keyup="sudoku.boxKeyListener($event)" 
+                           ng-focus="sudoku.setFocus(i, j)" ng-model="sudoku.puzzle.board[i][j].value" class="{{sudoku.puzzle.board[i][j].color}}">
                 </div>
             </div>
             <div id="controls">

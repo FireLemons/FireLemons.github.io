@@ -81,24 +81,28 @@ function Puzzle(){
     //param j the column index of the box to check against other boxes
     //returns an array of boxes that conflict with the box at i, j
     this.checkBox = function(i, j){
-        var board = this.board;
+        var board = this.board,
+            box = board[i][j];
+        box.color = 'black';
         
-        board[i][j].color = 'black';
+        if(box.value){
+            box.value %= 10;
+        }
         
         this.getConstrained(i, j).forEach(function(coordinates){
-            var box = board[coordinates[0]][coordinates[1]];
+            var constrainedBox = board[coordinates[0]][coordinates[1]];
             
-            if(box.value && box.value == board[i][j].value){
-                board[i][j].color = 'red';
+            if(constrainedBox.value && constrainedBox.value == box.value){
                 box.color = 'red';
-                board[i][j].conflicting.push([i, j]);
+                constrainedBox.color = 'red';
                 box.conflicting.push([i, j]);
-            } else if(box.color == 'red'){
-                box.conflicting.splice(box.conflicting.indexOf([i, j]), 1);
+                constrainedBox.conflicting.push([i, j]);
+            } else if(constrainedBox.color == 'red'){
+                constrainedBox.conflicting.splice(constrainedBox.conflicting.indexOf([i, j]), 1);
                 
-                if(!box.conflicting.length){
+                if(!constrainedBox.conflicting.length){
+                    constrainedBox.color = 'black';
                     box.color = 'black';
-                    board[i][j].color = 'black';
                 }
             }
         });
@@ -327,7 +331,7 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
 
     this.isSolving = false;
 	this.failure = false;
-    this.focused = 30;
+    this.focused = [0, 0];
 	this.puzzle = new Puzzle();
     this.puzzle.init([[NaN, NaN, 5,   NaN, 1,   NaN, NaN, NaN, NaN],
                       [NaN, NaN, 2,   NaN, NaN, 4,   NaN, 3,   NaN],
@@ -353,6 +357,38 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
         var box = this.puzzle.board[i][j];
 
         this.puzzle.checkBox(i, j);
+    }
+    
+    this.setFocus = function(i, j){
+        this.focused = [i, j];
+    }
+    
+    this.boxKeyListener = function($event){
+        var box = this.puzzle.board[this.focused[0]][this.focused[1]];
+        
+        switch($event.keyCode){
+            case 8: //backspace
+            case 46://delete
+                box.value = undefined;
+                break;
+            case 13://enter
+            case 39://right
+                if(this.focused[0] + this.focused[1] != 16){
+                    this.focused = [this.focused[0] + (this.focused[1] == 8), (this.focused[1] + 1) % 9];
+                }
+                break;
+            case 37://left
+                if(this.focused[0] + this.focused[1] != 0){
+                    this.focused = [this.focused[0] - (this.focused[1] == 0), (this.focused[1] + 8) % 9];
+                }
+                break;
+            case 38://up
+                this.focused = [this.focused[0] - (this.focused[0] != 0), this.focused[1]];
+                break;
+            case 40://down
+                this.focused = [this.focused[0] + (this.focused[0] != 8), this.focused[1]];
+                break;
+        }
     }
     
     this.resetPuzzle = function(){
@@ -390,9 +426,9 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
 					//backtrack
 					if(!outer.puzzle.undo()){//if puzzle is unsolvable
 						//stop
-						outer.failure = true;
+                        outer.failure = true;
                         outer.stopSolve();
-						return;
+                        return;
 					}
 				}
 				
@@ -406,4 +442,17 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
             }, 120000);
 		}
 	}
-});
+}).directive('keyNavigable', ['$parse', '$timeout', function($parse, $timeout){
+    return {
+        link: function(scope, elem, attrs){
+            //wait for dom to load
+            $timeout(function(){
+                //listen for coordinates for the box to be focused to change
+                scope.$watch(attrs.keyNavigable, function(focusedCoords){
+                    //make the box at focusedCoords focused
+                    elem[0].children[focusedCoords[0]].children[focusedCoords[1]].focus();
+                });
+            });
+        }
+    }
+}]);
