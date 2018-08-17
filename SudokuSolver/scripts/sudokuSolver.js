@@ -88,13 +88,13 @@ function Puzzle(){
         this.getConstrained(i, j).forEach(function(coordinates){
             var box = board[coordinates[0]][coordinates[1]];
             
-            if(box.value == board[i][j].value){
+            if(box.value && box.value == board[i][j].value){
                 board[i][j].color = 'red';
                 box.color = 'red';
-                board[i][j].conflicting.push(coordinates);
-                box.conflicting.push(coordinates);
+                board[i][j].conflicting.push([i, j]);
+                box.conflicting.push([i, j]);
             } else if(box.color == 'red'){
-                box.conflicting.splice(box.conflicting.indexOf(coordinates), 1);
+                box.conflicting.splice(box.conflicting.indexOf([i, j]), 1);
                 
                 if(!box.conflicting.length){
                     box.color = 'black';
@@ -327,6 +327,7 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
 
     this.isSolving = false;
 	this.failure = false;
+    this.focused = 30;
 	this.puzzle = new Puzzle();
     this.puzzle.init([[NaN, NaN, 5,   NaN, 1,   NaN, NaN, NaN, NaN],
                       [NaN, NaN, 2,   NaN, NaN, 4,   NaN, 3,   NaN],
@@ -351,13 +352,7 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
     this.checkBox = function(i, j){
         var box = this.puzzle.board[i][j];
 
-        if(box.value){
-            this.puzzle.checkBox(i, j);
-        } else {
-            if(box.color != 'blue'){
-                box.color = 'blue';
-            }
-        }
+        this.puzzle.checkBox(i, j);
     }
     
     this.resetPuzzle = function(){
