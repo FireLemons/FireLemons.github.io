@@ -1,3 +1,5 @@
+var testing = (typeof testing !== 'undefined') ? true : false;
+
 function Box(value, color = 'black'){
     this.color = color;
     this.conflicting = [];
