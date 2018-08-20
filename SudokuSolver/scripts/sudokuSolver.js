@@ -126,7 +126,8 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
     var undoStack;
     
     return {
-        board: undefined,        
+        board: undefined,
+        undoStack: (testing) ? undoStack : undefined, 
         //erases all values of boxes
         
         clear: function(){
@@ -393,13 +394,13 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
         //like a constructor for Puzzle object
         init: function(values){
             //init board
-            if(values){
-                this.board = values.map(function(row){
-                    return row.map(function(value){
-                        return (value) ? new Box(value, 'black') : new Box();
+            if(!this.board){
+                this.board = this.board = Array.apply(null, Array(9)).map(function(){
+                    return Array.apply(null, Array(9)).map(function(){
+                        return new Box();
                     });
-                })
-            } else if(this.board){
+                });
+            } else {
                 this.board.forEach(function(row){
                     row.forEach(function(box){
                         if(box.value) {
@@ -410,8 +411,35 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
                         }
                     });
                 });
-            } else {
-                this.board = new Array(9).fill(new Array(9).fill(new Box()));
+            }
+            
+            if(values){
+                this.board.forEach(function(row, i){
+                    row.forEach(function(box, j){
+                        box.value = values[i][j] ? values[i][j] : undefined;
+                        
+                        if(box.value) {
+                            box.color = 'black';
+                        } else {
+                            box.color  = 'blue';
+                            box.domain = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+                        }
+                    });
+                });
+                
+                /*function Box(value, color = 'black'){
+                    this.color = color;
+                    this.conflicting = [];
+                    this.domain = Number.isInteger(value) ? [value] : [1, 2, 3, 4, 5, 6, 7, 8, 9];
+                    this.degreeHeuristic = undefined;
+                    this.value = value;
+                }*/
+                
+                /*this.board = values.map(function(row){
+                    return row.map(function(value){
+                        return (value) ? new Box(value, 'black') : new Box();
+                    });
+                })*/
             }
             
             //init heuristic matrix
@@ -422,7 +450,7 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
             //find count of unset variables for each row and column
             this.board.forEach(function(row, i){
                 row.forEach(function(box, j){
-                    if(box.value == undefined){
+                    if(!box.value){
                         rows[i]++;
                         columns[j]++;
                     }
@@ -432,7 +460,7 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
             var board = this.board,
                 outer = this;
             
-            //calcluate degree heuristic + 1 for each unset variable
+            //calcluate degree heuristic + 2 for each unset variable
             this.board.forEach(function(row, i){
                 row.forEach(function(box, j){
                     //if variable is unset calculate the heuristic
@@ -442,10 +470,10 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
 
                         //check if remaining constrained boxes have been set
                         outer.getSubGridConstrained(i, j).forEach(function(coordinates){
-                            board[i][j].degreeHeuristic += board[coordinates[0]][coordinates[1]].value == undefined;
+                            board[i][j].degreeHeuristic += !board[coordinates[0]][coordinates[1]].value;
                         });
                     }else{
-                        board[i][j].degreeHeuristic = NaN;
+                        board[i][j].degreeHeuristic = undefined;
                     }
                 });
             });
@@ -462,6 +490,7 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
                 });
             });
             
+            console.log(this);
             return this;
         }
     }
