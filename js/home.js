@@ -6,7 +6,7 @@ var app = new Vue({
     },
     methods:{
         dismissHint: function(){
-            localStorage.setItem('readContols', true);
+            localStorage.setItem('readControls', true);
             controlHint.dismiss();
         },
         left: function(){
@@ -34,7 +34,7 @@ var app = new Vue({
             }
         });
         
-        if(!localStorage.getItem('readContols')){
+        if(!localStorage.getItem('readControls')){
             controlHint = M.toast({
                 html: `<span>The arrow keys and swiping can be used to flip through projects</span>
                        <button class="btn-flat toast-action" onclick="app.dismissHint()">Got it!</button>`,
