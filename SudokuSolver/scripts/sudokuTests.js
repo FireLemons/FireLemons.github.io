@@ -16,12 +16,14 @@ describe('Initializing the puzzle', function(){
     it('makes a 2d matrix of Box objects on first initialization with no args', function(){
         sudokuPuzzleService.init();
         
-        var newBox = new Box();
-        newBox.degreeHeuristic = 22;
+        expect(sudokuPuzzleService.board.length).toBe(9);
         
         sudokuPuzzleService.board.forEach(function(row){
+            
+            expect(row.length).toBe(9);
+            
             row.forEach(function(box){ 
-                expect(box).toEqual(newBox);
+                expect(box instanceof Box).toBe(true);
             })
         });
     });

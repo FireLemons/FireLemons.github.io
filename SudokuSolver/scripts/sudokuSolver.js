@@ -192,6 +192,44 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
             return coordinates;
         },
         
+        //sets the heuristic value for each box in the puzzle
+        figureHeuristicValues: function(){
+            //make arrays to keep track of count of unset variables in rows and columns
+            var rows = new Array(9).fill(0),
+                columns = new Array(9).fill(0);
+
+            //find count of unset variables for each row and column
+            this.board.forEach(function(row, i){
+                row.forEach(function(box, j){
+                    if(!box.value){
+                        rows[i]++;
+                        columns[j]++;
+                    }
+                });
+            });
+            
+            var board = this.board,
+                outer = this;
+            
+            //calcluate degree heuristic + 2 for each unset variable
+            this.board.forEach(function(row, i){
+                row.forEach(function(box, j){
+                    //if variable is unset calculate the heuristic
+                    if(!box.value){
+                        //add count of constraining variables in rows and columns
+                        board[i][j].degreeHeuristic = rows[i] + columns[j];
+
+                        //check if remaining constrained boxes have been set
+                        outer.getSubGridConstrained(i, j).forEach(function(coordinates){
+                            board[i][j].degreeHeuristic += !board[coordinates[0]][coordinates[1]].value;
+                        });
+                    }else{
+                        board[i][j].degreeHeuristic = undefined;
+                    }
+                });
+            });
+        },
+        
         //checks for conflicting values in the board for the box at i, j
         //
         //param i the column index of the box to check against other boxes
@@ -426,62 +464,16 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
                         }
                     });
                 });
-                
-                /*function Box(value, color = 'black'){
-                    this.color = color;
-                    this.conflicting = [];
-                    this.domain = Number.isInteger(value) ? [value] : [1, 2, 3, 4, 5, 6, 7, 8, 9];
-                    this.degreeHeuristic = undefined;
-                    this.value = value;
-                }*/
-                
-                /*this.board = values.map(function(row){
-                    return row.map(function(value){
-                        return (value) ? new Box(value, 'black') : new Box();
-                    });
-                })*/
             }
             
-            //init heuristic matrix
-            //make arrays to keep track of count of unset variables in rows and columns
-            var rows = new Array(9).fill(0),
-                columns = new Array(9).fill(0);
-
-            //find count of unset variables for each row and column
-            this.board.forEach(function(row, i){
-                row.forEach(function(box, j){
-                    if(!box.value){
-                        rows[i]++;
-                        columns[j]++;
-                    }
-                });
-            });
-            
-            var board = this.board,
-                outer = this;
-            
-            //calcluate degree heuristic + 2 for each unset variable
-            this.board.forEach(function(row, i){
-                row.forEach(function(box, j){
-                    //if variable is unset calculate the heuristic
-                    if(!box.value){
-                        //add count of constraining variables in rows and columns
-                        board[i][j].degreeHeuristic = rows[i] + columns[j];
-
-                        //check if remaining constrained boxes have been set
-                        outer.getSubGridConstrained(i, j).forEach(function(coordinates){
-                            board[i][j].degreeHeuristic += !board[coordinates[0]][coordinates[1]].value;
-                        });
-                    }else{
-                        board[i][j].degreeHeuristic = undefined;
-                    }
-                });
-            });
+            this.figureHeuristicValues();
             
             //init undoStack
             this.undoStack = [];
             
             //initial pass to prune domains using set boxes
+            var outer = this;
+            
             this.board.forEach(function(row, i){
                 row.forEach(function(box, j){
                     if(box.value){//if the box has been set
@@ -490,7 +482,6 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
                 });
             });
             
-            console.log(this);
             return this;
         }
     }
