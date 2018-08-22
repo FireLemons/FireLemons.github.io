@@ -14,7 +14,6 @@ input[type=number]::-webkit-outer-spin-button {
 
 #app{
     color: white;
-    height: calc(100% - 13.5rem);
     margin-top: 8em;
 }
 
@@ -63,6 +62,10 @@ input[type=number]::-webkit-outer-spin-button {
     line-height: 1.5;
 }
 
+#display #stats{
+    cursor: default;
+}
+
 #display #stats .flex{
     flex-direction: column;
     flex-grow: 1;
@@ -75,6 +78,10 @@ input[type=number]::-webkit-outer-spin-button {
 
 #display #stats .flex:not(:first-child) span{
     border-left: 0;
+}
+
+#display #stats .flex span:first-child{
+    font-size: 14pt;
 }
 
 #display #stats .flex span:last-child{
