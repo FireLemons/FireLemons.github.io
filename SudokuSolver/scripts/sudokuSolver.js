@@ -230,60 +230,6 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
             });
         },
         
-        //checks for conflicting values in the board for the box at i, j
-        //
-        //param i the column index of the box to check against other boxes
-        //param j the column index of the box to check against other boxes
-        //returns an array of boxes that conflict with the box at i, j
-        checkBox: function(i, j){
-            var board = this.board,
-                box = board[i][j];
-            
-            if(box.value && box.value % 10 != 0){
-                box.value %= 10;
-            } else {
-                box.value = undefined;
-            }
-            
-            this.getConstrained(i, j).forEach(function(coordinates){
-                var constrainedBox = board[coordinates[0]][coordinates[1]],
-                    conflictingIndexConstrainedBox = constrainedBox.conflicting.findIndex(function(boxCoords){
-                        return boxCoords[0] == i && boxCoords[1] == j;
-                    }),
-                    conflictingIndexBox = box.conflicting.findIndex(function(conflictingBoxCoords){
-                        return conflictingBoxCoords[0] == coordinates[0] && conflictingBoxCoords[1] == coordinates[1];
-                    });
-                
-                if(constrainedBox.value && constrainedBox.value == box.value){
-                    if(conflictingIndexBox == -1){
-                        box.color = 'red';
-                        box.conflicting.push(coordinates);
-                    }
-                    
-                    if(conflictingIndexConstrainedBox == -1){
-                        constrainedBox.color = 'red';
-                        constrainedBox.conflicting.push([i, j]);
-                    }
-                } else if(constrainedBox.color == 'red'){
-                    if(conflictingIndexConstrainedBox != -1){
-                        constrainedBox.conflicting.splice(conflictingIndexConstrainedBox, 1);
-                    }
-                    
-                    if(conflictingIndexBox != -1){
-                        box.conflicting.splice(conflictingIndexBox, 1);
-                    }
-                    
-                    if(!constrainedBox.conflicting.length){
-                        constrainedBox.color = 'black';
-                    }
-                }
-                
-                if(!box.conflicting.length){
-                    box.color = 'black';
-                }
-            });
-        },
-        
         //prunes the domains of all boxes contrained by box puzzle[i][j]
         //
         //param i the row index of the box to be forward checked
@@ -348,6 +294,60 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
             });
 
             return next;
+        },
+        
+        //checks for conflicting values in the board for the box at i, j
+        //
+        //param i the column index of the box to check against other boxes
+        //param j the column index of the box to check against other boxes
+        //returns an array of boxes that conflict with the box at i, j
+        checkBox: function(i, j){
+            var board = this.board,
+                box = board[i][j];
+            
+            if(box.value && box.value % 10 != 0){
+                box.value %= 10;
+            } else {
+                box.value = undefined;
+            }
+            
+            this.getConstrained(i, j).forEach(function(coordinates){
+                var constrainedBox = board[coordinates[0]][coordinates[1]],
+                    conflictingIndexConstrainedBox = constrainedBox.conflicting.findIndex(function(boxCoords){
+                        return boxCoords[0] == i && boxCoords[1] == j;
+                    }),
+                    conflictingIndexBox = box.conflicting.findIndex(function(conflictingBoxCoords){
+                        return conflictingBoxCoords[0] == coordinates[0] && conflictingBoxCoords[1] == coordinates[1];
+                    });
+                
+                if(constrainedBox.value && constrainedBox.value == box.value){
+                    if(conflictingIndexBox == -1){
+                        box.color = 'red';
+                        box.conflicting.push(coordinates);
+                    }
+                    
+                    if(conflictingIndexConstrainedBox == -1){
+                        constrainedBox.color = 'red';
+                        constrainedBox.conflicting.push([i, j]);
+                    }
+                } else if(constrainedBox.color == 'red'){
+                    if(conflictingIndexConstrainedBox != -1){
+                        constrainedBox.conflicting.splice(conflictingIndexConstrainedBox, 1);
+                    }
+                    
+                    if(conflictingIndexBox != -1){
+                        box.conflicting.splice(conflictingIndexBox, 1);
+                    }
+                    
+                    if(!constrainedBox.conflicting.length){
+                        constrainedBox.color = 'black';
+                    }
+                }
+                
+                if(!box.conflicting.length){
+                    box.color = 'black';
+                }
+            });
         },
         
         //set the value of a box
