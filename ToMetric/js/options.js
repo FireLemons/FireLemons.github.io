@@ -132,6 +132,9 @@ var options = new Vue({
                         celsius: true
                     }
                 }
+            },
+            general:{
+                precision: 10
             }
         }
     },

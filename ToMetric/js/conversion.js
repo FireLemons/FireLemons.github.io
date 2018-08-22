@@ -1,11 +1,15 @@
 var convertToMetric = new Vue({
     el: "#app",
     data: {
-        tolerance: 0.1,
         score: 0,
+        answerClass: "grey darken-3",
+        userAnswer: "",
+        
+        conversionResult: undefined,
+        errorAmount: undefined,
+        errorPercent: undefined,
         given: Math.ceil(Math.random() * 50),
-        answer: "",
-        answerClass: "grey darken-3"
+        tolerance: 0.1
     },
     methods: {
         checkAnswer: function(){

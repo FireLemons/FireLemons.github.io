@@ -17,13 +17,44 @@
 		<div id="app" class="container">
 			<div id="display" class="card grey darken-3">
 				<div class="card-content">
-					<span class="card-title activator">Show Formula<i class="material-icons right">keyboard_arrow_down</i></span>
-                    <div>
-                        <span>Score: {{ score }}</span>
+					<span class="card-title activator grey darken-2">Show Formula<i class="material-icons right">keyboard_arrow_down</i></span>
+                    <div id="stats" class="flex">
+                        <div class="flex">
+                            <span>
+                                Score
+                            </span>
+                            <span>
+                                {{ score }}
+                            </span>
+                        </div>
+                        <div class="flex">
+                            <span>
+                                %Error
+                            </span>
+                            <span>
+                                {{ errorPercent ? errorPercent : '-' }}
+                            </span>
+                        </div>
+                        <div class="flex">
+                            <span>
+                                Error Amount
+                            </span>
+                            <span>
+                                {{ errorAmount ? errorAmount : '-' }}
+                            </span>
+                        </div>
+                        <div class="flex">
+                            <span>
+                                Exact Conversion
+                            </span>
+                            <span>
+                                {{ conversionResult ? conversionResult : '-' }}
+                            </span>
+                        </div>
                     </div>
 				</div>
 				<div class="card-reveal grey darken-3">
-					<span class="card-title">Back to stats<i class="material-icons right">keyboard_arrow_up</i></span>
+					<span class="card-title grey darken-2">Back to stats<i class="material-icons right">keyboard_arrow_up</i></span>
 					<div>
 						\[ 1\,\mathrm{in} = 2.54\,\mathrm{cm} \]
 					</div>
@@ -37,7 +68,7 @@
                     </div>
                     <label> = </label>
                     <div class="flex">
-                        <input class="input-field" type="number" v-bind:class="answerClass" v-model="answer" @keyup.enter="checkAnswer">
+                        <input class="input-field" type="number" v-bind:class="answerClass" v-model="userAnswer" @keyup.enter="checkAnswer">
                         <input type="text" value="in" disabled>
                     </div>
 				</div>
