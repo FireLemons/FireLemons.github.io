@@ -146,7 +146,8 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
         //param j the index of the column of the box to get coordinates for
         //returns 4 coordinates of boxes constrained by the box at i, j and not sharing rows or columns with it
         getSubGridConstrained: function(i, j){
-            var coordinates = [];
+            var board = this.board,
+                boxes = [];
             
             var ix = 5 - (i % 3);
             var jx = 5 - (j % 3);
@@ -155,41 +156,42 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
             var iSubCoord = [iSuper + ix - Math.floor(ix / 2) - 2, iSuper + Math.floor(ix / 2)];
             var jSubCoord = [jSuper + jx - Math.floor(jx / 2) - 2, jSuper + Math.floor(jx / 2)];
             
-            coordinates.push([iSubCoord[0], jSubCoord[0]]);
-            coordinates.push([iSubCoord[0], jSubCoord[1]]);
-            coordinates.push([iSubCoord[1], jSubCoord[0]]);
-            coordinates.push([iSubCoord[1], jSubCoord[1]]);
+            boxes.push(board[iSubCoord[0]][jSubCoord[0]]);
+            boxes.push(board[iSubCoord[0]][jSubCoord[1]]);
+            boxes.push(board[iSubCoord[1]][jSubCoord[0]]);
+            boxes.push(board[iSubCoord[1]][jSubCoord[1]]);
             
-            return coordinates;
+            return boxes;
         },
         
         //perform actions for each box constrained by box puzzle[i][j]
         getConstrained: function(i, j){
-            var coordinates = [];
+            var board = this.board,
+                boxes = [];
 
             //vertically related variables
             for(var k = 0; k < i; k++){
-                coordinates.push([k, j]);
+                boxes.push(board[k][j]);
             }
 
             for(var k = i + 1; k < 9; k++){
-                coordinates.push([k, j]);
+                boxes.push(board[k][j]);
             }
 
             //horizontally related variables
             for(var l = 0; l < j; l++){
-                coordinates.push([i, l]);
+                boxes.push(board[i][l]);
             }
 
             for(var l = j + 1; l < 9; l++){
-                coordinates.push([i, l]);
+                boxes.push(board[i][l]);
             }
             
-            this.getSubGridConstrained(i, j).forEach(function(coords){
-                coordinates.push(coords);
+            this.getSubGridConstrained(i, j).forEach(function(box){
+                boxes.push(box);
             });
             
-            return coordinates;
+            return boxes;
         },
         
         //sets the heuristic value for each box in the puzzle
@@ -220,8 +222,8 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
                         board[i][j].degreeHeuristic = rows[i] + columns[j];
 
                         //check if remaining constrained boxes have been set
-                        outer.getSubGridConstrained(i, j).forEach(function(coordinates){
-                            board[i][j].degreeHeuristic += !board[coordinates[0]][coordinates[1]].value;
+                        outer.getSubGridConstrained(i, j).forEach(function(box){
+                            board[i][j].degreeHeuristic += !box.value;
                         });
                     }else{
                         board[i][j].degreeHeuristic = undefined;
@@ -240,10 +242,8 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
             var diff = [];
                 board = this.board;
 
-            this.getConstrained(i, j).forEach(function(coordinates){
+            this.getConstrained(i, j).forEach(function(box){
                 
-                var box = board[coordinates[0]][coordinates[1]];
-
                 if(box.value){//if the box is set already
                     return;//continue out of forEach
                 }
@@ -254,7 +254,7 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
                     box.domain.splice(index, 1);
                     
                     diff.push({//store the position of the variable and where in the array the domain was pruned
-                        loc: [coordinates[0], coordinates[1]],
+                        box: box,
                         pos: index
                     });
                 }
@@ -311,43 +311,50 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
                 box.value = undefined;
             }
             
-            this.getConstrained(i, j).forEach(function(coordinates){
-                var constrainedBox = board[coordinates[0]][coordinates[1]],
-                    conflictingIndexConstrainedBox = constrainedBox.conflicting.findIndex(function(boxCoords){
-                        return boxCoords[0] == i && boxCoords[1] == j;
+            this.getConstrained(i, j).forEach(function(constrainedBox){
+                var conflictingConstrainedBoxIndex = constrainedBox.conflicting.findIndex(function(conflictingBoxOfConstrainedBox){
+                        return box == conflictingBoxOfConstrainedBox;
                     }),
-                    conflictingIndexBox = box.conflicting.findIndex(function(conflictingBoxCoords){
-                        return conflictingBoxCoords[0] == coordinates[0] && conflictingBoxCoords[1] == coordinates[1];
+                    conflictingBoxIndex = box.conflicting.findIndex(function(conflictingBox){
+                        return conflictingBox == constrainedBox;
                     });
                 
+                //conflict created
                 if(constrainedBox.value && constrainedBox.value == box.value){
-                    if(conflictingIndexBox == -1){
+                    //add conflicting box to recently updated box's list of conflicting boxes
+                    if(conflictingBoxIndex == -1){
                         box.color = 'red';
-                        box.conflicting.push(coordinates);
+                        box.conflicting.push(constrainedBox);
                     }
                     
-                    if(conflictingIndexConstrainedBox == -1){
+                    //add recently updated box to conflicting box's list of conflicting boxes
+                    if(conflictingConstrainedBoxIndex == -1){
                         constrainedBox.color = 'red';
-                        constrainedBox.conflicting.push([i, j]);
+                        constrainedBox.conflicting.push(box);
                     }
+                //conflict not created and suspected conflicting box found
                 } else if(constrainedBox.color == 'red'){
-                    if(conflictingIndexConstrainedBox != -1){
-                        constrainedBox.conflicting.splice(conflictingIndexConstrainedBox, 1);
+                    //remove conflicting box from recently updated box's list of conflicting boxes
+                    if(conflictingBoxIndex != -1){
+                        box.conflicting.splice(conflictingBoxIndex, 1);
                     }
                     
-                    if(conflictingIndexBox != -1){
-                        box.conflicting.splice(conflictingIndexBox, 1);
+                    //remove recently updated box from conflicting box's list of conflicting boxes
+                    if(conflictingConstrainedBoxIndex != -1){
+                        constrainedBox.conflicting.splice(conflictingConstrainedBoxIndex, 1);
                     }
                     
+                    //remove error styling from a former conflicting box if it no longer conflicts with any box
                     if(!constrainedBox.conflicting.length){
                         constrainedBox.color = 'black';
                     }
                 }
-                
-                if(!box.conflicting.length){
-                    box.color = 'black';
-                }
             });
+            
+            //remove error styling from recently updated box if it no longer conflicts with any box
+            if(!box.conflicting.length){
+                box.color = 'black';
+            }
         },
         
         //set the value of a box
@@ -367,8 +374,8 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
             }
 
             //update degree heuristic
-            this.getConstrained(i, j).forEach(function(coordinates){
-                board[coordinates[0]][coordinates[1]].degreeHeuristic--;
+            this.getConstrained(i, j).forEach(function(box){
+                box.degreeHeuristic--;
             });
             
             //forward check and store results
@@ -407,14 +414,12 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
 
                 //restore the pruned domains of the boxes related to box that was set
                 action.constrained.forEach(function(elem){
-                    var box = board[elem.loc[0]][elem.loc[1]];
-                    
-                    box.domain.splice(elem.pos, 0, action.domain[0]);
+                    elem.box.domain.splice(elem.pos, 0, action.domain[0]);
                 });
 
                 //restore heuristic data structure
-                this.getConstrained(action.i, action.j).forEach(function(coordinates){
-                    board[coordinates[0]][coordinates[1]].degreeHeuristic++;
+                this.getConstrained(action.i, action.j).forEach(function(box){
+                    box.degreeHeuristic++;
                 });
                 
                 if(action.isLast){//if domain is exhausted
