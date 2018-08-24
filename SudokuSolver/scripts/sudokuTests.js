@@ -32,7 +32,7 @@ describe('The sudoku puzzle service', function(){
         });
         
         it('doesn\'t return a set of boxes interstecting with parameters row i or column j', function(){
-            var board = sudokuPuzzleService.board, counter = 0;
+            var board = sudokuPuzzleService.board;
             
             for(var i = 0; i < 9; i++){
                 for(var j = 0; j < 9; j++){
@@ -41,12 +41,33 @@ describe('The sudoku puzzle service', function(){
                         jSubGridStartIndex = Math.floor(j / 3) * 3;
                     
                     for(var k = iSubGridStartIndex; k < iSubGridStartIndex + 3; k++){
-                        expect(boxes.indexOf(board[k][j])).toBe(-1);
+                        expect(boxes.includes(board[k][j])).toBe(false);
                     }
                     
                     for(var l = jSubGridStartIndex; l < jSubGridStartIndex + 3; l++){
-                        expect(boxes.indexOf(board[i][l])).toBe(-1);
+                        expect(boxes.includes(board[i][l])).toBe(false);
                     }
+                }
+            }
+        });
+        
+        it('returns a set of boxes within the 3x3 subgrid also containing the box at i, j', function(){
+            var board = sudokuPuzzleService.board;
+            
+            for(var i = 0; i < 9; i++){
+                for(var j = 0; j < 9; j++){
+                    var acc = 0,
+                        boxes = sudokuPuzzleService.getSubGridConstrained(i, j),
+                        iSubGridStartIndex = Math.floor(i / 3) * 3;
+                        jSubGridStartIndex = Math.floor(j / 3) * 3;
+                    
+                    for(var k = iSubGridStartIndex; k < iSubGridStartIndex + 3; k++){
+                        for(var l = jSubGridStartIndex; l < jSubGridStartIndex + 3; l++){
+                            acc += boxes.includes(board[k][l]);
+                        }
+                    }
+                    
+                    expect(acc).toBe(4);
                 }
             }
         });
