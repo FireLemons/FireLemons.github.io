@@ -14,27 +14,39 @@ describe('The sudoku puzzle service', function(){
     }));
 
     describe('The getSubGridConstrained function', function(){
-        it('returns a set of 4 coordiantes given coordinates to a box on the board', function(){
+        beforeEach(function(){
+           sudokuPuzzleService.init(); 
+        });
+        
+        it('returns a set of 4 boxes given coordinates to a box on the board', function(){
             for(var i = 0; i < 9; i++){
                 for(var j = 0; j < 9; j++){
-                    expect(sudokuPuzzleService.getSubGridConstrained(i, j).length).toBe(4);
+                    var boxes = sudokuPuzzleService.getSubGridConstrained(i, j);
+                    
+                    expect(boxes.length).toBe(4);
+                    boxes.forEach(function(box){
+                        expect(box instanceof Box).toBe(true);
+                    });
                 }
             }
         });
         
-        it('doesn\'t return a set of coordinates interstecting with parameters row i or column j', function(){
+        it('doesn\'t return a set of boxes interstecting with parameters row i or column j', function(){
+            var board = sudokuPuzzleService.board, counter = 0;
+            
             for(var i = 0; i < 9; i++){
                 for(var j = 0; j < 9; j++){
-                    var coordinates = sudokuPuzzleService.getSubGridConstrained(i, j),
-                        columnIndicies = coordinates.map(function(coords){
-                            return coords[1];
-                        }),
-                        rowIndicies = coordinates.map(function(coords){
-                            return coords[0];
-                        });
+                    var boxes = sudokuPuzzleService.getSubGridConstrained(i, j),
+                        iSubGridStartIndex = Math.floor(i / 3) * 3;
+                        jSubGridStartIndex = Math.floor(j / 3) * 3;
                     
-                    expect(rowIndicies).not.toContain(i);
-                    expect(columnIndicies).not.toContain(j);
+                    for(var k = iSubGridStartIndex; k < iSubGridStartIndex + 3; k++){
+                        expect(boxes.indexOf(board[k][j])).toBe(-1);
+                    }
+                    
+                    for(var l = jSubGridStartIndex; l < jSubGridStartIndex + 3; l++){
+                        expect(boxes.indexOf(board[i][l])).toBe(-1);
+                    }
                 }
             }
         });
