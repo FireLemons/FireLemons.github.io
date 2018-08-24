@@ -5,15 +5,20 @@ describe('Check if testing is enabled', function(){
     });
 });
 
-describe('Initializing the puzzle', function(){
-    var sudokuPuzzleService;
+var sudokuPuzzleService;
+
+beforeEach(module('SudokuSolver'));
+beforeEach(inject(function(_sudokuPuzzle_){
+    sudokuPuzzleService = _sudokuPuzzle_;
+}));
+
+afterEach(function(){
+    sudokuPuzzleService = undefined;
+});
+
+describe('Initializing the puzzle object', function(){
     
-    beforeEach(module('SudokuSolver'));
-    beforeEach(inject(function(_sudokuPuzzle_){
-        sudokuPuzzleService = _sudokuPuzzle_;
-    }));
-    
-    it('makes a 2d matrix of Box objects on first initialization with no args', function(){
+    it('makes a 2D 9x9 matrix of Box objects on initialization with no args', function(){
         sudokuPuzzleService.init();
         
         expect(sudokuPuzzleService.board.length).toBe(9);
