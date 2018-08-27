@@ -51,7 +51,7 @@ describe('The sudoku puzzle service', function(){
             }
         });
         
-        it('returns a set of boxes within the 3x3 subgrid also containing the box at i, j', function(){
+        it('returns a set of boxes within the 3x3 subgrid containing the box at i, j', function(){
             var board = sudokuPuzzleService.board;
             
             for(var i = 0; i < 9; i++){
@@ -70,6 +70,29 @@ describe('The sudoku puzzle service', function(){
                     expect(acc).toBe(4);
                 }
             }
+        });
+        
+        it('returns a set of boxes with no duplicates', function(){
+            var board = sudokuPuzzleService.board;
+            
+            for(var i = 0; i < 9; i++){
+                for(var j = 0; j < 9; j++){
+                    var boxes = sudokuPuzzleService.getSubGridConstrained(i, j);
+                    
+                    while(boxes.length > 1){
+                        var comparisonBox = boxes.pop();
+                        
+                        expect(boxes.includes(comparisonBox)).toBe(false);
+                    }
+                }
+            }
+        });
+        
+        it('returns undefined for out of bound coordinates', function(){
+            expect(sudokuPuzzleService.getSubGridConstrained(-1, -1)).toBe(undefined);
+            expect(sudokuPuzzleService.getSubGridConstrained( 9, -1)).toBe(undefined);
+            expect(sudokuPuzzleService.getSubGridConstrained(-1,  9)).toBe(undefined);
+            expect(sudokuPuzzleService.getSubGridConstrained( 9,  9)).toBe(undefined);
         });
     });
 

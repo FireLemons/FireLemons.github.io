@@ -146,6 +146,10 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
         //param j the index of the column of the box to get coordinates for
         //returns 4 coordinates of boxes constrained by the box at i, j and not sharing rows or columns with it
         getSubGridConstrained: function(i, j){
+            if(i < 0 || i > 8 || j < 0 || j > 8){
+                return undefined;
+            }
+            
             var board = this.board,
                 boxes = [];
             
