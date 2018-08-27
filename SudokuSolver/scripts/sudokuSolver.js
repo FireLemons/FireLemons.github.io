@@ -170,6 +170,10 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
         
         //perform actions for each box constrained by box puzzle[i][j]
         getConstrained: function(i, j){
+            if(i < 0 || i > 8 || j < 0 || j > 8){
+                return undefined;
+            }
+
             var board = this.board,
                 boxes = [];
 
@@ -442,7 +446,7 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
         init: function(values){
             //init board
             if(!this.board){
-                this.board = this.board = Array.apply(null, Array(9)).map(function(){
+                this.board = Array.apply(null, Array(9)).map(function(){
                     return Array.apply(null, Array(9)).map(function(){
                         return new Box();
                     });
