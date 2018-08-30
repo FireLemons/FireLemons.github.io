@@ -273,6 +273,32 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
             });
         },
         
+        //Sets the values of the board from a 2d array
+        //
+        //param valueMatrix A 9x9 2d array of values from which the board's values will be derived
+        mapBoardValuesFromMatrix: function(valueMatrix){
+            //error check
+            if(!(Array.isArray(valueMatrix) && valueMatrix.length === 9 && valueMatrix.reduce(function(isEachLength9, arr){
+                return isEachLength9 && Array.isArray(arr) && arr.length === 9;
+            }, true))){
+                throw new Error('Param valueMatrix of mapBoardValuesFromMatrix not a 9x9 matrix.');
+            }
+            
+            //mapping
+            this.board.forEach(function(row, i){
+                row.forEach(function(box, j){
+                    box.value = valueMatrix[i][j] ? valueMatrix[i][j] : undefined;
+                    
+                    if(box.value) {
+                        box.color = 'black';
+                    } else {
+                        box.color  = 'blue';
+                        box.domain = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+                    }
+                });
+            });
+        },
+        
         //prunes the domains of all boxes contrained by box puzzle[i][j]
         //
         //param i the row index of the box to be forward checked
@@ -465,18 +491,7 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
             }
             
             if(values){
-                this.board.forEach(function(row, i){
-                    row.forEach(function(box, j){
-                        box.value = values[i][j] ? values[i][j] : undefined;
-                        
-                        if(box.value) {
-                            box.color = 'black';
-                        } else {
-                            box.color  = 'blue';
-                            box.domain = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-                        }
-                    });
-                });
+                this.mapBoardValuesFromMatrix(values);
             }
             
             this.figureHeuristicValues();
