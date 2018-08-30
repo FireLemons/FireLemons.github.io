@@ -5,10 +5,20 @@
         <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16"/>
         <link rel="stylesheet" href="ToMetric/css/materialize.min.css">
         <link rel="stylesheet" href="css/home.css">
+        <noscript>
+            <link rel="stylesheet" href="css/noscript.css">
+        </noscript>
 		<title>Web Projects</title>
 	</head>
 
 	<body>
+        <noscript>
+            <div>
+                <img src="assets/img/jsDisabled.jpg" alt="Javascript Disabled">
+                <h1>Javscript isn't feeling well</h1>
+                <h1>It's just not</h1>
+            </div>
+        </noscript>
 		<div id="app" class="carousel carousel-slider center" @keyup.enter="left">
             <div class="carousel-fixed-item page-buttons">
                 <button @click="left"><i class="material-icons left unselectable">keyboard_arrow_left</i></button>
@@ -51,13 +61,13 @@
                 <h4 class="white-text unselectable">Built With</h4>
                 <div>
                     <a href="https://angularjs.org/" title="AngularJS">
-                        <img src="img/angular.svg" alt="AngularJS">
+                        <img src="assets/img/angular.svg" alt="AngularJS">
                     </a>
                     <a href="https://getbootstrap.com/" title="Bootstrap">
-                        <img class="pad" src="img/bootstrap.svg" alt="Bootstrap">
+                        <img class="pad" src="assets/img/bootstrap.svg" alt="Bootstrap">
                     </a>
                     <a href="https://jasmine.github.io" title="Jasmine">
-                        <img class="pad" src="img/jasmine.png" alt="Jasmine">
+                        <img class="pad" src="assets/img/jasmine.png" alt="Jasmine">
                     </a>
                 </div>
             </div>
@@ -82,7 +92,7 @@
                 <div class="stack-credit">
                     <h3 class="unselectable">Built With</h3>
                     <a href="http://jquery.com/" title="JQuery">
-                        <img src="img/jQuery.png" alt="JQuery">
+                        <img src="assets/img/jQuery.png" alt="JQuery">
                     </a>
                 </div>
             </div>
