@@ -211,6 +211,71 @@ describe('The sudoku puzzle service', function(){
                 expect(sudokuPuzzleService.getSubGridConstrained( 9,  9)).toBe(undefined);
             });
         });
+        
+        describe('The mapBoardValuesFromMatrix function', function(){
+            it('only accepts a 9x9 2d array', function(){
+                //pass null
+                expect(function(){
+                    sudokuPuzzleService.mapBoardValuesFromMatrix(null)
+                }).toThrowError(Error, 'Param valueMatrix of mapBoardValuesFromMatrix not a 9x9 matrix.');
+                
+                //pass 1d array of length 9
+                expect(function(){
+                    sudokuPuzzleService.mapBoardValuesFromMatrix(new Array(9).fill(undefined));
+                }).toThrowError(Error, 'Param valueMatrix of mapBoardValuesFromMatrix not a 9x9 matrix.');
+                
+                //pass 2d jagged array where the last nested array is not of length 9
+                expect(function(){
+                    var jaggedArray = Array.apply(null, Array(9)).map(function(){
+                        return Array.apply(null, Array(9)).map(function(){
+                            return undefined;
+                        });
+                    });
+                    
+                    jaggedArray[8].pop();
+                    
+                    sudokuPuzzleService.mapBoardValuesFromMatrix(jaggedArray);
+                }).toThrowError(Error, 'Param valueMatrix of mapBoardValuesFromMatrix not a 9x9 matrix.');
+                
+                //pass 2d 9x9 array
+                expect(function(){
+                    sudokuPuzzleService.mapBoardValuesFromMatrix(Array.apply(null, Array(9)).map(function(){
+                        return Array.apply(null, Array(9)).map(function(){
+                            return undefined;
+                        });
+                    }));
+                }).not.toThrow();
+            });
+            
+            it('sets the value of the box at board[i][j] if the value of the input matrix at [i][j] is an integer between 1 and 9 inclusive', function(){
+                sudokuPuzzleService.mapBoardValuesFromMatrix([
+                    [NaN,   1, NaN, null, NaN, NaN, NaN, NaN, NaN],
+                    [NaN, NaN, NaN,  NaN, NaN, NaN, NaN, NaN, NaN],
+                    [NaN, NaN, NaN,  NaN, NaN, NaN,   3, NaN, NaN],
+                    [NaN, NaN, NaN,  NaN, 'A', NaN, NaN, NaN, NaN],
+                    [100, NaN, NaN,  NaN, NaN, NaN, NaN, 3.5, NaN],
+                    [NaN, NaN, NaN, true, NaN, NaN, NaN, NaN, NaN],
+                    [NaN, NaN, NaN,  NaN, NaN, [2], NaN, NaN, NaN],
+                    [NaN, NaN,   0,  NaN, NaN, NaN, NaN, NaN, NaN],
+                    [NaN, NaN, NaN,  NaN, NaN, NaN, NaN, NaN,   9]
+                ]);
+                
+                var mappedCoordinates = [];
+                
+                sudokuPuzzleService.board.forEach(function(row, i){
+                    row.forEach(function(box, j){
+                        if(box.value !== undefined){
+                            mappedCoordinates.push([i, j]);
+                        }
+                    });
+                });
+                
+                expect(mappedCoordinates.length).toBe(3);
+                expect(mappedCoordinates).toContain([0, 1]);
+                expect(mappedCoordinates).toContain([2, 6]);
+                expect(mappedCoordinates).toContain([8, 8]);
+            });
+        });
     });
     
     describe('The heuristic function', function(){

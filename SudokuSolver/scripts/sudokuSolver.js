@@ -287,7 +287,9 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
             //mapping
             this.board.forEach(function(row, i){
                 row.forEach(function(box, j){
-                    box.value = valueMatrix[i][j] ? valueMatrix[i][j] : undefined;
+                    var value = valueMatrix[i][j];
+                    
+                    box.value = Number.isInteger(value) && 1 <= value && value <= 9 ? value : undefined;
                     
                     if(box.value) {
                         box.color = 'black';
