@@ -202,6 +202,39 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
             return boxes;
         },
         
+        //Selects the coordinates of the next variable to be set 
+        //by first applying Minimum Remaining Values heuristic
+        //and in the event of a tie, Degree heuristic
+        //
+        //returns coordinates of the best box to be set accoring to some heuristics
+        getNext: function(){
+            var maxDegree = 0,
+                minRemainingValues = 16,
+                next;
+            
+            this.board.forEach(function(row, i){
+                row.forEach(function(box, j){
+                    var remainingValueCount = box.domain.length;
+                    var degree = box.degreeHeuristic;
+                    
+                    if(!box.value){
+                        //variable with fewer remaining values was found
+                        if(remainingValueCount < minRemainingValues){
+                            maxDegree = degree;
+                            minRemainingValues = remainingValueCount;
+                            next = [i, j];
+                        //tie break using degree heuristic if variable with equal remaining values was found
+                        } else if(remainingValueCount == minRemainingValues && degree > maxDegree){
+                            maxDegree = degree;
+                            next = [i, j];
+                        }
+                    }
+                });
+            });
+
+            return next;
+        },
+        
         //sets the heuristic value for each box in the puzzle
         figureHeuristicValues: function(){
             //make arrays to keep track of count of unset variables in rows and columns
@@ -269,39 +302,6 @@ angular.module('SudokuSolver', []).controller('SudokuPuzzleController', function
             });
 
             return diff;
-        },
-        
-        //Selects the coordinates of the next variable to be set 
-        //by first applying Minimum Remaining Values heuristic
-        //and in the event of a tie, Degree heuristic
-        //
-        //returns coordinates of the best box to be set accoring to some heuristics
-        getNext: function(){
-            var maxDegree = 0,
-                minRemainingValues = 16,
-                next;
-            
-            this.board.forEach(function(row, i){
-                row.forEach(function(box, j){
-                    var remainingValueCount = box.domain.length;
-                    var degree = box.degreeHeuristic;
-                    
-                    if(!box.value){
-                        //variable with fewer remaining values was found
-                        if(remainingValueCount < minRemainingValues){
-                            maxDegree = degree;
-                            minRemainingValues = remainingValueCount;
-                            next = [i, j];
-                        //tie break using degree heuristic if variable with equal remaining values was found
-                        } else if(remainingValueCount == minRemainingValues && degree > maxDegree){
-                            maxDegree = degree;
-                            next = [i, j];
-                        }
-                    }
-                });
-            });
-
-            return next;
         },
         
         //checks for conflicting values in the board for the box at i, j

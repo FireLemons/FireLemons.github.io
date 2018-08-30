@@ -13,7 +13,7 @@ describe('The sudoku puzzle service', function(){
         sudokuPuzzleService = _sudokuPuzzle_;
     }));
 
-    describe('The functions that get sets of constrained boxes.', function(){
+    describe('The functions that require the board to be a 9x9 matrix.', function(){
         beforeEach(function(){
            sudokuPuzzleService.board = Array.apply(null, Array(9)).map(function(){
                 return Array.apply(null, Array(9)).map(function(){
@@ -212,7 +212,7 @@ describe('The sudoku puzzle service', function(){
             });
         });
     });
-
+    
     describe('The heuristic function', function(){
         
     });
