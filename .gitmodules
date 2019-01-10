@@ -1,3 +1,6 @@
 [submodule "ToMetric"]
 	path = ToMetric
 	url = git@github.com:FireLemons/ToMetric.git
+[submodule "IsaacPills"]
+	path = IsaacPills
+	url = git@github.com:FireLemons/IsaacPills.git
