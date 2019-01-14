@@ -4,3 +4,6 @@
 [submodule "IsaacPills"]
 	path = IsaacPills
 	url = git@github.com:FireLemons/IsaacPills.git
+[submodule "SudokuSolver"]
+	path = SudokuSolver
+	url = git@github.com:FireLemons/SudokuSolver.git
