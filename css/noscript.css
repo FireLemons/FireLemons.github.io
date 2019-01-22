@@ -1,11 +1,10 @@
-@font-face{
-    font-family: 'Moondog';
-    src: url(../assets/fonts/MOON15__.ttf) format('truetype');
-}
-
-@font-face{
-    font-family: 'Qbicle';
-    src: url(../assets/fonts/qbicle2.ttf) format('truetype');
+@font-face {
+    font-family: 'Roboto Mono';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto Mono'),
+         local('RobotoMono-Regular'),
+         url(../assets/fonts/roboto-mono/RobotoMono-Regular.ttf) format('truetype');
 }
 
 @keyframes fade-flicker{
@@ -37,13 +36,13 @@ noscript div{
 
 noscript h1{
     color: white;
+    font-family: 'Roboto Mono';
     position: absolute;
     z-index: 3;
 }
 
 noscript h1:last-child{
     bottom: 1em; right: 3em;
-    font-family: 'Qbicle';
     font-weight: 700;
 }
 
@@ -51,7 +50,6 @@ noscript h1:nth-child(2){
     animation-name: fade-flicker;
     animation-duration: 20s;
     filter: blur(4px);
-    font-family: 'Moondog';
     left: 1em; top: 0;
     opacity: .5;
 }
