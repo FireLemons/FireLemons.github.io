@@ -1,9 +1,9 @@
 [submodule "ToMetric"]
 	path = ToMetric
-	url = git@github.com:FireLemons/ToMetric.git
+	url = https://github.com/FireLemons/ToMetric.git
 [submodule "IsaacPills"]
 	path = IsaacPills
-	url = git@github.com:FireLemons/IsaacPills.git
+	url = https://github.com/FireLemons/IsaacPills.git
 [submodule "SudokuSolver"]
 	path = SudokuSolver
-	url = git@github.com:FireLemons/SudokuSolver.git
+	url = https://github.com/FireLemons/SudokuSolver.git
