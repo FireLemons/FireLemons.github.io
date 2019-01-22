@@ -1,4 +1,21 @@
 @font-face{
+    font-family: 'Heebo';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Heebo'),
+         local('Heebo-Regular'),
+         url(../assets/fonts/heebo/Heebo-Regular.ttf) format('truetype');
+}
+
+@font-face{
+    font-family: 'Heebo';
+    font-style: normal;
+    font-weight: 900;
+    src: local('Heebo Black'),
+         url(../assets/fonts/heebo/Heebo-Black.ttf) format('truetype');
+}
+
+@font-face{
     font-family: 'Material Icons';
     font-style: normal;
     font-weight: 400;
@@ -11,7 +28,7 @@
 
 @font-face{
     font-family: 'Upheaval';
-    src: url(../assets/fonts/upheavtt.ttf) format('truetype');
+    src: url(../assets/fonts/upheaval/upheavtt.ttf) format('truetype');
 }
 
 @keyframes expand-title{
@@ -178,10 +195,6 @@ body{
     overflow: auto;
 }
 
-#sudoku-title:hover{
-    font-size: 34pt;
-}
-
 #sudoku-solver img{
     height: 12em;
     transition: height 1s;
@@ -208,6 +221,10 @@ body{
     transition: font-size 1s;
 }
 
+#sudoku-title:hover{
+    font-size: 34pt;
+}
+
 #sudoku-title a>.flex{
     flex-direction: column;
     margin-top: 1em;
@@ -228,4 +245,28 @@ body{
 
 #sudoku-title div div div:not(:first-child){
     border-left: 0;
+}
+
+#weather-bot{
+    font-family: 'Heebo';
+}
+
+#weather-bot p{    
+    font-size: 72pt;
+    font-weight: 900;
+    margin: 0 .5em;
+    text-align: left;
+}
+
+#weather-bot p:nth-child(1){/*"Columbia"*/
+
+}
+#weather-bot p:nth-child(2){/*"MO"*/
+
+}
+#weather-bot p:nth-child(3){/*"Weather"*/
+
+}
+#weather-bot p:nth-child(4){/*"Bot"*/
+
 }
