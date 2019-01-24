@@ -73,9 +73,16 @@ body{
 
 .page-buttons{
     display: inline-block;
-    height: fit-content; width: fit-content;
     margin: 0  2em;
     top: calc(50vh - 2em - 1px);
+}
+
+.page-buttons:nth-of-type(1){
+    margin-right: 90%;
+}
+
+.page-buttons:nth-of-type(2){
+    margin-left: 90%;
 }
 
 .page-buttons button{
@@ -168,10 +175,6 @@ body{
     justify-content: center;
 }
 
-#page-buttons-right{
-    margin-left: auto;
-}
-
 #sudoku-solver:before{
     content: "";
     position: fixed;
@@ -251,7 +254,7 @@ body{
     font-family: 'Heebo';
 }
 
-#weather-bot p{    
+#weather-bot p{
     font-size: 72pt;
     font-weight: 900;
     margin: 0 .5em;
