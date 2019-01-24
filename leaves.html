@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Falling Leaves</title>
+        <Style>
+            @keyframes f1{
+                0%{
+                    left: -20%;
+                    top: -20%;
+                }
+                25%{
+                    transform: rotate(45deg);
+                    top: 25%;
+                }
+                50%{
+                    transform: rotate(90deg);
+                    top: 40%;
+                }
+                75%{
+                    transform: rotate(135deg);
+                    top: 60%;
+                }
+                100%{
+                    left: 100%;
+                    transform: rotate(180deg);
+                    top: 85%;
+                }
+            }
+            
+            @keyframes f2{
+                0%{
+                    left: -20%;
+                    top: -20%;
+                }
+                50%{
+                    top: 15%;
+                }
+                100%{
+                    left: 100%;
+                    transform: rotate(720deg);
+                    top: 35%;
+                }
+            }
+            
+            @keyframes f3{
+                0%{
+                    left: -20%;
+                    top: -20%;
+                }
+                33%{
+                    left: 25%;
+                    top: 35%;
+                    transform: rotate(270deg);
+                }
+                66%{
+                    left: 55%;
+                    top: 75%;
+                    transform: rotate(100deg);
+                }
+                100%{
+                    left: 65%;
+                    top: 110%;
+                    transform: rotate(270deg);
+                }
+            }
+            
+            @keyframes f4{
+                0%{
+                    left: -20%;
+                    top: -20%;
+                }
+                20%{
+                    left: 20%;
+                    top: 0;
+                    transform: rotate(720deg);
+                }
+                40%{
+                    top: 15%;
+                    transform: rotate(1024deg);
+                }
+                60%{
+                    left: 75%;
+                    top: 35;
+                    transform: rotate(1200deg);
+                }
+                80%{
+                    top: 60%;
+                    transform: rotate(1320deg);
+                }
+                100%{
+                    left: 110%;
+                    top: 90%;
+                    transform: rotate(1380deg);
+                }
+            }
+        
+            html, body, body>div{
+                height: 100%;
+            }
+            
+            body{
+                background-color: #ffbd42;
+                overflow: hidden;
+            }
+            
+            img{
+                animation-iteration-count: infinite;
+                left: -20%;
+                position: relative;
+                top: -20%;
+            }
+            
+            img.fall1:nth-of-type(3n), img.fall2:nth-of-type(3n), img.fall3:nth-of-type(3n), img.fall4:nth-of-type(3n){
+                animation-delay: -1s;
+            }
+            
+            img.fall1:nth-of-type(3n - 1), img.fall2:nth-of-type(3n - 1), img.fall3:nth-of-type(3n - 1), img.fall4:nth-of-type(3n - 1){
+                animation-delay: -2s;
+            }
+            
+            img.fall1{
+                animation-duration: 6s;
+                animation-name: f1;
+                animation-timing-function: linear;
+            }
+            
+            img.fall2{
+                animation-duration: 3s;
+                animation-name: f2;
+                animation-timing-function: ease-in;
+            }
+            
+            img.fall3{
+                animation-duration: 3s;
+                animation-name: f3;
+                animation-timing-function: cubic-bezier(0.5,0.75,0.75,0.75);
+            }
+            
+            img.fall4{
+                animation-duration: 6s;
+                animation-name: f4;
+                animation-timing-function: linear;
+            }
+            
+        </Style>
+    </head>
+    <body>
+        <div>
+            <img class="fall1" src="assets/img/leaf1.png">
+            <img class="fall2" src="assets/img/leaf2.png">
+            <img class="fall3" src="assets/img/leaf3.png">
+            <img class="fall4" src="assets/img/leaf4.png">
+            <img class="fall1" src="assets/img/leaf2.png">
+            <img class="fall2" src="assets/img/leaf3.png">
+            <img class="fall3" src="assets/img/leaf4.png">
+            <img class="fall4" src="assets/img/leaf1.png">
+            <img class="fall1" src="assets/img/leaf3.png">
+            <img class="fall2" src="assets/img/leaf4.png">
+            <img class="fall3" src="assets/img/leaf1.png">
+            <img class="fall4" src="assets/img/leaf2.png">
+            <img class="fall1" src="assets/img/leaf4.png">
+            <img class="fall2" src="assets/img/leaf1.png">
+            <img class="fall3" src="assets/img/leaf2.png">
+            <img class="fall4" src="assets/img/leaf3.png">
+            
+            <img class="fall1" src="assets/img/leaf1.png">
+            <img class="fall2" src="assets/img/leaf2.png">
+            <img class="fall3" src="assets/img/leaf3.png">
+            <img class="fall4" src="assets/img/leaf4.png">
+            <img class="fall1" src="assets/img/leaf2.png">
+            
+            <img class="fall2" src="assets/img/leaf3.png">
+            <img class="fall3" src="assets/img/leaf4.png">
+            <img class="fall4" src="assets/img/leaf1.png">
+            <img class="fall1" src="assets/img/leaf3.png">
+            <img class="fall2" src="assets/img/leaf4.png">
+            <img class="fall3" src="assets/img/leaf1.png">
+            <img class="fall4" src="assets/img/leaf2.png">
+            <img class="fall1" src="assets/img/leaf4.png">
+            <img class="fall2" src="assets/img/leaf1.png">
+            <img class="fall3" src="assets/img/leaf2.png">
+            </br>
+            <img class="fall4" src="assets/img/leaf3.png">
+            </br>
+            <img class="fall1" src="assets/img/leaf1.png">
+            <img class="fall2" src="assets/img/leaf2.png">
+            <img class="fall3" src="assets/img/leaf3.png">
+            <img class="fall4" src="assets/img/leaf4.png">
+            <img class="fall1" src="assets/img/leaf2.png">
+            </br>
+            <img class="fall2" src="assets/img/leaf3.png">
+            <img class="fall3" src="assets/img/leaf4.png">
+            <img class="fall4" src="assets/img/leaf1.png">
+            <img class="fall1" src="assets/img/leaf3.png">
+            </br>
+            <img class="fall2" src="assets/img/leaf4.png">
+            <img class="fall3" src="assets/img/leaf1.png">
+            <img class="fall4" src="assets/img/leaf2.png">
+            <img class="fall1" src="assets/img/leaf4.png">
+            <img class="fall2" src="assets/img/leaf1.png">
+            </br>
+            <img class="fall3" src="assets/img/leaf2.png">
+            <img class="fall4" src="assets/img/leaf3.png">
+            <img class="fall1" src="assets/img/leaf1.png">
+            <img class="fall2" src="assets/img/leaf2.png">
+            <img class="fall3" src="assets/img/leaf3.png">
+            <img class="fall4" src="assets/img/leaf4.png">
+            <img class="fall1" src="assets/img/leaf2.png">
+            </br>
+            <img class="fall2" src="assets/img/leaf3.png">
+            <img class="fall3" src="assets/img/leaf4.png">
+            <img class="fall4" src="assets/img/leaf1.png">
+            <img class="fall1" src="assets/img/leaf3.png">
+            </br>
+            <img class="fall2" src="assets/img/leaf4.png">
+            <img class="fall3" src="assets/img/leaf1.png">
+            </br>
+            <img class="fall4" src="assets/img/leaf2.png">
+            <img class="fall1" src="assets/img/leaf4.png">
+            </br>
+            <img class="fall2" src="assets/img/leaf1.png">
+            </br>
+            <img class="fall3" src="assets/img/leaf2.png">
+            <img class="fall4" src="assets/img/leaf3.png">
+        </div>
+    </body>
+</html>
