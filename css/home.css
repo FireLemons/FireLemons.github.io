@@ -255,21 +255,45 @@ body{
 }
 
 #weather-bot p{
-    font-size: 72pt;
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-size: contain;
+    color: transparent;
+    cursor: default;
+    font-size: 84pt;
     font-weight: 900;
     margin: 0 .5em;
     text-align: left;
 }
 
-#weather-bot p:nth-child(1){/*"Columbia"*/
-
+/*
+ * "Columbia"
+ * Spring
+ */
+#weather-bot p:nth-child(1){
+    background-image: url('../assets/img/rain.gif');
 }
-#weather-bot p:nth-child(2){/*"MO"*/
 
+/*
+ * "MO"
+ * Summer
+ */
+#weather-bot p:nth-child(2){
+    background-image: url('../assets/img/sun.gif');
 }
-#weather-bot p:nth-child(3){/*"Weather"*/
 
+/*
+ * "Weather"
+ * Fall
+ */
+#weather-bot p:nth-child(3){
+    background-image: url('../assets/img/fall.gif');
 }
-#weather-bot p:nth-child(4){/*"Bot"*/
+
+/*
+ * "Bot"
+ * Winter
+ */
+#weather-bot p:nth-child(4){
 
 }
