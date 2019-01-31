@@ -7,3 +7,6 @@
 [submodule "SudokuSolver"]
 	path = SudokuSolver
 	url = https://github.com/FireLemons/SudokuSolver.git
+[submodule "COMOWeather"]
+	path = COMOWeather
+	url = https://github.com/FireLemons/COMOWeather
