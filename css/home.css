@@ -257,7 +257,7 @@ body{
 #weather-bot p{
     -webkit-background-clip: text;
     background-clip: text;
-    background-size: contain;
+    /*background-size: contain;*/
     color: transparent;
     cursor: default;
     font-size: 84pt;
@@ -295,5 +295,5 @@ body{
  * Winter
  */
 #weather-bot p:nth-child(4){
-
+    background-image: url('../assets/img/snow.gif');
 }
