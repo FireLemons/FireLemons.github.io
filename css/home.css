@@ -251,6 +251,8 @@ body{
 }
 
 #weather-bot{
+    background-image: url(../COMOWeather/assets/img/WeatherBotBackground.jpg);
+    background-repeat: no-repeat;
     font-family: 'Heebo';
 }
 
