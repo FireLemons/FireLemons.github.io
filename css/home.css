@@ -256,6 +256,34 @@ body{
     font-family: 'Heebo';
 }
 
+#weather-bot a p{
+    cursor: pointer;
+}
+
+#weather-bot>div{
+    display: flex;
+    justify-content: space-between;
+}
+
+#weather-bot>div>div{
+    margin-right: 2em;
+}
+
+#weather-bot h1{
+    color: #d5e9fe;
+    font-family: Helvetica, Arial;
+}
+
+#weather-bot img{
+    height: 12em;
+    margin: 1em;
+    transition: height 1s;
+}
+
+#weather-bot img:hover{
+    height: 13em;
+}
+
 #weather-bot p{
     -webkit-background-clip: text;
     background-clip: text;
