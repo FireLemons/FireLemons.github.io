@@ -327,3 +327,13 @@ body{
 #weather-bot p:nth-child(4){
     background-image: url('../assets/img/snow.gif');
 }
+
+#weather-bot #regex{
+    transition: height 1s;
+    margin-bottom: 4em;
+    height: 4em;
+}
+
+#weather-bot #regex:hover{
+    height: 5em;
+}
