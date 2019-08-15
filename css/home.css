@@ -128,6 +128,50 @@ body{
     height: 100vh !important;
 }
 
+#calculator{
+    background: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url(../assets/img/calculator.jpg) center center no-repeat;
+    background-size: cover;
+}
+
+#calculator h2{
+    color: #444444;
+    font-family: Helvetica, Arial;
+    font-size: 72pt;
+    margin: 1em;
+    margin-bottom: .5em;
+    text-align: left;
+}
+
+#calculator h2:hover{
+    color:#222222;
+}
+
+#calculator img{
+    height: 12em;
+    transition: height 1s;
+}
+
+#calculator img:hover{
+    height: 13em;
+}
+
+#calculator div{
+    text-align: left;
+}
+
+#calculator a:first-child{
+    margin-left: 32em;
+}
+
+#calculator p{
+    color: #444444;
+    font-family: Helvetica, Arial;
+    font-size: 48pt;
+    margin-left: 4em;
+    margin-top: 0;
+    text-align: left;
+}
+
 #isaac-pills{
     background: url(../IsaacPills/Images/Textures/Content_corner_top_left.png) left top no-repeat border-box,
                 url(../IsaacPills/Images/Textures/Content_corner_top_right.png) right top no-repeat border-box,
