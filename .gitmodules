@@ -10,3 +10,6 @@
 [submodule "COMOWeather"]
 	path = COMOWeather
 	url = https://github.com/FireLemons/COMOWeather
+[submodule "ErrorFreeCalculator"]
+	path = ErrorFreeCalculator
+	url = https://github.com/FireLemons/ErrorFreeCalculatorPage
