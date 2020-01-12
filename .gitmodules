@@ -13,3 +13,6 @@
 [submodule "ErrorFreeCalculator"]
 	path = ErrorFreeCalculator
 	url = https://github.com/FireLemons/ErrorFreeCalculatorPage
+[submodule "AutocompleteExample"]
+	path = AutocompleteExample
+	url = https://github.com/FireLemons/AutocompleteExample.git
