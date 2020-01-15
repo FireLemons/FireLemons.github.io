@@ -16,3 +16,6 @@
 [submodule "AutocompleteExample"]
 	path = AutocompleteExample
 	url = https://github.com/FireLemons/AutocompleteExample.git
+[submodule "AutocompleteDebounceExample"]
+	path = AutocompleteDebounceExample
+	url = https://github.com/FireLemons/AutocompleteExample.git
