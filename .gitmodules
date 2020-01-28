@@ -19,3 +19,6 @@
 [submodule "AutocompleteDebounceExample"]
 	path = AutocompleteDebounceExample
 	url = https://github.com/FireLemons/AutocompleteExample.git
+[submodule "Unity404"]
+	path = Unity404
+	url = https://github.com/FireLemons/Unity404
