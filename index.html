@@ -1,133 +1,133 @@
 <!DOCTYPE html>
 <html>
 	<head>
-        <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32"/>
-        <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16"/>
-        <link rel="stylesheet" href="css/materialize.min.css">
-        <link rel="stylesheet" href="css/home.css">
-        <noscript>
-            <link rel="stylesheet" href="css/noscript.css">
-        </noscript>
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16"/>
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="css/home.css">
+    <noscript>
+      <link rel="stylesheet" href="css/noscript.css">
+    </noscript>
 		<title>Web Projects</title>
 	</head>
 
 	<body>
-        <noscript>
-            <div>
-                <img src="assets/img/jsDisabled.jpg" alt="Javascript Disabled">
-                <h1>Javscript isn't feeling well</h1>
-                <h1>It's just not</h1>
-            </div>
-        </noscript>
+    <noscript>
+      <div>
+        <img src="assets/img/jsDisabled.jpg" alt="Javascript Disabled">
+        <h1>Javscript isn't feeling well</h1>
+        <h1>It's just not</h1>
+      </div>
+    </noscript>
 		<div id="app" class="carousel carousel-slider center" @keyup.enter="left">
-            <div class="carousel-fixed-item page-buttons">
-                <button @click="left"><i class="material-icons left unselectable">keyboard_arrow_left</i></button>
+      <div class="carousel-fixed-item page-buttons">
+          <button @click="left"><i class="material-icons left unselectable">keyboard_arrow_left</i></button>
+      </div>
+      <div class="carousel-fixed-item page-buttons">
+          <button @click="right"><i class="material-icons right unselectable">keyboard_arrow_right</i></button>
+      </div>
+      <div id="sudoku-solver" class="carousel-item" href="#SudokuSolver">
+        <div id="sudoku-title">
+          <a class="white-text" href="SudokuSolver" title="To Sudoku Solver">
+            <div class="flex">
+              <div class="flex">
+                <div>S</div>
+                <div>U</div>
+                <div>D</div>
+                <div>O</div>
+                <div>K</div>
+                <div>U</div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div class="flex">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div>S</div>
+                <div>O</div>
+                <div>L</div>
+                <div>V</div>
+                <div>E</div>
+                <div>R</div>
+              </div>
             </div>
-            <div class="carousel-fixed-item page-buttons">
-                <button @click="right"><i class="material-icons right unselectable">keyboard_arrow_right</i></button>
-            </div>
-            <div id="sudoku-solver" class="carousel-item" href="#SudokuSolver">
-                <div id="sudoku-title">
-                    <a class="white-text" href="SudokuSolver" title="To Sudoku Solver">
-                        <div class="flex">
-                            <div class="flex">
-                                <div>S</div>
-                                <div>U</div>
-                                <div>D</div>
-                                <div>O</div>
-                                <div>K</div>
-                                <div>U</div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                            </div>
-                            <div class="flex">
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div>S</div>
-                                <div>O</div>
-                                <div>L</div>
-                                <div>V</div>
-                                <div>E</div>
-                                <div>R</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <p class="white-text unselectable">
-                    Sudoku puzzle solver using artificial intelligence methods of solving constraint satisfaction problems
-                </p>
-                <h4 class="white-text unselectable">Built With</h4>
-                <div>
-                    <a href="https://angularjs.org/" title="AngularJS">
-                        <img src="assets/img/angular.svg" alt="AngularJS">
-                    </a>
-                    <a href="https://getbootstrap.com/" title="Bootstrap">
-                        <img class="pad" src="assets/img/bootstrap.svg" alt="Bootstrap">
-                    </a>
-                    <a href="https://jasmine.github.io" title="Jasmine">
-                        <img class="pad" src="assets/img/jasmine.png" alt="Jasmine">
-                    </a>
-                </div>
-            </div>
-            <div id="weather-bot" class="carousel-item" href="#WeatherBot">
-                <div>
-                    <a class="white-text" href="COMOWeather" title="To Weather Bot Webpage">
-                        <p>Columbia</p>
-                        <p>MO</p>
-                        <p>Weather</p>
-                        <p>Bot</p>
-                    </a>
-                    <div>
-                        <h1>Built With</h1>
-                        <a href="https://nodejs.org/en/" title="Node.js">
-                            <img src="assets/img/nodejs.svg" alt="Node.js">
-                        </a>
-                        <a href="http://openweathermap.org" title="OpenWeatherMap">
-                            <img class="pad" src="assets/img/openweathermap.png" alt="OpenWeatherMap">
-                        </a>
-                        <a href="https://developer.twitter.com" title="Twitter">
-                            <img class="pad" src="assets/img/twitter.png" alt="Twitter">
-                        </a>
-                        <a href="https://regex101.com/" title="Regex 101">
-                            <img id="regex" src="assets/img/regex101.png" alt="Regex 101">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div id="calculator" class="carousel-item" href="#ErrorFreeCalculator">
-                <a href="ErrorFreeCalculator" title="To Error Free Calculator">
-                    <h2>Error Free Calculator</h2>
-                </a>
-                <p>Built With</p>
-                <div>
-                    <a href="https://visualstudio.microsoft.com/" title="Visual Studio">
-                        <img src="assets/img/visual_studio.png" alt="Visual Studio">
-                    </a>
-                    <a href="https://en.wikipedia.org/wiki/C_Sharp_(programming_language)" title="C#">
-                        <img src="assets/img/c_sharp.png" alt="C#">
-                    </a>
-                </div>
-            </div>
-            <div id="isaac-pills" class="carousel-item" href="#IsaacPills">
-                <div class="flex">
-                    <a class="white-text" href="IsaacPills" title="To IsaacPills">
-                        <h3 class="unselectable">Isaac Pills</h2>
-                    </a>
-                </div>
-                <p class="black-text unselectable">
-                    A tool to keep track of pill effects in various expansions of Edmund McMillen's
-                    <a href="https://store.steampowered.com/app/250900/The_Binding_of_Isaac_Rebirth/" title="Game Store Page">Binding of Isaac: Rebirth</a>
-                </p>
-                <div class="stack-credit">
-                    <h3 class="unselectable">Built With</h3>
-                    <a href="http://jquery.com/" title="JQuery">
-                        <img src="assets/img/jQuery.png" alt="JQuery">
-                    </a>
-                </div>
-            </div>
+          </a>
         </div>
+        <p class="white-text unselectable">
+          Sudoku puzzle solver using artificial intelligence methods of solving constraint satisfaction problems
+        </p>
+        <h4 class="white-text unselectable">Built With</h4>
+        <div>
+          <a href="https://angularjs.org/" title="AngularJS">
+            <img src="assets/img/angular.svg" alt="AngularJS">
+          </a>
+          <a href="https://getbootstrap.com/" title="Bootstrap">
+            <img class="pad" src="assets/img/bootstrap.svg" alt="Bootstrap">
+          </a>
+          <a href="https://jasmine.github.io" title="Jasmine">
+            <img class="pad" src="assets/img/jasmine.png" alt="Jasmine">
+          </a>
+        </div>
+      </div>
+      <div id="weather-bot" class="carousel-item" href="#WeatherBot">
+        <div>
+          <a class="white-text" href="COMOWeather" title="To Weather Bot Webpage">
+            <p>Columbia</p>
+            <p>MO</p>
+            <p>Weather</p>
+            <p>Bot</p>
+          </a>
+          <div>
+            <h1>Built With</h1>
+            <a href="https://nodejs.org/en/" title="Node.js">
+              <img src="assets/img/nodejs.svg" alt="Node.js">
+            </a>
+            <a href="http://openweathermap.org" title="OpenWeatherMap">
+              <img class="pad" src="assets/img/openweathermap.png" alt="OpenWeatherMap">
+            </a>
+            <a href="https://developer.twitter.com" title="Twitter">
+              <img class="pad" src="assets/img/twitter.png" alt="Twitter">
+            </a>
+            <a href="https://regex101.com/" title="Regex 101">
+              <img id="regex" src="assets/img/regex101.png" alt="Regex 101">
+            </a>
+          </div>
+        </div>
+      </div>
+      <div id="calculator" class="carousel-item" href="#ErrorFreeCalculator">
+        <a href="ErrorFreeCalculator" title="To Error Free Calculator">
+          <h2>Error Free Calculator</h2>
+        </a>
+        <p>Built With</p>
+        <div>
+          <a href="https://visualstudio.microsoft.com/" title="Visual Studio">
+            <img src="assets/img/visual_studio.png" alt="Visual Studio">
+          </a>
+          <a href="https://en.wikipedia.org/wiki/C_Sharp_(programming_language)" title="C#">
+            <img src="assets/img/c_sharp.png" alt="C#">
+          </a>
+        </div>
+      </div>
+      <div id="isaac-pills" class="carousel-item" href="#IsaacPills">
+        <div class="flex">
+          <a class="white-text" href="IsaacPills" title="To IsaacPills">
+            <h3 class="unselectable">Isaac Pills</h2>
+          </a>
+        </div>
+        <p class="black-text unselectable">
+          A tool to keep track of pill effects in various expansions of Edmund McMillen's
+          <a href="https://store.steampowered.com/app/250900/The_Binding_of_Isaac_Rebirth/" title="Game Store Page">Binding of Isaac: Rebirth</a>
+        </p>
+        <div class="stack-credit">
+          <h3 class="unselectable">Built With</h3>
+          <a href="http://jquery.com/" title="JQuery">
+            <img src="assets/img/jQuery.png" alt="JQuery">
+          </a>
+        </div>
+      </div>
+    </div>
 		<script src="js/materialize.min.js"></script>
 		<script src="js/vue.min.js"></script>
 		<script src="js/home.js"></script>
