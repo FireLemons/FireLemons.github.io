@@ -1,0 +1,21 @@
+{
+  "name": "firelemons.github.io",
+  "version": "1.0.0",
+  "description": "Front End Demos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FireLemons/FireLemons.github.io.git"
+  },
+  "author": "shenyang64@gmail.com",
+  "bugs": {
+    "url": "https://github.com/FireLemons/FireLemons.github.io/issues"
+  },
+  "homepage": "https://github.com/FireLemons/FireLemons.github.io#readme",
+  "devDependencies": {
+    "sass": "^1.32.8"
+  }
+}
