@@ -1,58 +1,47 @@
-@font-face{
-  font-family: 'Heebo';
+@font-face {
+  font-family: "Heebo";
   font-style: normal;
   font-weight: 400;
-  src: local('Heebo'),
-    local('Heebo-Regular'),
-    url(../assets/fonts/heebo/Heebo-Regular.ttf) format('truetype');
+  src: local("Heebo"), local("Heebo-Regular"), url(../assets/fonts/heebo/Heebo-Regular.ttf) format("truetype");
 }
-
-@font-face{
-  font-family: 'Heebo';
+@font-face {
+  font-family: "Heebo";
   font-style: normal;
   font-weight: 900;
-  src: local('Heebo Black'),
-    url(../assets/fonts/heebo/Heebo-Black.ttf) format('truetype');
+  src: local("Heebo Black"), url(../assets/fonts/heebo/Heebo-Black.ttf) format("truetype");
 }
-
-@font-face{
-  font-family: 'Material Icons';
+@font-face {
+  font-family: "Material Icons";
   font-style: normal;
   font-weight: 400;
-  src: local('Material Icons'),
-    local('MaterialIcons-Regular'),
-    url(../ToMetric/css/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
-    url(../ToMetric/css/iconfont/MaterialIcons-Regular.woff) format('woff'),
-    url(../ToMetric/css/iconfont/MaterialIcons-Regular.ttf) format('truetype');
+  src: local("Material Icons"), local("MaterialIcons-Regular"), url(../ToMetric/css/iconfont/MaterialIcons-Regular.woff2) format("woff2"), url(../ToMetric/css/iconfont/MaterialIcons-Regular.woff) format("woff"), url(../ToMetric/css/iconfont/MaterialIcons-Regular.ttf) format("truetype");
 }
-
-@font-face{
-  font-family: 'Upheaval';
-  src: url(../assets/fonts/upheaval/upheavtt.ttf) format('truetype');
+@font-face {
+  font-family: "Upheaval";
+  src: url(../assets/fonts/upheaval/upheavtt.ttf) format("truetype");
 }
-
-@keyframes expand-title{
-  from{
+@keyframes expand-title {
+  from {
     font-size: 32pt;
   }
-  to{
+  to {
     font-size: 36pt;
   }
 }
-
-body{
+body {
   overflow: hidden;
 }
 
-.flex{
-	display: flex;
+.flex {
+  display: flex;
 }
 
 .material-icons {
-  font-family: 'Material Icons';
+  font-family: "Material Icons";
   font-weight: normal;
   font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
+  font-size: 24px;
+  /* Preferred icon size */
   display: inline-block;
   line-height: 1;
   text-transform: none;
@@ -60,62 +49,59 @@ body{
   word-wrap: normal;
   white-space: nowrap;
   direction: ltr;
-
   /* Support for all WebKit browsers. */
-  
   -webkit-font-smoothing: antialiased;
   /* Support for Safari and Chrome. */
   text-rendering: optimizeLegibility;
-
   /* Support for Firefox. */
   -moz-osx-font-smoothing: grayscale;
 }
 
-.page-buttons{
+.page-buttons {
   display: inline-block;
-  margin: 0  2em;
+  margin: 0 2em;
   top: calc(50vh - 2em - 1px);
 }
-
-.page-buttons:nth-of-type(1){
+.page-buttons:nth-of-type(1) {
   margin-right: 90%;
 }
 
-.page-buttons:nth-of-type(2){
+.page-buttons:nth-of-type(2) {
   margin-left: 90%;
 }
 
-.page-buttons button{
+.page-buttons button {
   background-color: black;
-  border-radius: .5em;
+  border-radius: 0.5em;
   cursor: pointer;
-  height: 4em; width: 4em;
-  opacity: .5;
+  height: 4em;
+  width: 4em;
+  opacity: 0.5;
 }
 
-.page-buttons button:focus{
+.page-buttons button:focus {
   background-color: black;
 }
 
-.page-buttons button:hover{
+.page-buttons button:hover {
   opacity: 1;
 }
 
-.page-buttons button i{
+.page-buttons button i {
   font-size: 24pt;
   margin: 0;
   color: white;
 }
 
-.page-buttons .flex{
+.page-buttons .flex {
   justify-content: space-between;
 }
 
-.stack-credit{
+.stack-credit {
   margin-top: 3em;
 }
 
-.unselectable{
+.unselectable {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -124,46 +110,46 @@ body{
   user-select: none;
 }
 
-#app{
+#app {
   height: 100vh !important;
 }
 
-#calculator{
+#calculator {
   background: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url(../assets/img/calculator.jpg) center center no-repeat;
   background-size: cover;
 }
 
-#calculator h2{
+#calculator h2 {
   color: #444444;
   font-family: Helvetica, Arial;
   font-size: 72pt;
   margin: 1em;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
   text-align: left;
 }
 
-#calculator h2:hover{
-  color:#222222;
+#calculator h2:hover {
+  color: #222222;
 }
 
-#calculator img{
+#calculator img {
   height: 12em;
   transition: height 1s;
 }
 
-#calculator img:hover{
+#calculator img:hover {
   height: 13em;
 }
 
-#calculator div{
+#calculator div {
   text-align: left;
 }
 
-#calculator a:first-child{
+#calculator a:first-child {
   margin-left: 32em;
 }
 
-#calculator p{
+#calculator p {
   color: #444444;
   font-family: Helvetica, Arial;
   font-size: 48pt;
@@ -172,157 +158,149 @@ body{
   text-align: left;
 }
 
-#isaac-pills{
-  background: url(../IsaacPills/Images/Textures/Content_corner_top_left.png) left top no-repeat border-box,
-              url(../IsaacPills/Images/Textures/Content_corner_top_right.png) right top no-repeat border-box,
-              url(../IsaacPills/Images/Textures/Content_corner_bottom_left.png) left bottom no-repeat border-box,
-              url(../IsaacPills/Images/Textures/Content_corner_bottom_right.png) right bottom no-repeat border-box,
-              url(../IsaacPills/Images/Textures/Content_top.png) right top repeat-x border-box,
-              url(../IsaacPills/Images/Textures/Content_left.png) left top repeat-y border-box,
-              url(../IsaacPills/Images/Textures/Content_right.png) right top repeat-y border-box,
-              url(../IsaacPills/Images/Textures/Content_bottom.png) left bottom repeat-x border-box,
-              url(../IsaacPills/Images/Textures/Bg.png) left top padding-box;
+#isaac-pills {
+  background: url(../IsaacPills/Images/Textures/Content_corner_top_left.png) left top no-repeat border-box, url(../IsaacPills/Images/Textures/Content_corner_top_right.png) right top no-repeat border-box, url(../IsaacPills/Images/Textures/Content_corner_bottom_left.png) left bottom no-repeat border-box, url(../IsaacPills/Images/Textures/Content_corner_bottom_right.png) right bottom no-repeat border-box, url(../IsaacPills/Images/Textures/Content_top.png) right top repeat-x border-box, url(../IsaacPills/Images/Textures/Content_left.png) left top repeat-y border-box, url(../IsaacPills/Images/Textures/Content_right.png) right top repeat-y border-box, url(../IsaacPills/Images/Textures/Content_bottom.png) left bottom repeat-x border-box, url(../IsaacPills/Images/Textures/Bg.png) left top padding-box;
   box-sizing: border-box;
   font-family: Upheaval;
   padding: 3em;
   width: 100%;
 }
 
-#isaac-pills a:hover{
+#isaac-pills a:hover {
   text-decoration: underline;
   text-decoration-color: white;
 }
 
-#isaac-pills h3{
+#isaac-pills h3 {
   margin: 0;
-  padding-bottom: .25em;
+  padding-bottom: 0.25em;
 }
 
-#isaac-pills img{
+#isaac-pills img {
   height: 8em;
   margin-top: 1em;
   transition: height 1s;
 }
 
-#isaac-pills img:hover{
+#isaac-pills img:hover {
   height: 9em;
 }
 
-#isaac-pills p{
+#isaac-pills p {
   font-size: 18pt;
 }
 
-#isaac-pills .flex{
+#isaac-pills .flex {
   background: url(../IsaacPills/Images/Message.png) center center no-repeat border-box;
   flex-direction: column;
   height: 5em;
   justify-content: center;
 }
 
-#sudoku-solver:before{
+#sudoku-solver:before {
   content: "";
   position: fixed;
   left: 0;
   right: 0;
   z-index: -1;
-
   display: block;
   background-image: url(../assets/img/sudoku.png);
   width: 100%;
   height: 100%;
 }
 
-#sudoku-solver{
+#sudoku-solver {
   overflow: auto;
 }
 
-#sudoku-solver img{
+#sudoku-solver img {
   height: 12em;
   transition: height 1s;
 }
 
-#sudoku-solver img:hover{
+#sudoku-solver img:hover {
   height: 13em;
 }
 
-#sudoku-solver img.pad{
+#sudoku-solver img.pad {
   padding: 1em;
 }
 
-#sudoku-solver h4{
+#sudoku-solver h4 {
   margin-top: 1.5em;
 }
 
-#sudoku-solver p{
+#sudoku-solver p {
   font-size: 18pt;
 }
 
-#sudoku-title{
+#sudoku-title {
   font-size: 32pt;
   transition: font-size 1s;
 }
 
-#sudoku-title:hover{
+#sudoku-title:hover {
   font-size: 34pt;
 }
 
-#sudoku-title a>.flex{
+#sudoku-title a > .flex {
   flex-direction: column;
   margin-top: 1em;
 }
 
-#sudoku-title div .flex{
+#sudoku-title div .flex {
   justify-content: center;
 }
 
-#sudoku-title div .flex:last-child div{
+#sudoku-title div .flex:last-child div {
   border-top: 0;
 }
 
-#sudoku-title div div div{
+#sudoku-title div div div {
   border: 2px solid;
-  height: 1.5em; width: 1.5em; 
+  height: 1.5em;
+  width: 1.5em;
 }
 
-#sudoku-title div div div:not(:first-child){
+#sudoku-title div div div:not(:first-child) {
   border-left: 0;
 }
 
-#weather-bot{
+#weather-bot {
   background-image: url(../COMOWeather/assets/img/WeatherBotBackground.jpg);
   background-repeat: no-repeat;
-  font-family: 'Heebo';
+  font-family: "Heebo";
 }
 
-#weather-bot a p{
+#weather-bot a p {
   cursor: pointer;
 }
 
-#weather-bot>div{
+#weather-bot > div {
   display: flex;
   justify-content: space-between;
 }
 
-#weather-bot>div>div{
+#weather-bot > div > div {
   margin-right: 2em;
 }
 
-#weather-bot h1{
+#weather-bot h1 {
   color: #d5e9fe;
   font-family: Helvetica, Arial;
 }
 
-#weather-bot img{
+#weather-bot img {
   height: 12em;
   margin: 1em;
   transition: height 1s;
 }
 
-#weather-bot img:hover{
+#weather-bot img:hover {
   height: 13em;
 }
 
-#weather-bot p{
+#weather-bot p {
   -webkit-background-clip: text;
   background-clip: text;
   /*background-size: contain;*/
@@ -330,7 +308,7 @@ body{
   cursor: default;
   font-size: 84pt;
   font-weight: 900;
-  margin: 0 .5em;
+  margin: 0 0.5em;
   text-align: left;
 }
 
@@ -338,40 +316,40 @@ body{
  * "Columbia"
  * Spring
  */
-#weather-bot p:nth-child(1){
-  background-image: url('../assets/img/rain.gif');
+#weather-bot p:nth-child(1) {
+  background-image: url("../assets/img/rain.gif");
 }
 
 /*
  * "MO"
  * Summer
  */
-#weather-bot p:nth-child(2){
-  background-image: url('../assets/img/sun.gif');
+#weather-bot p:nth-child(2) {
+  background-image: url("../assets/img/sun.gif");
 }
 
 /*
  * "Weather"
  * Fall
  */
-#weather-bot p:nth-child(3){
-  background-image: url('../assets/img/fall.gif');
+#weather-bot p:nth-child(3) {
+  background-image: url("../assets/img/fall.gif");
 }
 
 /*
  * "Bot"
  * Winter
  */
-#weather-bot p:nth-child(4){
-  background-image: url('../assets/img/snow.gif');
+#weather-bot p:nth-child(4) {
+  background-image: url("../assets/img/snow.gif");
 }
 
-#weather-bot #regex{
+#weather-bot #regex {
   transition: height 1s;
   margin-bottom: 4em;
   height: 4em;
 }
 
-#weather-bot #regex:hover{
+#weather-bot #regex:hover {
   height: 5em;
 }
