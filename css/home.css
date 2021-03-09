@@ -230,12 +230,6 @@ body{
   background-image: url(../assets/img/sudoku.png);
   width: 100%;
   height: 100%;
-
-  -webkit-filter: blur(4px) brightness(.5);
-  -moz-filter: blur(4px) brightness(.5);
-  -o-filter: blur(4px) brightness(.5);
-  -ms-filter: blur(4px) brightness(.5);
-  filter: blur(4px) brightness(.5);
 }
 
 #sudoku-solver{
