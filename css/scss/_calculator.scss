@@ -1,0 +1,43 @@
+#calculator{
+  background: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url(../assets/img/calculator.jpg) center center no-repeat;
+  background-size: cover;
+  
+  h2{
+    color: #444444;
+    font-family: Helvetica, Arial;
+    font-size: 72pt;
+    margin: 1em;
+    margin-bottom: .5em;
+    text-align: left;
+
+    &:hover{
+      color:#222222;
+    }
+  }
+
+  img{
+    height: 12em;
+    transition: height 1s;
+
+    &:hover{
+      height: 13em;
+    }
+  }
+
+  div{
+    text-align: left;
+  }
+
+  a:first-child{
+    margin-left: 32em;
+  }
+
+  p{
+    color: #444444;
+    font-family: Helvetica, Arial;
+    font-size: 48pt;
+    margin-left: 4em;
+    margin-top: 0;
+    text-align: left;
+  }
+}

@@ -1,0 +1,87 @@
+#weather-bot{
+  background-image: url(../COMOWeather/assets/img/WeatherBotBackground.jpg);
+  background-repeat: no-repeat;
+  font-family: 'Heebo';
+
+  &>div{
+    display: flex;
+    justify-content: space-between;
+
+    &>div{
+      margin-right: 2em;
+    }
+  }
+
+  a p{
+    cursor: pointer;
+  }
+
+  h1{
+    color: #d5e9fe;
+    font-family: Helvetica, Arial;
+  }
+
+  img{
+    height: 12em;
+    margin: 1em;
+    transition: height 1s;
+
+    &:hover{
+      height: 13em;
+    }
+  }
+
+  p{
+    -webkit-background-clip: text;
+    background-clip: text;
+    /*background-size: contain;*/
+    color: transparent;
+    cursor: default;
+    font-size: 84pt;
+    font-weight: 900;
+    margin: 0 .5em;
+    text-align: left;
+
+    /*
+     * "Columbia"
+     * Spring
+     */
+    &:nth-child(1){
+      background-image: url('../assets/img/rain.gif');
+    }
+
+    /*
+     * "MO"
+     * Summer
+     */
+    &:nth-child(2){
+      background-image: url('../assets/img/sun.gif');
+    }
+
+    /*
+     * "Weather"
+     * Fall
+     */
+    &:nth-child(3){
+      background-image: url('../assets/img/fall.gif');
+    }
+
+    /*
+     * "Bot"
+     * Winter
+     */
+    &:nth-child(4){
+      background-image: url('../assets/img/snow.gif');
+    }
+  }
+
+  #regex{
+    transition: height 1s;
+    margin-bottom: 4em;
+    height: 4em;
+
+    &:hover{
+      height: 5em;
+    }
+  }
+}

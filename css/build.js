@@ -24,14 +24,22 @@ function buildCSS (generatedFilePath, primarySource, secondarySources) {
 }
 
 const sources = {
-  'home.scss': new SourceFile('./css/scss/home.scss'),
+  'calculator.scss':    new SourceFile('./scss/_calculator.scss'),
+  'home.scss':          new SourceFile('./scss/home.scss'),
+  'isaac-pills.scss':   new SourceFile('./scss/_isaac-pills.scss'),
+  'sudoku-solver.scss': new SourceFile('./scss/_sudoku-solver.scss'),
+  'weather-bot.scss':   new SourceFile('./scss/_weather-bot.scss')
 }
 
 const buildTrees = [
   new DependencyTree(
-    './css/home.css',
+    './home.css',
     sources['home.scss'],
     [
+      sources['calculator.scss'],
+      sources['isaac-pills.scss'],
+      sources['sudoku-solver.scss'],
+      sources['weather-bot.scss']
     ],
     buildCSS
   )

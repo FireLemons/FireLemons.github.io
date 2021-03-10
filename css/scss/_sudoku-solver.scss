@@ -1,0 +1,68 @@
+#sudoku-solver{
+  overflow: auto;
+
+  &:before{
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: -1;
+
+    display: block;
+    background-image: url(../assets/img/sudoku.png);
+    width: 100%;
+    height: 100%;
+  }
+  
+  img{
+    height: 12em;
+    transition: height 1s;
+
+    &:hover{
+      height: 13em;
+    }
+
+    &.pad{
+      padding: 1em;
+    }
+  }
+
+  h4{
+    margin-top: 1.5em;
+  }
+
+  p{
+    font-size: 18pt;
+  }
+
+  #sudoku-title{
+    font-size: 32pt;
+    transition: font-size 1s;
+
+    &:hover{
+      font-size: 34pt;
+    }
+
+    a>.flex{
+      flex-direction: column;
+      margin-top: 1em;
+    }
+
+    div .flex{
+      justify-content: center;
+
+      &:last-child div{
+        border-top: 0;
+      }
+    }
+
+    div div div{
+      border: 2px solid;
+      height: 1.5em; width: 1.5em;
+
+      &:not(:first-child){
+        border-left: 0;
+      }
+    }
+  }
+}

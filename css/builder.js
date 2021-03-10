@@ -153,7 +153,7 @@ class DependencyTree {
     const secondarySourcesAsObject = {}
 
     secondarySources.forEach((source) => {
-      secondarySourcesAsObject[/.*?\/_?([a-zA-Z]+)\.[a-z]+/.exec(source.path)[1]] = source
+      secondarySourcesAsObject[/.*?\/_?([a-zA-Z-]+)\.[a-z]+/.exec(source.path)[1]] = source
     })
 
     this.build = build
