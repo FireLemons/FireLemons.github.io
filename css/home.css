@@ -108,6 +108,12 @@ body {
   height: 100vh !important;
 }
 
+#abbreviation-autocomplete {
+  background-image: url(../assets/img/codes.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 #calculator {
   background: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url(../assets/img/calculator.jpg) center center no-repeat;
   background-size: cover;
@@ -245,6 +251,7 @@ body {
 #weather-bot {
   background-image: url(../COMOWeather/assets/img/WeatherBotBackground.jpg);
   background-repeat: no-repeat;
+  background-size: cover;
   font-family: "Heebo";
 }
 #weather-bot > div {

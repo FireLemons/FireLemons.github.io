@@ -24,11 +24,12 @@ function buildCSS (generatedFilePath, primarySource, secondarySources) {
 }
 
 const sources = {
-  'calculator.scss':    new SourceFile('./scss/_calculator.scss'),
-  'home.scss':          new SourceFile('./scss/home.scss'),
-  'isaac-pills.scss':   new SourceFile('./scss/_isaac-pills.scss'),
-  'sudoku-solver.scss': new SourceFile('./scss/_sudoku-solver.scss'),
-  'weather-bot.scss':   new SourceFile('./scss/_weather-bot.scss')
+  'abbreviation-autocomplete.scss':    new SourceFile('./scss/_abbreviation-autocomplete.scss'),
+  'calculator.scss':                   new SourceFile('./scss/_calculator.scss'),
+  'home.scss':                         new SourceFile('./scss/home.scss'),
+  'isaac-pills.scss':                  new SourceFile('./scss/_isaac-pills.scss'),
+  'sudoku-solver.scss':                new SourceFile('./scss/_sudoku-solver.scss'),
+  'weather-bot.scss':                  new SourceFile('./scss/_weather-bot.scss')
 }
 
 const buildTrees = [
@@ -36,6 +37,7 @@ const buildTrees = [
     './home.css',
     sources['home.scss'],
     [
+      sources['abbreviation-autocomplete.scss'],
       sources['calculator.scss'],
       sources['isaac-pills.scss'],
       sources['sudoku-solver.scss'],
