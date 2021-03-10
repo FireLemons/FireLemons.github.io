@@ -112,6 +112,9 @@ body {
   background: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url(../assets/img/calculator.jpg) center center no-repeat;
   background-size: cover;
 }
+#calculator div {
+  text-align: left;
+}
 #calculator h2 {
   color: #444444;
   font-family: Helvetica, Arial;
@@ -123,20 +126,7 @@ body {
 #calculator h2:hover {
   color: #222222;
 }
-#calculator img {
-  height: 12em;
-  transition: height 1s;
-}
-#calculator img:hover {
-  height: 13em;
-}
-#calculator div {
-  text-align: left;
-}
-#calculator a:first-child {
-  margin-left: 32em;
-}
-#calculator p {
+#calculator h3 {
   color: #444444;
   font-family: Helvetica, Arial;
   font-size: 48pt;
@@ -144,7 +134,25 @@ body {
   margin-top: 0;
   text-align: left;
 }
+#calculator img {
+  height: 12em;
+  transition: height 1s;
+}
+#calculator img:hover {
+  height: 13em;
+}
+#calculator .flex {
+  justify-content: center;
+}
 
+@media screen and (max-aspect-ratio: 8/7) {
+  #calculator h2 {
+    font-size: 46pt;
+  }
+  #calculator h3 {
+    font-size: 28pt;
+  }
+}
 #isaac-pills {
   background: url(../IsaacPills/Images/Textures/Content_corner_top_left.png) left top no-repeat border-box, url(../IsaacPills/Images/Textures/Content_corner_top_right.png) right top no-repeat border-box, url(../IsaacPills/Images/Textures/Content_corner_bottom_left.png) left bottom no-repeat border-box, url(../IsaacPills/Images/Textures/Content_corner_bottom_right.png) right bottom no-repeat border-box, url(../IsaacPills/Images/Textures/Content_top.png) right top repeat-x border-box, url(../IsaacPills/Images/Textures/Content_left.png) left top repeat-y border-box, url(../IsaacPills/Images/Textures/Content_right.png) right top repeat-y border-box, url(../IsaacPills/Images/Textures/Content_bottom.png) left bottom repeat-x border-box, url(../IsaacPills/Images/Textures/Bg.png) left top padding-box;
   box-sizing: border-box;
