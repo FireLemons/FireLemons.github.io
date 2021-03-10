@@ -308,3 +308,22 @@ body {
 #weather-bot #regex:hover {
   height: 5em;
 }
+
+@media screen and (max-aspect-ratio: 8/7) {
+  #weather-bot img {
+    height: 9em;
+    margin: 0.5em;
+  }
+  #weather-bot img:hover {
+    height: 9.5em;
+  }
+  #weather-bot p {
+    font-size: 54pt;
+  }
+  #weather-bot #regex {
+    height: 4em;
+  }
+  #weather-bot #regex:hover {
+    height: 4.05em;
+  }
+}

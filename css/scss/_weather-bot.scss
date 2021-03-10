@@ -85,3 +85,28 @@
     }
   }
 }
+
+@media screen and (max-aspect-ratio: 8/7) {
+  #weather-bot{
+    img{
+      height: 9em;
+      margin: .5em;
+
+      &:hover{
+        height: 9.5em;
+      }
+    }
+
+    p{
+      font-size: 54pt;
+    }
+
+    #regex{
+      height: 4em;
+    
+      &:hover{
+        height: 4.05em;
+      }
+    }
+  }
+}
