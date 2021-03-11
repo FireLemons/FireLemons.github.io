@@ -1,5 +1,48 @@
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
 #abbreviation-autocomplete{
   background-image: url(../assets/img/codes.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+
+  #autocomplete-title{
+    h1{
+      color: #a7ffeb;
+      background-color: #004d40;
+      margin: 0;
+      margin-left: 10%;
+      padding: .25em;
+      width: 80%;
+      text-align: left;
+
+      &:first-child{
+        border-radius: .1em;
+        margin-top: 1em;
+      }
+
+      span{
+        animation: blink 2s steps(2, start) infinite;
+        -webkit-animation: blink 2s steps(2, start) infinite;
+      }
+    }
+  }
+}
+
+@media screen and (max-aspect-ratio: 8/7) {
+  #abbreviation-autocomplete{
+    #autocomplete-title{
+      h1{
+        font-size: 3.2rem;
+      }
+    }
+  }
 }
