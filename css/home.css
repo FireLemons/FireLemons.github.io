@@ -150,9 +150,12 @@ body {
   border-radius: 0.1em;
   margin-top: 1em;
 }
-#abbreviation-autocomplete #autocomplete-title h1 span {
+#abbreviation-autocomplete #autocomplete-title h1:first-child span {
   animation: blink 2s steps(2, start) infinite;
   -webkit-animation: blink 2s steps(2, start) infinite;
+}
+#abbreviation-autocomplete #autocomplete-title h1:last-child span {
+  color: #00e676;
 }
 
 @media screen and (max-aspect-ratio: 8/7) {

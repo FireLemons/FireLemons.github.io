@@ -45,12 +45,17 @@
       &:first-child{
         border-radius: .1em;
         margin-top: 1em;
+
+        span{
+          animation: blink 2s steps(2, start) infinite;
+          -webkit-animation: blink 2s steps(2, start) infinite;
+        }
       }
 
-      span{
-        animation: blink 2s steps(2, start) infinite;
-        -webkit-animation: blink 2s steps(2, start) infinite;
+      &:last-child span{
+        color: #00e676
       }
+
     }
   }
 }
