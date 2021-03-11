@@ -35,7 +35,6 @@
   #autocomplete-title{
     h1{
       color: #a7ffeb;
-      background-color: #004d40;
       margin: 0;
       margin-left: 10%;
       padding: .25em;
@@ -43,6 +42,7 @@
       text-align: left;
 
       &:first-child{
+        background-color: #004d40;
         border-radius: .1em;
         margin-top: 1em;
 
@@ -52,10 +52,17 @@
         }
       }
 
-      &:last-child span{
-        color: #00e676
-      }
+      &:last-child{
+        background-color: #00695c;
 
+        &:hover{
+          background-color: #00796b;
+        }
+
+        span{
+          color: #00e676;
+        }
+      }
     }
   }
 }

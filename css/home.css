@@ -139,7 +139,6 @@ body {
 }
 #abbreviation-autocomplete #autocomplete-title h1 {
   color: #a7ffeb;
-  background-color: #004d40;
   margin: 0;
   margin-left: 10%;
   padding: 0.25em;
@@ -147,12 +146,19 @@ body {
   text-align: left;
 }
 #abbreviation-autocomplete #autocomplete-title h1:first-child {
+  background-color: #004d40;
   border-radius: 0.1em;
   margin-top: 1em;
 }
 #abbreviation-autocomplete #autocomplete-title h1:first-child span {
   animation: blink 2s steps(2, start) infinite;
   -webkit-animation: blink 2s steps(2, start) infinite;
+}
+#abbreviation-autocomplete #autocomplete-title h1:last-child {
+  background-color: #00695c;
+}
+#abbreviation-autocomplete #autocomplete-title h1:last-child:hover {
+  background-color: #00796b;
 }
 #abbreviation-autocomplete #autocomplete-title h1:last-child span {
   color: #00e676;
