@@ -324,12 +324,12 @@ body {
   font-family: Helvetica, Arial;
 }
 #weather-bot img {
-  height: 12em;
+  height: 8em;
   margin: 1em;
   transition: height 1s;
 }
 #weather-bot img:hover {
-  height: 13em;
+  height: 9em;
 }
 #weather-bot p {
   -webkit-background-clip: text;
