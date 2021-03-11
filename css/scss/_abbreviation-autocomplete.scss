@@ -13,6 +13,24 @@
   background-image: url(../assets/img/codes.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+  color: #b2dfdb;
+
+  h2{
+    font-size: 24pt;
+  }
+
+  img{
+    height: 8em;
+    transition: height 1s;
+
+    &:hover{
+      height: 9em;
+    }
+  }
+  
+  p{
+    font-size: 18pt;
+  }
 
   #autocomplete-title{
     h1{

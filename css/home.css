@@ -122,6 +122,20 @@ body {
   background-image: url(../assets/img/codes.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+  color: #b2dfdb;
+}
+#abbreviation-autocomplete h2 {
+  font-size: 24pt;
+}
+#abbreviation-autocomplete img {
+  height: 8em;
+  transition: height 1s;
+}
+#abbreviation-autocomplete img:hover {
+  height: 9em;
+}
+#abbreviation-autocomplete p {
+  font-size: 18pt;
 }
 #abbreviation-autocomplete #autocomplete-title h1 {
   color: #a7ffeb;
