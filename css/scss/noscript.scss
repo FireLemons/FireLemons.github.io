@@ -27,7 +27,7 @@
   padding: 1em;
   
   h1{
-    animation: blur 20s infinite;
+    animation: blur 16s infinite;
     color: #004d40;
     left: 10%;
     margin: 0;
@@ -36,6 +36,6 @@
   }
 }
 
-#nojs+#app {
+#app {
   display: none;
 }
