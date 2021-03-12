@@ -1,37 +1,41 @@
-@font-face {
-  font-family: "Ubuntu";
+@font-face{
+  font-family: 'Ubuntu';
   font-style: normal;
   font-weight: 400;
-  src: local("Ubuntu"), url(../assets/fonts/ubuntu/Ubuntu-Regular.ttf) format("truetype");
+  src: local('Ubuntu'),
+    url(../assets/fonts/ubuntu/Ubuntu-Regular.ttf) format('truetype');
 }
+
 @keyframes blur {
-  0% {
+  0%{
     filter: blur(0);
   }
-  50% {
+  50%{
     filter: blur(5px);
   }
-  100% {
+  100%{
     filter: blur(0);
   }
 }
-#nojs {
+
+#nojs{
   background-image: url(../assets/img/jsDisabled.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   font-family: Ubuntu;
   height: 100vh;
   padding: 1em;
-}
-#nojs h1 {
-  animation: blur 20s infinite;
-  color: #004d40;
-  left: 10%;
-  margin: 0;
-  position: absolute;
-  top: 40%;
+  
+  h1{
+    animation: blur 20s infinite;
+    color: #004d40;
+    left: 10%;
+    margin: 0;
+    position: absolute;
+    top: 40%;
+  }
 }
 
-#nojs + #app {
+#nojs+#app {
   display: none;
 }

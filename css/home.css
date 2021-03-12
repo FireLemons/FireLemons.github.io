@@ -20,14 +20,6 @@
   font-family: "Upheaval";
   src: url(../assets/fonts/upheaval/upheavtt.ttf) format("truetype");
 }
-@keyframes expand-title {
-  from {
-    font-size: 32pt;
-  }
-  to {
-    font-size: 36pt;
-  }
-}
 body {
   overflow: hidden;
 }

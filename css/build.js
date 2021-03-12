@@ -28,6 +28,7 @@ const sources = {
   'calculator.scss':                   new SourceFile('./scss/_calculator.scss'),
   'home.scss':                         new SourceFile('./scss/home.scss'),
   'isaac-pills.scss':                  new SourceFile('./scss/_isaac-pills.scss'),
+  'noscript.scss':                     new SourceFile('./scss/noscript.scss'),
   'sudoku-solver.scss':                new SourceFile('./scss/_sudoku-solver.scss'),
   'weather-bot.scss':                  new SourceFile('./scss/_weather-bot.scss')
 }
@@ -42,6 +43,13 @@ const buildTrees = [
       sources['isaac-pills.scss'],
       sources['sudoku-solver.scss'],
       sources['weather-bot.scss']
+    ],
+    buildCSS
+  ),
+  new DependencyTree(
+    './noscript.css',
+    sources['noscript.scss'],
+    [
     ],
     buildCSS
   )
