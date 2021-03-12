@@ -82,7 +82,7 @@
     height: 4em;
 
     &:hover{
-      height: 5em;
+      height: 4.5em;
     }
   }
 }
@@ -90,11 +90,11 @@
 @media screen and (max-aspect-ratio: 8/7) {
   #weather-bot{
     img{
-      height: 9em;
+      height: 4em;
       margin: .5em;
 
       &:hover{
-        height: 9.5em;
+        height: 4.5em;
       }
     }
 
@@ -106,7 +106,7 @@
       height: 4em;
     
       &:hover{
-        height: 4.05em;
+        height: 4.1em;
       }
     }
   }

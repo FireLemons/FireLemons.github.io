@@ -376,16 +376,16 @@ body {
   height: 4em;
 }
 #weather-bot #regex:hover {
-  height: 5em;
+  height: 4.5em;
 }
 
 @media screen and (max-aspect-ratio: 8/7) {
   #weather-bot img {
-    height: 9em;
+    height: 4em;
     margin: 0.5em;
   }
   #weather-bot img:hover {
-    height: 9.5em;
+    height: 4.5em;
   }
   #weather-bot p {
     font-size: 54pt;
@@ -394,6 +394,6 @@ body {
     height: 4em;
   }
   #weather-bot #regex:hover {
-    height: 4.05em;
+    height: 4.1em;
   }
 }
