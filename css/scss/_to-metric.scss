@@ -1,0 +1,45 @@
+#to-metric{
+  background-color: #212121;
+  color: white;
+  text-align: left;
+
+  &>*:not(div.hatch){
+    height: 3rem;
+    left: 1rem;
+    margin: 0;
+    position: relative;
+  }
+
+  div.hatch{
+    background-color: white;
+    height: 3rem;
+    width: 25rem;
+
+    &:nth-child(5n-3){
+      width: 50rem;
+    }
+  }
+
+  h1{
+    color: white;
+    margin-bottom: 0;
+  }
+
+  h2{
+    bottom: 0;
+    display: inline;
+    margin: 0;
+    position: absolute;
+  }
+
+  img{
+    height: 3rem;
+  }
+
+  p{
+    bottom: 0;
+    font-size: 14pt;
+    margin: 0;
+    position: absolute;
+  }
+}

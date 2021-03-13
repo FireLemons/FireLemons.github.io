@@ -295,6 +295,45 @@ body {
   border-left: 0;
 }
 
+#to-metric {
+  background-color: #212121;
+  color: white;
+  text-align: left;
+}
+#to-metric > *:not(div.hatch) {
+  height: 3rem;
+  left: 1rem;
+  margin: 0;
+  position: relative;
+}
+#to-metric div.hatch {
+  background-color: white;
+  height: 3rem;
+  width: 25rem;
+}
+#to-metric div.hatch:nth-child(5n-3) {
+  width: 50rem;
+}
+#to-metric h1 {
+  color: white;
+  margin-bottom: 0;
+}
+#to-metric h2 {
+  bottom: 0;
+  display: inline;
+  margin: 0;
+  position: absolute;
+}
+#to-metric img {
+  height: 3rem;
+}
+#to-metric p {
+  bottom: 0;
+  font-size: 14pt;
+  margin: 0;
+  position: absolute;
+}
+
 #weather-bot {
   background-image: url(../COMOWeather/assets/img/WeatherBotBackground.jpg);
   background-repeat: no-repeat;
