@@ -19,3 +19,6 @@
 [submodule "Unity404"]
 	path = Unity404
 	url = https://github.com/FireLemons/Unity404
+[submodule "casaMetricsComparison"]
+	path = casaMetricsComparison
+	url = https://github.com/FireLemons/casa-metrics-comparison.git
