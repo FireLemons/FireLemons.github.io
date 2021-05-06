@@ -4,7 +4,7 @@
   "description": "Front End Demos",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "buildCSS": "cd css/ && node build.js"
   },
   "repository": {
     "type": "git",
