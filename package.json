@@ -16,6 +16,6 @@
   },
   "homepage": "https://github.com/FireLemons/FireLemons.github.io#readme",
   "devDependencies": {
-    "sass": "^1.32.8"
+    "sass": "^1.32.12"
   }
 }
