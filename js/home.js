@@ -36,7 +36,7 @@ var app = new Vue({
         
         if(!localStorage.getItem('readControls')){
             controlHint = M.toast({
-                html: `<span>The arrow keys and swiping can be used to flip through projects</span>
+                html: `<span>Click project titles to see more details</span>
                        <button class="btn-flat toast-action" onclick="app.dismissHint()">Got it!</button>`,
                 displayLength: Infinity});
             dismissHint = true;
