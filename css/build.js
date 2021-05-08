@@ -29,6 +29,7 @@ const sources = {
   'home.scss':                         new SourceFile('./scss/home.scss'),
   'isaac-pills.scss':                  new SourceFile('./scss/_isaac-pills.scss'),
   'noscript.scss':                     new SourceFile('./scss/noscript.scss'),
+  'single-reminder-bot.scss':          new SourceFile('./scss/_single-reminder-bot.scss'),
   'sudoku-solver.scss':                new SourceFile('./scss/_sudoku-solver.scss'),
   'to-metric.scss':                    new SourceFile('./scss/_to-metric.scss'),
   'weather-bot.scss':                  new SourceFile('./scss/_weather-bot.scss')
@@ -42,6 +43,7 @@ const buildTrees = [
       sources['abbreviation-autocomplete.scss'],
       sources['calculator.scss'],
       sources['isaac-pills.scss'],
+      sources['single-reminder-bot.scss'],
       sources['sudoku-solver.scss'],
       sources['to-metric.scss'],
       sources['weather-bot.scss']
