@@ -37,7 +37,7 @@ var app = new Vue({
         if(!localStorage.getItem('readControls')){
             controlHint = M.toast({
                 html: `<span>Click project titles to see more details</span>
-                       <button class="btn-flat toast-action" onclick="app.dismissHint()">Got it!</button>`,
+                       <button class="btn-flat toast-action" onclick="app.dismissHint()">Got it</button>`,
                 displayLength: Infinity});
             dismissHint = true;
         }
