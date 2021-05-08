@@ -369,12 +369,12 @@ body {
   font-family: Helvetica, Arial;
 }
 #weather-bot img {
-  height: 8em;
+  height: 6em;
   margin: 1em;
   transition: height 1s;
 }
 #weather-bot img:hover {
-  height: 9em;
+  height: 7em;
 }
 #weather-bot p {
   -webkit-background-clip: text;
@@ -418,10 +418,10 @@ body {
 #weather-bot #regex {
   transition: height 1s;
   margin-bottom: 4em;
-  height: 4em;
+  height: 3em;
 }
 #weather-bot #regex:hover {
-  height: 4.5em;
+  height: 3.25em;
 }
 
 @media screen and (max-aspect-ratio: 8/7) {
@@ -436,9 +436,9 @@ body {
     font-size: 54pt;
   }
   #weather-bot #regex {
-    height: 4em;
+    height: 3em;
   }
   #weather-bot #regex:hover {
-    height: 4.1em;
+    height: 3.25em;
   }
 }

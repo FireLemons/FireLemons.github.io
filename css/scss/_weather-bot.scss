@@ -22,12 +22,12 @@
   }
 
   img{
-    height: 8em;
+    height: 6em;
     margin: 1em;
     transition: height 1s;
 
     &:hover{
-      height: 9em;
+      height: 7em;
     }
   }
 
@@ -78,10 +78,10 @@
   #regex{
     transition: height 1s;
     margin-bottom: 4em;
-    height: 4em;
+    height: 3em;
 
     &:hover{
-      height: 4.5em;
+      height: 3.25em;
     }
   }
 }
@@ -102,10 +102,10 @@
     }
 
     #regex{
-      height: 4em;
+      height: 3em;
     
       &:hover{
-        height: 4.1em;
+        height: 3.25em;
       }
     }
   }
