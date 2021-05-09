@@ -24,6 +24,15 @@ body {
   overflow: hidden;
 }
 
+.dependency {
+  height: 8em;
+  margin-top: 1em;
+  transition: height 1s;
+}
+.dependency:hover {
+  height: 9em;
+}
+
 .flex {
   display: flex;
 }
@@ -118,13 +127,6 @@ body {
 #abbreviation-autocomplete h2 {
   font-size: 24pt;
 }
-#abbreviation-autocomplete img {
-  height: 8em;
-  transition: height 1s;
-}
-#abbreviation-autocomplete img:hover {
-  height: 9em;
-}
 #abbreviation-autocomplete p {
   font-size: 18pt;
 }
@@ -161,7 +163,7 @@ body {
   }
 }
 #calculator {
-  background: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url(../assets/img/calculator.jpg) center center no-repeat;
+  background: linear-gradient(#fffa, #0003), url(../assets/img/calculator.jpg) center center no-repeat;
   background-size: cover;
 }
 #calculator div {
@@ -185,13 +187,6 @@ body {
   margin-left: 4em;
   margin-top: 0;
   text-align: left;
-}
-#calculator img {
-  height: 12em;
-  transition: height 1s;
-}
-#calculator img:hover {
-  height: 13em;
 }
 #calculator .flex {
   justify-content: center;
@@ -219,14 +214,6 @@ body {
 #isaac-pills h3 {
   margin: 0;
   padding-bottom: 0.25em;
-}
-#isaac-pills img {
-  height: 8em;
-  margin-top: 1em;
-  transition: height 1s;
-}
-#isaac-pills img:hover {
-  height: 9em;
 }
 #isaac-pills p {
   font-size: 18pt;
@@ -266,11 +253,11 @@ body {
   height: 100%;
 }
 #sudoku-solver img {
-  height: 12em;
+  height: 10em;
   transition: height 1s;
 }
 #sudoku-solver img:hover {
-  height: 13em;
+  height: 11em;
 }
 #sudoku-solver img.pad {
   padding: 1em;
@@ -322,9 +309,6 @@ body {
 #to-metric h2 {
   font-size: 32pt;
   margin-left: 28%;
-}
-#to-metric img {
-  height: 8rem;
 }
 #to-metric p {
   font-size: 14pt;

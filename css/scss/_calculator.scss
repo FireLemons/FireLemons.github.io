@@ -1,5 +1,5 @@
 #calculator{
-  background: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url(../assets/img/calculator.jpg) center center no-repeat;
+  background: linear-gradient(#fffa, #0003), url(../assets/img/calculator.jpg) center center no-repeat;
   background-size: cover;
 
   div{
@@ -26,15 +26,6 @@
     margin-left: 4em;
     margin-top: 0;
     text-align: left;
-  }
-
-  img{
-    height: 12em;
-    transition: height 1s;
-
-    &:hover{
-      height: 13em;
-    }
   }
 
   .flex{

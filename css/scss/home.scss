@@ -35,6 +35,16 @@ body{
   overflow: hidden;
 }
 
+.dependency {
+  height: 8em;
+  margin-top: 1em;
+  transition: height 1s;
+
+  &:hover{
+    height: 9em;
+  }
+}
+
 .flex{
 	display: flex;
 }
