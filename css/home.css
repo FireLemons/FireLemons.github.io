@@ -231,10 +231,16 @@ body {
   color: #eee;
 }
 #single-reminder-bot h1 {
-  color: #eee;
+  color: #ddd;
 }
 #single-reminder-bot h1:hover {
   color: #fff;
+}
+#single-reminder-bot h2 {
+  font-size: 24pt;
+}
+#single-reminder-bot p {
+  font-size: 16pt;
 }
 
 #sudoku-solver {
