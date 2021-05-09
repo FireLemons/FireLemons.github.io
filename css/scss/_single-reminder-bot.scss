@@ -1,14 +1,13 @@
 #single-reminder-bot{
-  &:before{
-    background: linear-gradient(180deg, #0008 30%, #fff4 100%), url(../assets/img/lostInReminders.png) center center no-repeat;
-    background-size: cover;
-    content: "";
-    display: block;
-    left: 0;
-    right: 0;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
+  background: linear-gradient(180deg, #000a 30%, #fff4 100%), url(../assets/img/lostInReminders.png) center center no-repeat;
+  background-size: cover;
+  color: #eee;
+
+  h1{
+    color: #eee;
+
+    &:hover{
+      color: #fff;
+    }
   }
 }

@@ -225,17 +225,16 @@ body {
   justify-content: center;
 }
 
-#single-reminder-bot:before {
-  background: linear-gradient(180deg, #0008 30%, #fff4 100%), url(../assets/img/lostInReminders.png) center center no-repeat;
+#single-reminder-bot {
+  background: linear-gradient(180deg, #000a 30%, #fff4 100%), url(../assets/img/lostInReminders.png) center center no-repeat;
   background-size: cover;
-  content: "";
-  display: block;
-  left: 0;
-  right: 0;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
+  color: #eee;
+}
+#single-reminder-bot h1 {
+  color: #eee;
+}
+#single-reminder-bot h1:hover {
+  color: #fff;
 }
 
 #sudoku-solver {
