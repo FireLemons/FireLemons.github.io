@@ -16,7 +16,7 @@
   }
 }
 #nojs {
-  background-image: url(../assets/img/jsDisabled.jpg);
+  background-image: url(../assets/img/jsDisabled.webp);
   background-repeat: no-repeat;
   background-size: cover;
   font-family: Ubuntu;
